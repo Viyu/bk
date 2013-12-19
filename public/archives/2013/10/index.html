@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives: 2013/10 | Viyu</title>
+  <meta name="author" content="Viyu">
+
+  
+  
+
+  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+</head>
+
+<body>
+  <header id="header" class="inner"><nav>
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+  <div id="content" class="inner">
+
+<header id="archive-header">
+  <h1 class="alignleft">Archives: 2013/10</h1>
+  <div class="search alignright">
+    <form action="http://google.com/search" method="get" accept-charset="utf-8">
+      <input type="search" name="q" results="0" placeholder="Search">
+      <input type="hidden" name="q" value="site:mosthink.net">
+    </form>
+  </div>
+</header>
+
+
+  
+    <article class="post">
+  
+  <header>
+    
+  
+    <h1 class="title"><a href="/2013/10/18/2013-10-18-units issue/">Units Problem: How to read text size as custom attr from xml and set it to TextView in java code</a></h1>
+  
+
+    <time datetime="2013-10-18T00:00:00.000Z">
+  <span class="day">18</span><span class="month">Oct</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>Here is this topic’s background:</p>
+<p>I defined a custom View which extends FrameLayout and contains a TextView, calledMyView here. And I defined custom attribute “myviewtextsize” in attrs.xml for MyView so that clients can set different text size in layout xml for the TextView of MyView.</p>
+<p>So far, clients code can set text size like this:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">MyView</span>  
+     <span class="attribute">android:</span>…  
+     …
+     <span class="attribute">my:myviewtextsize</span>=<span class="value">”@dimen</span>/<span class="attribute">textsize_24</span>″  
+     …  
+/&gt;</span> 
+</pre></td></tr></table></figure>
+
+
+<p>The problem is: how to read the client’s text size number and set it to the TextVew of MyView?</p>
+<p>In MyView.java,</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="title">float</span> textSize = <span class="typedef">typedArray.getDimension<span class="container">(<span class="type">R</span>.<span class="type">MyView_myviewtextsize</span>, -1)</span>;  </span>
+  
+<span class="title">this</span>.textView.setTextSize(textSize).  
+</pre></td></tr></table></figure>
+
+
+<p>Above code goes wrong. The text size is bigger than it’s supposed to.</p>
+<p>Why? It is mixed units problem.</p>
+<p>The default method setTextSize(float) assumes you’re inputting sp units (scaled pixels), while the typedArray.getDimension() method returns an exact pixel size.</p>
+<p>It can be fixed this by using the alternate <b>setTextSize(TypedValue, float)</b>, like below:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="keyword">this</span><span class="variable">.textView</span><span class="variable">.setTextSize</span>(TypedValue<span class="variable">.COMPLEX_UNIT_PX</span>, size);  
+</pre></td></tr></table></figure>
+
+
+<p>This will make sure you’re working with the same units.</p>
+
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/tags/Android/">Android</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article>
+  
+
+  <nav id="pagenavi">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2013 Viyu
+  
+</p>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+<script src="/js/phasebeam.js"></script>
+</body>
+</html>

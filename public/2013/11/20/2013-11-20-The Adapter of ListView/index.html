@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>The Adapter of ListView: Just adapt data to view, don’t do anything else | Viyu</title>
+  <meta name="author" content="Viyu">
+
+  
+  <meta name="description" content="The design of SimpleAdapter is not good in my opinion.
+An adapter should just adapter the data to view, not care to inflate xml to create Layout View, hold the member Views of the layout view, and, fill the datas to each member View one by one. SimpleAdapter does these things all together. It is high coupling design.
+The solution is a ItemViewHolder class, which inflate and hold the layout view and its member views, and parse datas to fill them  to member views one by one. And the most cool is, it’s layout view of ItemViewHolder set “this” as its tag. So that you can get the ItemViewHolder instance of the convertView in getView(…, View convertView, …) function.
+See below code snippets.
+In Adapter, passed in a List as data list.
+1
+List&lt;Data&gt; dataList;  
+
+
+
+and override getView() like this:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+@Override  
+public View getView(int position, View convertView, ViewGroup parent) {  
+    ItemViewHolder item = null;  
+  
+    if(convertView == null) {  
+        item = new ItemViewHolder(context);  
+        convertView = item.getLayoutView();  
+    } else {  
+        item = (ItemViewHolder)convertView.getTag();  
+    }  
+  
+    item.setItemData(dataList.get(position));  
+  
+    return convertView;  
+}  
+
+
+
+ItemViewHolder is the views holder of the convertView.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+public class ItemViewHolder {  
+  
+    //The layout View of the item of the ListView.  
+    private View layoutView = null;  
+    //The member Views to display data.  
+    private TextView textView = null;  
+    private ImageView imageView = null;  
+    … …  
+  
+    public ItemViewHolder (Context context) {  
+        super(context);  
+  
+         initUI();  
+    }  
+  
+    public View getLayoutView() {  
+        return layoutView;  
+    }  
+  
+    public void setItemData(Data data) {  
+        textView.setText(data.getText());  
+        imageView.setImage(data.getImage());  
+        … …  
+    }  
+  
+    private void initUI() {  
+         LayoutInflater inflater = LayoutInflater.from(mContext);  
+         layoutView = inflater.inflate(R.layout.item_view_layout, null);  
+        //  
+        textView = (TextView) layoutView.findViewById(R.id.textview);  
+        imageView = (ImageView)layoutView.findViewById(R.id.imageview);  
+       //This is the most important code.  
+       layoutView.setTag(this);  
+    }  
+}">
+  
+  
+
+  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+</head>
+
+<body>
+  <header id="header" class="inner"><nav>
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+  <div id="content" class="inner"><article class="post">
+  
+  <header>
+    
+  
+    <h1 class="title">The Adapter of ListView: Just adapt data to view, don’t do anything else</h1>
+  
+
+    <time datetime="2013-11-20T00:00:00.000Z">
+  <span class="day">20</span><span class="month">Nov</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>The design of SimpleAdapter is not good in my opinion.</p>
+<p>An adapter should just adapter the data to view, not care to inflate xml to create Layout View, hold the member Views of the layout view, and, fill the datas to each member View one by one. SimpleAdapter does these things all together. It is high coupling design.</p>
+<p>The solution is a ItemViewHolder class, which inflate and hold the layout view and its member views, and parse datas to fill them  to member views one by one. And the most cool is, it’s layout view of ItemViewHolder set “this” as its tag. So that you can get the ItemViewHolder instance of the convertView in getView(…, View convertView, …) function.</p>
+<p>See below code snippets.</p>
+<p>In Adapter, passed in a List as data list.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>List<span class="tag">&lt;<span class="title">Data</span>&gt;</span> dataList;  
+</pre></td></tr></table></figure>
+
+
+<p>and override getView() like this:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre>@Override  
+public View getView(int position, View convertView, ViewGroup parent) {  
+    ItemViewHolder item = null<span class="comment">;  </span>
+  
+    if(convertView == null) {  
+        item = new ItemViewHolder(context)<span class="comment">;  </span>
+        convertView = item<span class="preprocessor">.getLayoutView</span>()<span class="comment">;  </span>
+    } else {  
+        item = (ItemViewHolder)convertView<span class="preprocessor">.getTag</span>()<span class="comment">;  </span>
+    }  
+  
+    item<span class="preprocessor">.setItemData</span>(dataList<span class="preprocessor">.get</span>(position))<span class="comment">;  </span>
+  
+    return convertView<span class="comment">;  </span>
+}  
+</pre></td></tr></table></figure>
+
+
+<p>ItemViewHolder is the views holder of the convertView.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="id">ItemViewHolder</span> {</span>  
+  
+    <span class="comment">//The layout View of the item of the ListView.  </span>
+    <span class="keyword">private</span> View layoutView = null;  
+    <span class="comment">//The member Views to display data.  </span>
+    <span class="keyword">private</span> TextView textView = null;  
+    <span class="keyword">private</span> ImageView imageView = null;  
+    … …  
+  
+    <span class="keyword">public</span> ItemViewHolder (Context context) {  
+        <span class="keyword">super</span>(context);  
+  
+         initUI();  
+    }  
+  
+    <span class="keyword">public</span> View getLayoutView() {  
+        <span class="keyword">return</span> layoutView;  
+    }  
+  
+    <span class="keyword">public</span> <span class="keyword">void</span> setItemData(Data data) {  
+        textView<span class="variable">.setText</span>(data<span class="variable">.getText</span>());  
+        imageView<span class="variable">.setImage</span>(data<span class="variable">.getImage</span>());  
+        … …  
+    }  
+  
+    <span class="keyword">private</span> <span class="keyword">void</span> initUI() {  
+         LayoutInflater inflater = LayoutInflater<span class="variable">.from</span>(mContext);  
+         layoutView = inflater<span class="variable">.inflate</span>(R<span class="variable">.layout</span><span class="variable">.item_view_layout</span>, null);  
+        <span class="comment">//  </span>
+        textView = (TextView) layoutView<span class="variable">.findViewById</span>(R<span class="variable">.id</span><span class="variable">.textview</span>);  
+        imageView = (ImageView)layoutView<span class="variable">.findViewById</span>(R<span class="variable">.id</span><span class="variable">.imageview</span>);  
+       <span class="comment">//This is the most important code.  </span>
+       layoutView<span class="variable">.setTag</span>(<span class="keyword">this</span>);  
+    }  
+}  
+</pre></td></tr></table></figure>
+
+
+<a id="more"></a>
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/tags/Android/">Android</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article></div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2013 Viyu
+  
+</p>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+<script src="/js/phasebeam.js"></script>
+</body>
+</html>

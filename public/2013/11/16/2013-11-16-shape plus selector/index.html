@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Shape + Selector: Make a Shape as one item of the Selector | Viyu</title>
+  <meta name="author" content="Viyu">
+
+  
+  <meta name="description" content="Generally, I use a selector to select pictures or colors to render the normal and the pressed background for View. 
+And use a Shape to draw a fixed background with border, round, gradient and other UI effect for View.
+What if you wanna use them both for one View?
+Make a Shape as one item of the Selector.
+Selector selects background from Shape list.
+Below is a sample.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+&lt;?xml version=”1.0″ encoding=”UTF-8″?&gt;  
+&lt;selector xmlns:android=”http://schemas.android.com/apk/res/android”&gt;  
+    &lt;item android:state_pressed=”true”&gt;  
+            &lt;shape android:shape=”rectangle”&gt;  
+                  &lt;solid android:color=”@color/background_pressed” /&gt;  
+                  &lt;stroke android:width=”@dimen/gap_2″ android:color=”@color/linecolor” /&gt;  
+                  &lt;padding android:bottom=”@dimen/gap_2″ android:left=”@dimen/gap_2″                                     
+                  android:right=”@dimen/gap_2″ android:top=”@dimen/gap_2″ /&gt;  
+            &lt;/shape&gt;  
+     &lt;/item&gt;  
+  
+     &lt;item&gt;  
+         &lt;shape android:shape=”rectangle”&gt;  
+              &lt;solid android:color=”@color/background_normal” /&gt;  
+              &lt;stroke android:width=”@dimen/gap_2″ android:color=”@color/linecolor” /&gt;  
+              &lt;padding android:bottom=”@dimen/gap_2″ android:left=”@dimen/gap_2″                                          
+              android:right=”@dimen/gap_2″ android:top=”@dimen/gap_2″ /&gt;  
+         &lt;/shape&gt;  
+     &lt;/item&gt;  
+&lt;/selector&gt;">
+  
+  
+
+  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+</head>
+
+<body>
+  <header id="header" class="inner"><nav>
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+  <div id="content" class="inner"><article class="post">
+  
+  <header>
+    
+  
+    <h1 class="title">Shape + Selector: Make a Shape as one item of the Selector</h1>
+  
+
+    <time datetime="2013-11-16T00:00:00.000Z">
+  <span class="day">16</span><span class="month">Nov</span>
+</time>
+  </header>
+  <div class="entry-content">
+    
+      <p>Generally, I use a selector to select pictures or colors to render the normal and the pressed background for View. </p>
+<p>And use a Shape to draw a fixed background with border, round, gradient and other UI effect for View.</p>
+<p>What if you wanna use them both for one View?</p>
+<p>Make a Shape as one item of the Selector.</p>
+<p>Selector selects background from Shape list.</p>
+<p>Below is a sample.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="pi">&lt;?xml version=”1.0″ encoding=”UTF-8″?&gt;</span>  
+<span class="tag">&lt;<span class="title">selector</span> <span class="attribute">xmlns:android</span>=<span class="value">”http:</span>//<span class="attribute">schemas.android.com</span>/<span class="attribute">apk</span>/<span class="attribute">res</span>/<span class="attribute">android</span>”&gt;</span>  
+    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:state_pressed</span>=<span class="value">”true”</span>&gt;</span>  
+            <span class="tag">&lt;<span class="title">shape</span> <span class="attribute">android:shape</span>=<span class="value">”rectangle”</span>&gt;</span>  
+                  <span class="tag">&lt;<span class="title">solid</span> <span class="attribute">android:color</span>=<span class="value">”@color</span>/<span class="attribute">background_pressed</span>” /&gt;</span>  
+                  <span class="tag">&lt;<span class="title">stroke</span> <span class="attribute">android:width</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ <span class="attribute">android:color</span>=<span class="value">”@color</span>/<span class="attribute">linecolor</span>” /&gt;</span>  
+                  <span class="tag">&lt;<span class="title">padding</span> <span class="attribute">android:bottom</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ <span class="attribute">android:left</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″                                     
+                  <span class="attribute">android:right</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ <span class="attribute">android:top</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ /&gt;</span>  
+            <span class="tag">&lt;/<span class="title">shape</span>&gt;</span>  
+     <span class="tag">&lt;/<span class="title">item</span>&gt;</span>  
+  
+     <span class="tag">&lt;<span class="title">item</span>&gt;</span>  
+         <span class="tag">&lt;<span class="title">shape</span> <span class="attribute">android:shape</span>=<span class="value">”rectangle”</span>&gt;</span>  
+              <span class="tag">&lt;<span class="title">solid</span> <span class="attribute">android:color</span>=<span class="value">”@color</span>/<span class="attribute">background_normal</span>” /&gt;</span>  
+              <span class="tag">&lt;<span class="title">stroke</span> <span class="attribute">android:width</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ <span class="attribute">android:color</span>=<span class="value">”@color</span>/<span class="attribute">linecolor</span>” /&gt;</span>  
+              <span class="tag">&lt;<span class="title">padding</span> <span class="attribute">android:bottom</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ <span class="attribute">android:left</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″                                          
+              <span class="attribute">android:right</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ <span class="attribute">android:top</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ /&gt;</span>  
+         <span class="tag">&lt;/<span class="title">shape</span>&gt;</span>  
+     <span class="tag">&lt;/<span class="title">item</span>&gt;</span>  
+<span class="tag">&lt;/<span class="title">selector</span>&gt;</span>  
+</pre></td></tr></table></figure>
+
+
+<a id="more"></a>
+    
+    
+    <footer class="meta">
+      
+      
+  <div class="tags">
+<a href="/tags/Android/">Android</a></div>
+
+      
+    </footer>
+    
+  </div>
+  
+</article></div>
+  <footer id="footer" class="inner"><div class="social alignright">
+  
+  
+  
+  
+  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>
+  
+  &copy; 2013 Viyu
+  
+</p>
+<div class="clearfix"></div></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id="phasebeam">
+  <canvas></canvas>
+  <canvas></canvas>
+  <canvas></canvas>
+</div>
+<script src="/js/phasebeam.js"></script>
+</body>
+</html>

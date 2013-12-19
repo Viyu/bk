@@ -1,0 +1,64 @@
+
+{% code [title] [lang:language] [url] [link text] %}
+code snippet
+{% endcode %}
+
+链接：
+
+[documentation](http://zespia.tw/hexo/docs) 
+
+
+
+发表文章，在根目录下：
+hexo generate -deploy
+
+
+提交post到库，在_post下：
+
+git init
+git add .
+git commit -m "创建post库"
+git remote add orgin git@github.com:username/page_posts.git  还有在第一次创建的时候才需要，之后省略掉，直接用之前的origin名字push
+git push -u orgin master
+
+1, Open http://zespia.tw/hexo/docs/
+
+2, Install Git follow the directions
+
+3, Install Node.js follow the directions
+
+4, Open Node.js command, 
+	
+$ npm install -g hexo
+
+
+5,cd to the folder which will be the root folder of hexo project.
+$ hexo init
+
+6,  change _config.xml, add this for deploy
+
+deploy:
+  type: github
+  repository: https://github.com/Viyu/viyu.github.com.git
+  branch: master
+
+7, copy ENAME file to ./source.
+
+8, cd to /source/
+
+ delete ./_posts if thers is no files to keep.
+
+ $git clone https://github.com/Viyu/_posts.git 
+
+
+9, cd.. to ./
+
+$ hexo generate
+
+$ hexo server
+
+add new .md in ./source.
+
+$ hexo deploy
+
+10, cd to source
