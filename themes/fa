@@ -1,4 +1,24 @@
 
+
+
+
+
+
+
+
+
+
+
+git clone https://github.com/Viyu/bk.git
+git rm -r themes/....
+
+
+
+
+
+
+
+//////////////////////////////////////////
 {% code [title] [lang:language] [url] [link text] %}
 code snippet
 {% endcode %}
