@@ -1,0 +1,19 @@
+﻿
+
+http://zespia.tw/hexo/
+
+git clone https://github.com/Viyu/bk.git
+
+
+删除：
+git rm -r themes/....
+
+提交：
+git status
+git add .
+git commit -m "commit"
+git push origin master
+如果冲突
+先git pull origin
+
+hexo generate -deploy //先删除下载的.deploy目录
