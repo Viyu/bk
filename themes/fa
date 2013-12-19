@@ -1,5 +1,18 @@
+<<<<<<< HEAD
 从一个新电脑上，
 下载：
+=======
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 511c80becbdedc21497a334b53505702e0a58069
 git clone https://github.com/Viyu/bk.git
 删除：
 git rm -r themes/....
@@ -9,7 +22,15 @@ git add .
 git commit -m "commit"
 git push origin master
 
+<<<<<<< HEAD
 hexo generate -deploy //先删除下载的.deploy目录
+=======
+git add .
+git commit -m ".."
+git push origin master
+
+
+>>>>>>> 511c80becbdedc21497a334b53505702e0a58069
 
 
 //////////////////////////////////////////
@@ -17,22 +38,22 @@ hexo generate -deploy //先删除下载的.deploy目录
 code snippet
 {% endcode %}
 
-链接：
+锟斤拷锟接ｏ拷
 
 [documentation](http://zespia.tw/hexo/docs) 
 
 
 
-发表文章，在根目录下：
+锟斤拷锟斤拷锟斤拷锟铰ｏ拷锟节革拷目录锟铰ｏ拷
 hexo generate -deploy
 
 
-提交post到库，在_post下：
+锟结交post锟斤拷锟解，锟斤拷_post锟铰ｏ拷
 
 git init
 git add .
-git commit -m "创建post库"
-git remote add orgin git@github.com:username/page_posts.git  还有在第一次创建的时候才需要，之后省略掉，直接用之前的origin名字push
+git commit -m "锟斤拷锟斤拷post锟斤拷"
+git remote add orgin git@github.com:username/page_posts.git  锟斤拷锟斤拷锟节碉拷一锟轿达拷锟斤拷锟斤拷时锟斤拷锟斤拷锟斤拷要锟斤拷之锟斤拷省锟皆碉拷锟斤拷直锟斤拷锟斤拷之前锟斤拷origin锟斤拷锟斤拷push
 git push -u orgin master
 
 1, Open http://zespia.tw/hexo/docs/
