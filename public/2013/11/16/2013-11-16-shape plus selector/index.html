@@ -1,98 +1,119 @@
 <!DOCTYPE HTML>
+<!--
+	Striped 2.5 by HTML5 Up!
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Ported to Hexo by Adam Stokes @ajscg
+-->
 <html>
-<head>
+  <head>
   <meta charset="utf-8">
   
   <title>Shape + Selector: Make a Shape as one item of the Selector | Viyu</title>
   <meta name="author" content="Viyu">
-
   
   <meta name="description" content="Generally, I use a selector to select pictures or colors to render the normal and the pressed background for View. 
 And use a Shape to draw a fixed background with border, round, gradient and other UI effect for View.
 What if you wanna use them both for one View?
 Make a Shape as one item of the Selector.
 Selector selects background from Shape list.
-Below is a sample.
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-&lt;?xml version=”1.0″ encoding=”UTF-8″?&gt;  
-&lt;selector xmlns:android=”http://schemas.android.com/apk/res/android”&gt;  
-    &lt;item android:state_pressed=”true”&gt;  
-            &lt;shape android:shape=”rectangle”&gt;  
-                  &lt;solid android:color=”@color/background_pressed” /&gt;  
-                  &lt;stroke android:width=”@dimen/gap_2″ android:color=”@color/linecolor” /&gt;  
-                  &lt;padding android:bottom=”@dimen/gap_2″ android:left=”@dimen/gap_2″                                     
-                  android:right=”@dimen/gap_2″ android:top=”@dimen/gap_2″ /&gt;  
-            &lt;/shape&gt;  
-     &lt;/item&gt;  
-  
-     &lt;item&gt;  
-         &lt;shape android:shape=”rectangle”&gt;  
-              &lt;solid android:color=”@color/background_normal” /&gt;  
-              &lt;stroke android:width=”@dimen/gap_2″ android:color=”@color/linecolor” /&gt;  
-              &lt;padding android:bottom=”@dimen/gap_2″ android:left=”@dimen/gap_2″                                          
-              android:right=”@dimen/gap_2″ android:top=”@dimen/gap_2″ /&gt;  
-         &lt;/shape&gt;  
-     &lt;/item&gt;  
-&lt;/selector&gt;">
+Below is a sample.">
   
   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+  <meta property="og:title" content="Shape + Selector: Make a Shape as one item of the Selector"/>
+  <meta property="og:site_name" content="Viyu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700|Open+Sans+Condensed:300,700" rel="stylesheet" />
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/skel.min.js"></script>
+  <script src="/js/skel-panels.min.js"></script>
+  <script src="/js/init.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/skel-noscript.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/style-desktop.css" />
+    <link rel="stylesheet" href="/css/style-wide.css" />
+  </noscript>
+
+  <!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+  <!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+  <!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
   <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-  
-</head>
+  <link rel="stylesheet" href="/js/styles/tomorrow-night.css" />
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 
-<body>
-  <header id="header" class="inner"><nav>
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-  </ul>
-</nav></header>
-  <div id="content" class="inner"><article class="post">
-  
-  <header>
-    
-  
-    <h1 class="title">Shape + Selector: Make a Shape as one item of the Selector</h1>
   
 
-    <time datetime="2013-11-16T00:00:00.000Z">
-  <span class="day">16</span><span class="month">Nov</span>
-</time>
-  </header>
-  <div class="entry-content">
-    
-      <p>Generally, I use a selector to select pictures or colors to render the normal and the pressed background for View. </p>
+  </head>
+
+
+
+<body class="left-sidebar">
+  <!-- Wrapper -->
+  <div id="wrapper">
+    <!-- Content -->
+    <div id="content">
+      <div id="content-inner">
+	<!-- Post -->
+<article class="is-post is-post-excerpt">
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h2>Shape + Selector: Make a Shape as one item of the Selector</h2>
+  
+
+
+    </header>
+  <div class="info">
+    <!--
+	Note: The date should be formatted exactly as it's shown below. In particular, the
+	"least significant" characters of the month should be encapsulated in a <span>
+	element to denote what gets dropped in 1200px mode (eg. the "uary" in "January").
+	Oh, and if you don't need a date for a particular page or post you can simply delete
+	the entire "date" element.
+	
+      -->
+    <span class="date"><span class="month">Nov</span> <span class="day">16</span><span class="year">, 2013</span></span>
+    <!--
+	Note: You can change the number of list items in "stats" to whatever you want.
+      -->
+
+    <ul class="stats">
+      
+  <div class="addthis addthis_toolbox addthis_default_style">
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+
+      <!--
+      <li><a href="#" class="fa fa-comment">16</a></li>
+      <li><a href="#" class="fa fa-heart">32</a></li>
+      <li><a href="#" class="fa fa-twitter">64</a></li>
+      <li><a href="#" class="fa fa-facebook">128</a></li>
+      -->
+    </ul>
+
+  </div>
+  <div class="entry">
+  
+    <p>Generally, I use a selector to select pictures or colors to render the normal and the pressed background for View. </p>
 <p>And use a Shape to draw a fixed background with border, round, gradient and other UI effect for View.</p>
 <p>What if you wanna use them both for one View?</p>
 <p>Make a Shape as one item of the Selector.</p>
 <p>Selector selects background from Shape list.</p>
 <p>Below is a sample.</p>
+<a id="more"></a>
+
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -135,36 +156,134 @@ Below is a sample.
 <span class="tag">&lt;/<span class="title">selector</span>&gt;</span>  
 </pre></td></tr></table></figure>
 
+  
+  </div>
+  <footer>
+    
+      
 
-<a id="more"></a>
-    
-    
-    <footer class="meta">
       
-      
+  
   <div class="tags">
-<a href="/tags/Android/">Android</a></div>
+    <a href="/tags/Android/">Android</a>
+  </div>
+
 
       
-    </footer>
+  <div class="addthis addthis_toolbox addthis_default_style">
     
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+
+    
+  </footer>
+</article>
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  
+</section>
+
+
+
+
+      </div>
+    </div>
+    <div id="sidebar">
+  <!-- Logo -->
+  <div id="logo">
+    <h1>Viyu</h1>
+    <h2>Viyu's Blog</h2>
   </div>
   
-</article></div>
-  <footer id="footer" class="inner"><div class="social alignright">
+  <!-- Nav -->
+  <nav id="nav">
+    <ul>
+      
+      <li><a href="/">Home</a></li>
+      
+      <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+
+
+  <!-- Hexo Widgets -->
   
+    <!-- Search -->
+<section class="is-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" class="text" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mosthink.net">
+  </form>
+</section>
+
   
+    
+<section class="is-recent-posts">
+  <h2>Recent Posts</h2>
+  <ul>
+    
+      <li>
+        <a href="/2013/12/15/2013-12-15-lednoti/">LED notification in Android device</a>
+      </li>
+    
+      <li>
+        <a href="/2013/12/10/2013-12-10-tiletextureimage/">How to tile small texture image onto page as its background</a>
+      </li>
+    
+      <li>
+        <a href="/2013/11/25/2013-11-25-TextViewwithanim/">Implement a TextView with an animation in its left side</a>
+      </li>
+    
+      <li>
+        <a href="/2013/11/20/2013-11-20-The Adapter of ListView/">The Adapter of ListView: Just adapt data to view, don’t do anything else</a>
+      </li>
+    
+      <li>
+        <a href="/2013/11/16/2013-11-16-shape plus selector/">Shape + Selector: Make a Shape as one item of the Selector</a>
+      </li>
+    
+  </ul>
+</section>
+
+
   
-  
-  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
-</div>
-<p>
+
+  <!-- Copyright -->
+  <div id="copyright">
   
   &copy; 2013 Viyu
   
-</p>
-<div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  Powered by: <a href="https://github.com/tommy351/hexo">Hexo</a><br />
+  Designed by: <a href="http://html5up.net/">HTML5 UP</a>
+  <p>
+    
+    
+    
+
+   </p>
+</div>
+
+
+
+</div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 
@@ -179,11 +298,6 @@ Below is a sample.
 </script>
 
 
-<div id="phasebeam">
-  <canvas></canvas>
-  <canvas></canvas>
-  <canvas></canvas>
-</div>
-<script src="/js/phasebeam.js"></script>
+  </div>
 </body>
 </html>

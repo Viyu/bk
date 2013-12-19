@@ -14,6 +14,8 @@ Selector selects background from Shape list.
 
 Below is a sample.
 
+<!-- more -->
+
 {% code %}
 <?xml version=”1.0″ encoding=”UTF-8″?>  
 <selector xmlns:android=”http://schemas.android.com/apk/res/android”>  
@@ -36,6 +38,3 @@ Below is a sample.
      </item>  
 </selector>  
 {% endcode %}
-
-<!-- more -->
-

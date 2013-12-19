@@ -18,6 +18,8 @@ List<Data> dataList;
 
 and override getView() like this:
 
+<!-- more -->
+
 {% code %}
 @Override  
 public View getView(int position, View convertView, ViewGroup parent) {  
@@ -75,6 +77,3 @@ public class ItemViewHolder {
     }  
 }  
 {% endcode %}
-
-<!-- more -->
-

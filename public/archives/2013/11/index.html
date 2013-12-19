@@ -1,60 +1,187 @@
 <!DOCTYPE HTML>
+<!--
+	Striped 2.5 by HTML5 Up!
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Ported to Hexo by Adam Stokes @ajscg
+-->
 <html>
-<head>
+  <head>
   <meta charset="utf-8">
   
   <title>Archives: 2013/11 | Viyu</title>
   <meta name="author" content="Viyu">
-
   
   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+  
+  <meta property="og:site_name" content="Viyu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700|Open+Sans+Condensed:300,700" rel="stylesheet" />
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/skel.min.js"></script>
+  <script src="/js/skel-panels.min.js"></script>
+  <script src="/js/init.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/skel-noscript.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/style-desktop.css" />
+    <link rel="stylesheet" href="/css/style-wide.css" />
+  </noscript>
+
+  <!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+  <!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
+  <!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
   <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  <link rel="stylesheet" href="/js/styles/tomorrow-night.css" />
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
   
-</head>
 
-<body>
-  <header id="header" class="inner"><nav>
-  <ul>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-  </ul>
-</nav></header>
-  <div id="content" class="inner">
+  </head>
 
-<header id="archive-header">
-  <h1 class="alignleft">Archives: 2013/11</h1>
-  <div class="search alignright">
-    <form action="http://google.com/search" method="get" accept-charset="utf-8">
-      <input type="search" name="q" results="0" placeholder="Search">
-      <input type="hidden" name="q" value="site:mosthink.net">
-    </form>
+
+
+<body class="left-sidebar">
+  <!-- Wrapper -->
+  <div id="wrapper">
+    <!-- Content -->
+    <div id="content">
+      <div id="content-inner">
+	
+<h2 class="archive-title">2013/11</h2>
+
+
+  
+    <!-- Post -->
+<article class="is-post is-post-excerpt">
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h2><a href="/2013/11/25/2013-11-25-TextViewwithanim/">Implement a TextView with an animation in its left side</a></h2>
+  
+
+
+    </header>
+  <div class="info">
+    <!--
+	Note: The date should be formatted exactly as it's shown below. In particular, the
+	"least significant" characters of the month should be encapsulated in a <span>
+	element to denote what gets dropped in 1200px mode (eg. the "uary" in "January").
+	Oh, and if you don't need a date for a particular page or post you can simply delete
+	the entire "date" element.
+	
+      -->
+    <span class="date"><span class="month">Nov</span> <span class="day">25</span><span class="year">, 2013</span></span>
+    <!--
+	Note: You can change the number of list items in "stats" to whatever you want.
+      -->
+
+    <ul class="stats">
+      
+  <div class="addthis addthis_toolbox addthis_default_style">
+    <a class="addthis_counter addthis_pill_style"></a>
   </div>
-</header>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
 
 
+      <!--
+      <li><a href="#" class="fa fa-comment">16</a></li>
+      <li><a href="#" class="fa fa-heart">32</a></li>
+      <li><a href="#" class="fa fa-twitter">64</a></li>
+      <li><a href="#" class="fa fa-facebook">128</a></li>
+      -->
+    </ul>
+
+  </div>
+  <div class="entry">
   
-    <article class="post">
+    <p>In my case, I want to write a TextView with an animation in its left side.</p>
+<p>ImageView + TextView could work but it’s not frugal enough.</p>
+<p>TextView with drawableLeft would be the best option.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">TextView</span>  
+     … …  
+     <span class="attribute">android:drawablePadding</span>=<span class="value">”10dip”</span>  
+     <span class="attribute">android:drawableLeft</span>=<span class="value">”@drawable</span>/<span class="attribute">loadingicon</span>” /&gt;</span>  
+</pre></td></tr></table></figure>
+
+
+<p>But above implementation just show a icon in the left of TextView, not an animation.</p>
+<p>How to show an animation instead of a icon?</p>
+
   
-  <header>
+  </div>
+  <footer>
     
+     
+      <a href="/2013/11/25/2013-11-25-TextViewwithanim/#more" class="more-link">Read More</a>
+     
+     
+    
+  </footer>
+</article>
+
+
+
   
-    <h1 class="title"><a href="/2013/11/20/2013-11-20-The Adapter of ListView/">The Adapter of ListView: Just adapt data to view, don’t do anything else</a></h1>
+    <!-- Post -->
+<article class="is-post is-post-excerpt">
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h2><a href="/2013/11/20/2013-11-20-The Adapter of ListView/">The Adapter of ListView: Just adapt data to view, don’t do anything else</a></h2>
   
 
-    <time datetime="2013-11-20T00:00:00.000Z">
-  <span class="day">20</span><span class="month">Nov</span>
-</time>
-  </header>
-  <div class="entry-content">
-    
-      <p>The design of SimpleAdapter is not good in my opinion.</p>
+
+    </header>
+  <div class="info">
+    <!--
+	Note: The date should be formatted exactly as it's shown below. In particular, the
+	"least significant" characters of the month should be encapsulated in a <span>
+	element to denote what gets dropped in 1200px mode (eg. the "uary" in "January").
+	Oh, and if you don't need a date for a particular page or post you can simply delete
+	the entire "date" element.
+	
+      -->
+    <span class="date"><span class="month">Nov</span> <span class="day">20</span><span class="year">, 2013</span></span>
+    <!--
+	Note: You can change the number of list items in "stats" to whatever you want.
+      -->
+
+    <ul class="stats">
+      
+  <div class="addthis addthis_toolbox addthis_default_style">
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+
+      <!--
+      <li><a href="#" class="fa fa-comment">16</a></li>
+      <li><a href="#" class="fa fa-heart">32</a></li>
+      <li><a href="#" class="fa fa-twitter">64</a></li>
+      <li><a href="#" class="fa fa-facebook">128</a></li>
+      -->
+    </ul>
+
+  </div>
+  <div class="entry">
+  
+    <p>The design of SimpleAdapter is not good in my opinion.</p>
 <p>An adapter should just adapter the data to view, not care to inflate xml to create Layout View, hold the member Views of the layout view, and, fill the datas to each member View one by one. SimpleAdapter does these things all together. It is high coupling design.</p>
 <p>The solution is a ItemViewHolder class, which inflate and hold the layout view and its member views, and parse datas to fill them  to member views one by one. And the most cool is, it’s layout view of ItemViewHolder set “this” as its tag. So that you can get the ItemViewHolder instance of the convertView in getView(…, View convertView, …) function.</p>
 <p>See below code snippets.</p>
@@ -65,229 +192,183 @@
 
 
 <p>and override getView() like this:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-</pre></td><td class="code"><pre>@Override  
-public View getView(int position, View convertView, ViewGroup parent) {  
-    ItemViewHolder item = null<span class="comment">;  </span>
-  
-    if(convertView == null) {  
-        item = new ItemViewHolder(context)<span class="comment">;  </span>
-        convertView = item<span class="preprocessor">.getLayoutView</span>()<span class="comment">;  </span>
-    } else {  
-        item = (ItemViewHolder)convertView<span class="preprocessor">.getTag</span>()<span class="comment">;  </span>
-    }  
-  
-    item<span class="preprocessor">.setItemData</span>(dataList<span class="preprocessor">.get</span>(position))<span class="comment">;  </span>
-  
-    return convertView<span class="comment">;  </span>
-}  
-</pre></td></tr></table></figure>
 
-
-<p>ItemViewHolder is the views holder of the convertView.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="id">ItemViewHolder</span> {</span>  
   
-    <span class="comment">//The layout View of the item of the ListView.  </span>
-    <span class="keyword">private</span> View layoutView = null;  
-    <span class="comment">//The member Views to display data.  </span>
-    <span class="keyword">private</span> TextView textView = null;  
-    <span class="keyword">private</span> ImageView imageView = null;  
-    … …  
-  
-    <span class="keyword">public</span> ItemViewHolder (Context context) {  
-        <span class="keyword">super</span>(context);  
-  
-         initUI();  
-    }  
-  
-    <span class="keyword">public</span> View getLayoutView() {  
-        <span class="keyword">return</span> layoutView;  
-    }  
-  
-    <span class="keyword">public</span> <span class="keyword">void</span> setItemData(Data data) {  
-        textView<span class="variable">.setText</span>(data<span class="variable">.getText</span>());  
-        imageView<span class="variable">.setImage</span>(data<span class="variable">.getImage</span>());  
-        … …  
-    }  
-  
-    <span class="keyword">private</span> <span class="keyword">void</span> initUI() {  
-         LayoutInflater inflater = LayoutInflater<span class="variable">.from</span>(mContext);  
-         layoutView = inflater<span class="variable">.inflate</span>(R<span class="variable">.layout</span><span class="variable">.item_view_layout</span>, null);  
-        <span class="comment">//  </span>
-        textView = (TextView) layoutView<span class="variable">.findViewById</span>(R<span class="variable">.id</span><span class="variable">.textview</span>);  
-        imageView = (ImageView)layoutView<span class="variable">.findViewById</span>(R<span class="variable">.id</span><span class="variable">.imageview</span>);  
-       <span class="comment">//This is the most important code.  </span>
-       layoutView<span class="variable">.setTag</span>(<span class="keyword">this</span>);  
-    }  
-}  
-</pre></td></tr></table></figure>
-
-
-
-    
-    
-    <footer class="meta">
-      
-      
-  <div class="tags">
-<a href="/tags/Android/">Android</a></div>
-
-      
-    </footer>
-    
   </div>
-  
-</article>
-  
-    <article class="post">
-  
-  <header>
+  <footer>
     
+     
+      <a href="/2013/11/20/2013-11-20-The Adapter of ListView/#more" class="more-link">Read More</a>
+     
+     
+    
+  </footer>
+</article>
+
+
+
   
-    <h1 class="title"><a href="/2013/11/16/2013-11-16-shape plus selector/">Shape + Selector: Make a Shape as one item of the Selector</a></h1>
+    <!-- Post -->
+<article class="is-post is-post-excerpt">
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h2><a href="/2013/11/16/2013-11-16-shape plus selector/">Shape + Selector: Make a Shape as one item of the Selector</a></h2>
   
 
-    <time datetime="2013-11-16T00:00:00.000Z">
-  <span class="day">16</span><span class="month">Nov</span>
-</time>
-  </header>
-  <div class="entry-content">
-    
-      <p>Generally, I use a selector to select pictures or colors to render the normal and the pressed background for View. </p>
+
+    </header>
+  <div class="info">
+    <!--
+	Note: The date should be formatted exactly as it's shown below. In particular, the
+	"least significant" characters of the month should be encapsulated in a <span>
+	element to denote what gets dropped in 1200px mode (eg. the "uary" in "January").
+	Oh, and if you don't need a date for a particular page or post you can simply delete
+	the entire "date" element.
+	
+      -->
+    <span class="date"><span class="month">Nov</span> <span class="day">16</span><span class="year">, 2013</span></span>
+    <!--
+	Note: You can change the number of list items in "stats" to whatever you want.
+      -->
+
+    <ul class="stats">
+      
+  <div class="addthis addthis_toolbox addthis_default_style">
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+
+      <!--
+      <li><a href="#" class="fa fa-comment">16</a></li>
+      <li><a href="#" class="fa fa-heart">32</a></li>
+      <li><a href="#" class="fa fa-twitter">64</a></li>
+      <li><a href="#" class="fa fa-facebook">128</a></li>
+      -->
+    </ul>
+
+  </div>
+  <div class="entry">
+  
+    <p>Generally, I use a selector to select pictures or colors to render the normal and the pressed background for View. </p>
 <p>And use a Shape to draw a fixed background with border, round, gradient and other UI effect for View.</p>
 <p>What if you wanna use them both for one View?</p>
 <p>Make a Shape as one item of the Selector.</p>
 <p>Selector selects background from Shape list.</p>
 <p>Below is a sample.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-</pre></td><td class="code"><pre><span class="pi">&lt;?xml version=”1.0″ encoding=”UTF-8″?&gt;</span>  
-<span class="tag">&lt;<span class="title">selector</span> <span class="attribute">xmlns:android</span>=<span class="value">”http:</span>//<span class="attribute">schemas.android.com</span>/<span class="attribute">apk</span>/<span class="attribute">res</span>/<span class="attribute">android</span>”&gt;</span>  
-    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:state_pressed</span>=<span class="value">”true”</span>&gt;</span>  
-            <span class="tag">&lt;<span class="title">shape</span> <span class="attribute">android:shape</span>=<span class="value">”rectangle”</span>&gt;</span>  
-                  <span class="tag">&lt;<span class="title">solid</span> <span class="attribute">android:color</span>=<span class="value">”@color</span>/<span class="attribute">background_pressed</span>” /&gt;</span>  
-                  <span class="tag">&lt;<span class="title">stroke</span> <span class="attribute">android:width</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ <span class="attribute">android:color</span>=<span class="value">”@color</span>/<span class="attribute">linecolor</span>” /&gt;</span>  
-                  <span class="tag">&lt;<span class="title">padding</span> <span class="attribute">android:bottom</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ <span class="attribute">android:left</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″                                     
-                  <span class="attribute">android:right</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ <span class="attribute">android:top</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ /&gt;</span>  
-            <span class="tag">&lt;/<span class="title">shape</span>&gt;</span>  
-     <span class="tag">&lt;/<span class="title">item</span>&gt;</span>  
+
   
-     <span class="tag">&lt;<span class="title">item</span>&gt;</span>  
-         <span class="tag">&lt;<span class="title">shape</span> <span class="attribute">android:shape</span>=<span class="value">”rectangle”</span>&gt;</span>  
-              <span class="tag">&lt;<span class="title">solid</span> <span class="attribute">android:color</span>=<span class="value">”@color</span>/<span class="attribute">background_normal</span>” /&gt;</span>  
-              <span class="tag">&lt;<span class="title">stroke</span> <span class="attribute">android:width</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ <span class="attribute">android:color</span>=<span class="value">”@color</span>/<span class="attribute">linecolor</span>” /&gt;</span>  
-              <span class="tag">&lt;<span class="title">padding</span> <span class="attribute">android:bottom</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ <span class="attribute">android:left</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″                                          
-              <span class="attribute">android:right</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ <span class="attribute">android:top</span>=<span class="value">”@dimen</span>/<span class="attribute">gap_2</span>″ /&gt;</span>  
-         <span class="tag">&lt;/<span class="title">shape</span>&gt;</span>  
-     <span class="tag">&lt;/<span class="title">item</span>&gt;</span>  
-<span class="tag">&lt;/<span class="title">selector</span>&gt;</span>  
-</pre></td></tr></table></figure>
-
-
-
+  </div>
+  <footer>
     
+     
+      <a href="/2013/11/16/2013-11-16-shape plus selector/#more" class="more-link">Read More</a>
+     
+     
     
-    <footer class="meta">
-      
-      
-  <div class="tags">
-<a href="/tags/Android/">Android</a></div>
+  </footer>
+</article>
 
-      
-    </footer>
-    
+
+
+  
+
+  <!-- Pager -->
+<div class="pager">
+  
+  
+</div>
+
+
+
+
+      </div>
+    </div>
+    <div id="sidebar">
+  <!-- Logo -->
+  <div id="logo">
+    <h1>Viyu</h1>
+    <h2>Viyu's Blog</h2>
   </div>
   
-</article>
+  <!-- Nav -->
+  <nav id="nav">
+    <ul>
+      
+      <li><a href="/">Home</a></li>
+      
+      <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+
+
+  <!-- Hexo Widgets -->
+  
+    <!-- Search -->
+<section class="is-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" class="text" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mosthink.net">
+  </form>
+</section>
+
+  
+    
+<section class="is-recent-posts">
+  <h2>Recent Posts</h2>
+  <ul>
+    
+      <li>
+        <a href="/2013/12/15/2013-12-15-lednoti/">LED notification in Android device</a>
+      </li>
+    
+      <li>
+        <a href="/2013/12/10/2013-12-10-tiletextureimage/">How to tile small texture image onto page as its background</a>
+      </li>
+    
+      <li>
+        <a href="/2013/11/25/2013-11-25-TextViewwithanim/">Implement a TextView with an animation in its left side</a>
+      </li>
+    
+      <li>
+        <a href="/2013/11/20/2013-11-20-The Adapter of ListView/">The Adapter of ListView: Just adapt data to view, don’t do anything else</a>
+      </li>
+    
+      <li>
+        <a href="/2013/11/16/2013-11-16-shape plus selector/">Shape + Selector: Make a Shape as one item of the Selector</a>
+      </li>
+    
+  </ul>
+</section>
+
+
   
 
-  <nav id="pagenavi">
-  
-  
-  <div class="clearfix"></div>
-</nav>
-</div>
-  <footer id="footer" class="inner"><div class="social alignright">
-  
-  
-  
-  
-  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
-</div>
-<p>
+  <!-- Copyright -->
+  <div id="copyright">
   
   &copy; 2013 Viyu
   
-</p>
-<div class="clearfix"></div></footer>
-  <script src="/js/jquery.imagesloaded.min.js"></script>
+  Powered by: <a href="https://github.com/tommy351/hexo">Hexo</a><br />
+  Designed by: <a href="http://html5up.net/">HTML5 UP</a>
+  <p>
+    
+    
+    
+
+   </p>
+</div>
+
+
+
+</div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 
@@ -302,11 +383,6 @@ public View getView(int position, View convertView, ViewGroup parent) {
 </script>
 
 
-<div id="phasebeam">
-  <canvas></canvas>
-  <canvas></canvas>
-  <canvas></canvas>
-</div>
-<script src="/js/phasebeam.js"></script>
+  </div>
 </body>
 </html>

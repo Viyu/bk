@@ -19,6 +19,8 @@ So far, clients code can set text size like this:
 
 The problem is: how to read the client’s text size number and set it to the TextVew of MyView?
 
+<!-- more -->
+
 In MyView.java,
 
 {% code %}
@@ -40,7 +42,3 @@ this.textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
 {% endcode %}
 
 This will make sure you’re working with the same units.
-
-
-<!-- more -->
-
