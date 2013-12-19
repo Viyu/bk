@@ -1,16 +1,13 @@
-
-
-
-
-
-
-
-
-
-
-
+从一个新电脑上，
+下载：
 git clone https://github.com/Viyu/bk.git
+删除：
 git rm -r themes/....
+提交：
+
+
+hexo generate -deploy //先删除下载的.deploy目录
+
 
 
 

@@ -513,6 +513,222 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 
 
 
+  <!-- Post -->
+<article class="is-post is-post-excerpt">
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h2><a href="/2010/03/06/2010-03-06-fx/">泛型：有限通配符的用法</a></h2>
+  
+
+
+    </header>
+  <div class="info">
+    <!--
+	Note: The date should be formatted exactly as it's shown below. In particular, the
+	"least significant" characters of the month should be encapsulated in a <span>
+	element to denote what gets dropped in 1200px mode (eg. the "uary" in "January").
+	Oh, and if you don't need a date for a particular page or post you can simply delete
+	the entire "date" element.
+	
+      -->
+    <span class="date"><span class="month">Mar</span> <span class="day">6</span><span class="year">, 2010</span></span>
+    <!--
+	Note: You can change the number of list items in "stats" to whatever you want.
+      -->
+
+    <ul class="stats">
+      
+  <div class="addthis addthis_toolbox addthis_default_style">
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+
+      <!--
+      <li><a href="#" class="fa fa-comment">16</a></li>
+      <li><a href="#" class="fa fa-heart">32</a></li>
+      <li><a href="#" class="fa fa-twitter">64</a></li>
+      <li><a href="#" class="fa fa-facebook">128</a></li>
+      -->
+    </ul>
+
+  </div>
+  <div class="entry">
+  
+    <p>发送一个子类对象给声明了其父类类型的方法，是没问题的；</p>
+<p>但是发送一个子类对象List给声明了其父类类型List的方法，是不行的；</p>
+<p>这个时候，有限通配符就可以派上用场，在接受方法的声明中：List&lt;? extends E&gt; o;</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre>{      
+  Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span> stack = new Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span>();
+
+  stack.pushSingle(new One());
+
+  stack.pushSingle(new Two());
+
+  List<span class="tag">&lt;<span class="title">One</span>&gt;</span> arrayList = new ArrayList<span class="tag">&lt;<span class="title">One</span>&gt;</span>();
+
+  stack.push(arrayList);
+
+  //有限通配符的用法
+
+  List<span class="tag">&lt;<span class="title">Two</span>&gt;</span> list = new ArrayList<span class="tag">&lt;<span class="title">Two</span>&gt;</span>();
+
+  stack.push(list); //The method push(List<span class="tag">&lt;<span class="title">One</span>&gt;</span>) in the type Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span> is not applicable for the arguments (List<span class="tag">&lt;<span class="title">Two</span>&gt;</span>)
+
+  stack.push2(list);
+}
+</pre></td></tr></table></figure>
+
+
+
+  
+  </div>
+  <footer>
+    
+     
+      <a href="/2010/03/06/2010-03-06-fx/#more" class="more-link">Read More</a>
+     
+     
+    
+  </footer>
+</article>
+
+
+
+
+  <!-- Post -->
+<article class="is-post is-post-excerpt">
+  
+  <div class="post-content">
+    <header>
+      
+  
+    <h2><a href="/2010/02/05/2010-02-05-sort/">排序</a></h2>
+  
+
+
+    </header>
+  <div class="info">
+    <!--
+	Note: The date should be formatted exactly as it's shown below. In particular, the
+	"least significant" characters of the month should be encapsulated in a <span>
+	element to denote what gets dropped in 1200px mode (eg. the "uary" in "January").
+	Oh, and if you don't need a date for a particular page or post you can simply delete
+	the entire "date" element.
+	
+      -->
+    <span class="date"><span class="month">Feb</span> <span class="day">5</span><span class="year">, 2010</span></span>
+    <!--
+	Note: You can change the number of list items in "stats" to whatever you want.
+      -->
+
+    <ul class="stats">
+      
+  <div class="addthis addthis_toolbox addthis_default_style">
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+
+      <!--
+      <li><a href="#" class="fa fa-comment">16</a></li>
+      <li><a href="#" class="fa fa-heart">32</a></li>
+      <li><a href="#" class="fa fa-twitter">64</a></li>
+      <li><a href="#" class="fa fa-facebook">128</a></li>
+      -->
+    </ul>
+
+  </div>
+  <div class="entry">
+  
+    <p><b>【选择排序】</b></p>
+<p>a[i++] —&gt; a[n]，从前往后看、选择最小值、一次交换到位</p>
+<p>1，完整循环找到数组中最小的元素；</p>
+<p>2，把这个最小的元素与a[0]交换；</p>
+<p>3，在a[i]-a[n](i = 1, 2, … n)的子数组中重复1-2步骤；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre><span class="function"><span class="title">for</span><span class="params">(int i = <span class="number">0</span>; i &lt; n; i++)</span> {
+
+    <span class="title">int</span> <span class="title">min</span> = <span class="title">i</span>;
+
+    <span class="title">for</span><span class="params">(int j = i + <span class="number">1</span>; j &lt; n; j++)</span> {
+
+        <span class="title">if</span><span class="params">(a[j] &lt; min)</span> 
+
+            <span class="title">min</span> = <span class="title">j</span>;
+
+    }
+
+    <span class="title">swap</span><span class="params">(i, j, a)</span>;
+}
+</pre></td></tr></table></figure>
+
+
+<p>简写：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>; i &lt; n; i++) {
+    <span class="built_in">min</span> = <span class="comment">//本次循环的i...n中的最小的元素的index；</span>
+
+    <span class="comment">//将min和本次循环的i两个元素交换；</span>
+}
+</pre></td></tr></table></figure>
+
+
+
+  
+  </div>
+  <footer>
+    
+     
+      <a href="/2010/02/05/2010-02-05-sort/#more" class="more-link">Read More</a>
+     
+     
+    
+  </footer>
+</article>
+
+
+
+
 
 <!-- Pager -->
 <div class="pager">
