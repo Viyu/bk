@@ -1,0 +1,554 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>js笔记 | Viyu</title>
+  <meta name="author" content="Viyu">
+  
+  <meta name="description" content="定义描述类名或者方法名的注解：ClassOrMethodFullName.java
+【写一个js方法】
+1
+2
+3
+function alertdemo() {
+    //
+};  
+
+
+
+function + 方法名 + 括号 + 代码块
+【调用这个js方法得加括号】
+1
+&lt;button type=&quot;button&quot; onclick=&quot;alertdemo()&quot;&gt;点击这里&lt;/button&gt;
+
+
+
+【带参数的函数，参数是不需要声明类型部分的】
+1
+2
+3
+4
+5
+function alertmsg(msg) {
+
+alert(msg);
+
+}
+
+
+
+【带返回值的函数，很好理解】
+1
+2
+3
+4
+5
+function getAResult() {
+
+return &quot;返回的结果&quot;;
+
+}
+
+
+
+返回值是可选的，means，你想在哪个分支返回就返回，在另一个分支不返回就不返回，返回啥都没人管，因为function根本不会申明返回类型，真是随便的语言啊。
+【修改html元素内容】
+1
+2
+3
+4
+5
+x=document.getElementById(&quot;demo&quot;) //查找元素
+
+x.innerHTML=&quot;Hello JavaScript&quot;; //改变内容
+
+x.style.color=&quot;#ff0000&quot;;    //改变样式">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="js笔记"/>
+  <meta property="og:site_name" content="Viyu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Viyu</a></h1>
+  <h2><a href="/">Viyu's Blog</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-08-30T00:00:00.000Z"><a href="/2011/08/30/2011-08-30-js/">Aug 30 2011</a></time>
+      
+      
+  
+    <h1 class="title">js笔记</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>定义描述类名或者方法名的注解：ClassOrMethodFullName.java</p>
+<p>【写一个js方法】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">alertdemo</span><span class="params">()</span> {</span>
+    <span class="comment">//</span>
+};  
+</pre></td></tr></table></figure>
+
+
+<p>function + 方法名 + 括号 + 代码块</p>
+<p>【调用这个js方法得加括号】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">button</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">onclick</span>=<span class="value">"alertdemo()"</span>&gt;</span>点击这里<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+
+<p>【带参数的函数，参数是不需要声明类型部分的】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">alertmsg</span><span class="params">(msg)</span> {</span>
+
+alert(msg);
+
+}
+</pre></td></tr></table></figure>
+
+
+<p>【带返回值的函数，很好理解】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">getAResult</span><span class="params">()</span> {</span>
+
+<span class="keyword">return</span> <span class="string">"返回的结果"</span>;
+
+}
+</pre></td></tr></table></figure>
+
+
+<p>返回值是可选的，means，你想在哪个分支返回就返回，在另一个分支不返回就不返回，返回啥都没人管，因为function根本不会申明返回类型，真是随便的语言啊。</p>
+<p>【修改html元素内容】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>x=document<span class="variable">.getElementById</span>(<span class="string">"demo"</span>) <span class="comment">//查找元素</span>
+
+x<span class="variable">.innerHTML</span>=<span class="string">"Hello JavaScript"</span>; <span class="comment">//改变内容</span>
+
+x<span class="variable">.style</span><span class="variable">.color</span>=<span class="string">"#ff0000"</span>;    <span class="comment">//改变样式</span>
+</pre></td></tr></table></figure>
+
+
+<a id="more"></a>
+
+<p>【js是页面顺序执行的】</p>
+<p>如果把js放在html元素生成之前尝试修改html元素的内容，会失败。</p>
+<p>【引用外部js指定charset时注意外部.js文件的编码是否一致】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span> <span class="attribute">src</span>=<span class="value">"../js/scho/actions/demo.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+
+<p>demo.js的编码需要是utf-8的；</p>
+<p>【JavaScript 是脚本语言。浏览器会在读取代码时，逐行地执行脚本代码。而对于传统编程来说，会在执行前对所有代码进行编译。】</p>
+<p>【js对象】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="title">var</span> person={ 
+
+<span class="title">firstname</span> : <span class="string">"Bill"</span>, 
+
+<span class="title">lastname</span>  : <span class="string">"Gates"</span>, 
+
+<span class="title">id</span>        :  <span class="number">5566</span>
+
+};
+</pre></td></tr></table></figure>
+
+
+<p>对象属性有两种寻址方式：</p>
+<p>实例name=person.lastname; </p>
+<p>name=person[“lastname”];</p>
+<p>javascript有更随便的对象创建方式：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>person=new Object()<span class="comment">;</span>
+
+person<span class="preprocessor">.firstname</span>=<span class="string">"Bill"</span><span class="comment">; </span>
+
+person<span class="preprocessor">.lastname</span>=<span class="string">"Gates"</span><span class="comment">; </span>
+
+person<span class="preprocessor">.age</span>=<span class="number">56</span><span class="comment">;</span>
+
+person<span class="preprocessor">.eyecolor</span>=<span class="string">"blue"</span><span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+
+<p>【全局变量】</p>
+<p>在函数外声明的变量是全局变量，网页上的所有脚本和函数都能访问它。</p>
+<p>全局变量会在页面关闭后被删除</p>
+<p>【流程语句几乎一样】</p>
+<p>if, else, while, switch, ? a : b等</p>
+<p>【try—catch】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre><span class="keyword">try</span>  { 
+
+       var x=document<span class="variable">.getElementById</span>(<span class="string">"demo"</span>)<span class="variable">.value</span>;
+
+       <span class="keyword">if</span>(x==<span class="string">""</span>)    <span class="keyword">throw</span> <span class="string">"empty"</span>; 
+
+       <span class="keyword">if</span>(isNaN(x)) <span class="keyword">throw</span> <span class="string">"not a number"</span>; 
+
+       <span class="keyword">if</span>(x&gt;<span class="number">10</span>)     <span class="keyword">throw</span> <span class="string">"too high"</span>;
+
+       <span class="keyword">if</span>(x&lt;<span class="number">5</span>)      <span class="keyword">throw</span> <span class="string">"too low"</span>;
+
+  }<span class="keyword">catch</span>(err)  { 
+
+       var y=document<span class="variable">.getElementById</span>(<span class="string">"mess"</span>); 
+
+       y<span class="variable">.innerHTML</span>=<span class="string">"Error: "</span> + err + <span class="string">"."</span>;
+
+  }
+</pre></td></tr></table></figure>
+
+
+<p>【Javascript为什么能修改html？】</p>
+<p>当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）</p>
+<p>通过可编程的对象模型，JavaScript 获得了足够的能力来创建动态的 HTML。document是js基础库提供的dom访问对象。</p>
+<p>JavaScript 能够改变页面中的所有 HTML 元素</p>
+<p>JavaScript 能够改变页面中的所有 HTML 属性</p>
+<p>JavaScript 能够改变页面中的所有 CSS 样式</p>
+<p>JavaScript 能够对页面中的所有事件做出反应</p>
+<p>var x=document.getElementById(“intro”)</p>
+<p>var x=document.getElementById(“main”); </p>
+<p>var y=x.getElementsByTagName(“p”);//main中的<p>元素</p>
+<p>通过类名查找 HTML 元素在 IE 5,6,7,8 中无效</p>
+<p>【绝不要使用在文档加载之后使用 document.write()。这会覆盖该文档。】</p>
+<p>【innerHtml修改元素内容，怎么修改元素的属性呢？】</p>
+<p>document.getElementById(id).attribute=new value</p>
+<p>例如：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">img</span> <span class="attribute">id</span>=<span class="value">"image"</span> <span class="attribute">src</span>=<span class="value">"smiley.gif"</span>&gt;</span> 
+
+document.getElementById("image").src="landscape.jpg";
+</pre></td></tr></table></figure>
+
+
+<p>【修改html元素的样式就是修改元素的style属性】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>document<span class="variable">.getElementById</span>(<span class="keyword">id</span>)<span class="variable">.style</span><span class="variable">.property</span>=new style
+
+document<span class="variable">.getElementById</span>(<span class="string">"p2"</span>)<span class="variable">.style</span><span class="variable">.color</span>=<span class="string">"blue"</span>;
+</pre></td></tr></table></figure>
+
+
+<p>【HTML DOM 使 JavaScript 有能力对 HTML 事件做出反应，其实就是js修改html元素的事件属性】</p>
+<p>HTML 事件的例子：</p>
+<p>当用户点击鼠标时</p>
+<p>当网页已加载时</p>
+<p>当图像已加载时</p>
+<p>当鼠标移动到元素上时</p>
+<p>当输入字段被改变时</p>
+<p>当提交 HTML 表单时</p>
+<p>当用户触发按键时</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">onclick</span>=<span class="value">"this.innerHTML='谢谢!'"</span>&gt;</span>请点击该文本<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+
+<p>【js中的this】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">changetext</span><span class="params">(id)</span>{</span>
+  id.innerHTML=<span class="string">"谢谢!"</span>; 
+}
+</pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">onclick</span>=<span class="value">"changetext(this)"</span>&gt;</span>请点击该文本<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+
+<p>this就是元素自己本身，就是Element；</p>
+<p>或者</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">onclick</span>=<span class="value">"this.innerHTML='谢谢'"</span>&gt;</span>请点击该文本<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+
+<p>简直是太随便了。</p>
+<p>【onclick就是元素的一个属性，所以可以后续通过js给赋值】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"> 
+
+document.getElementById(<span class="string">"myBtn"</span>).onclick=<span class="keyword">function</span>(){
+
+  displayDate()
+
+}; 
+
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+
+<p>【js不光能修改html已有的元素的属性和各种值，还能添加删除html元素】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"div1"</span>&gt;</span> 
+
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">id</span>=<span class="value">"p1"</span>&gt;</span>这是一个段落<span class="tag">&lt;/<span class="title">p</span>&gt;</span> 
+
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">id</span>=<span class="value">"p2"</span>&gt;</span>这是另一个段落<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"> 
+
+<span class="keyword">var</span> para=document.createElement(<span class="string">"p"</span>); 
+
+<span class="keyword">var</span> node=document.createTextNode(<span class="string">"这是新段落。"</span>); 
+
+para.appendChild(node); 
+
+<span class="keyword">var</span> element=document.getElementById(<span class="string">"div1"</span>); 
+
+element.appendChild(para);
+
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+
+<p>【javascript看什么都是对象】</p>
+<p>【BOM，DOM】</p>
+<p>The BOM consists of the objects navigator, history, screen, location and document which are children of window. In the document node is the DOM, the document object model, which represents the contents of the page. You can manipulate it using javascript.</p>
+<p>就说DOM是BOM的一个子集，这些都是一堆对象；</p>
+<p>【万能的$】</p>
+<p>$不是javascript的语法关键词，是prototype.js中定义的一个变量：</p>
+<p>${“username”}=document.getElementById(“username”) </p>
+<p>prototype.js是javascript的一个库，面向对象的库。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/javascript/">javascript</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://mosthink.net/2011/08/30/2011-08-30-js/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mosthink.net">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Algorithm/">Algorithm</a><small>2</small></li>
+  
+    <li><a href="/tags/Android/">Android</a><small>7</small></li>
+  
+    <li><a href="/tags/Annotation/">Annotation</a><small>1</small></li>
+  
+    <li><a href="/tags/Class/">Class</a><small>1</small></li>
+  
+    <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
+  
+    <li><a href="/tags/Design/">Design</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>3</small></li>
+  
+    <li><a href="/tags/Jvm/">Jvm</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="search">
+  <a href="http://info.flagcounter.com/yHDb"><img src="http://s11.flagcounter.com/map/yHDb/size_s/txt_000000/border_CCCCCC/pageviews_0/viewers_0/flags_0/" alt="Flag Counter" border="0"></a>
+</div>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Viyu
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

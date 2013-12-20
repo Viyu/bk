@@ -6,51 +6,18 @@
   <title>并发和多线程 | Viyu</title>
   <meta name="author" content="Viyu">
   
-  <meta name="description" content="线程安全性的需求不一定来自于对线程的直接使用，而是来源于对比如Servlet这种框架的使用
-无状态对象一定是线程安全的；有状态但是状态对象是线程安全的，比如是原子的，也是线程安全的。但如果有多个状态对象，则线程不安全，除非在一个原子操作中同时更新了所有状态对象。synchronized(obj){}就可以保证代码块的原子性。如果一个线程试图获取被另一个线程池有的锁，则该线程会阻塞；如果一个线程试图获取已经被自己池有的锁，“重入”机制使得该线程可以获取；
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-public class Widget {
-
-public synchronized void dosth() {
-}
-
-}
-
-public class Loggingwidget extends Widget {
-
-public synchronized void dosth() {
-
-System.out.println(&quot;do sth&quot;);
-
-super.dosht();
-
-}
-}
-
-
-
-
-某个线程获得对象的锁之后，只能阻止其他线程获得同一个锁，并不能阻止其他线程通过另外的锁来访问对象的变量
+  <meta name="description" content="某个线程获得对象的锁之后，只能阻止其他线程获得同一个锁，并不能阻止其他线程通过另外的锁来访问对象的变量
 每个可变或共享的变量都该由同一个锁来保护；
 简单粗暴的全部synchronized会使得并发程序变成串行程序，影响性能，多核CPU会有空载运行，应该缩小同步块的大小，将不影响共享状态并且执行时间较长的操作从同步代码块中分离出去。
 简单性（对整个方法同步）与并发性（对尽可能短的代码路径进行同步）之间的平衡；
-当执行较长时间或无法快速完成的操作时，比如网络I/O，一定不要持有锁，不然会影响活跃性和性能。">
+当执行较长时间或无法快速完成的操作时，比如网络I/O，一定不要持有锁，不然会影响活跃性和性能。
+
+并发关注的就是：共享+可变的状态
+多个线程之间，不仅要防止错误地修改和读取了状态，还要共享状态，即一个线程修改了状态，另一个线程要被通知到这个修改；
+重排序：无同步的多线程程序中，无法正确判断代码的执行顺序。
+Sleep和Yield都是让cpu不让锁，跟锁没关系；Wait是让锁。
+非volatile的long和double不是线程安全的，64位的读写会被分解，不是原子性的；
+“加锁的含义不仅仅局限于互斥行为，还包括内存可见性。为了确保所有线程都能看到共享变量的最新值，所有执行读写操作的线程都必须在同一锁上同步。”">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -103,7 +70,22 @@ super.dosht();
     </header>
     <div class="entry">
       
-        <p><b>线程安全性的需求不一定来自于对线程的直接使用，而是来源于对比如Servlet这种框架的使用</B></p>
+        <p><b>某个线程获得对象的锁之后，只能阻止其他线程获得同一个锁，并不能阻止其他线程通过另外的锁来访问对象的变量</b></p>
+<p>每个可变或共享的变量都该由同一个锁来保护；</p>
+<p>简单粗暴的全部synchronized会使得并发程序变成串行程序，影响性能，多核CPU会有空载运行，应该缩小同步块的大小，将不影响共享状态并且执行时间较长的操作从同步代码块中分离出去。</p>
+<p>简单性（对整个方法同步）与并发性（对尽可能短的代码路径进行同步）之间的平衡；</p>
+<p>当执行较长时间或无法快速完成的操作时，比如网络I/O，一定不要持有锁，不然会影响活跃性和性能。</p>
+<hr>
+<p><b>并发关注的就是：共享+可变的状态</b></p>
+<p>多个线程之间，不仅要防止错误地修改和读取了状态，还要共享状态，即一个线程修改了状态，另一个线程要被通知到这个修改；</p>
+<p>重排序：无同步的多线程程序中，无法正确判断代码的执行顺序。</p>
+<p>Sleep和Yield都是让cpu不让锁，跟锁没关系；Wait是让锁。</p>
+<p>非volatile的long和double不是线程安全的，64位的读写会被分解，不是原子性的；</p>
+<p>“加锁的含义不仅仅局限于互斥行为，还包括内存可见性。为了确保所有线程都能看到共享变量的最新值，所有执行读写操作的线程都必须在同一锁上同步。”</p>
+<a id="more"></a>
+
+<hr>
+<p><b>线程安全性的需求不一定来自于对线程的直接使用，而是来源于对比如Servlet这种框架的使用</B></p>
 <p>无状态对象一定是线程安全的；有状态但是状态对象是线程安全的，比如是原子的，也是线程安全的。但如果有多个状态对象，则线程不安全，除非在一个原子操作中同时更新了所有状态对象。synchronized(obj){}就可以保证代码块的原子性。如果一个线程试图获取被另一个线程池有的锁，则该线程会阻塞；如果一个线程试图获取已经被自己池有的锁，“重入”机制使得该线程可以获取；</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -142,21 +124,6 @@ System.out.println(<span class="string">"do sth"</span>);
 </pre></td></tr></table></figure>
 
 
-<hr>
-<p><b>某个线程获得对象的锁之后，只能阻止其他线程获得同一个锁，并不能阻止其他线程通过另外的锁来访问对象的变量</b></p>
-<p>每个可变或共享的变量都该由同一个锁来保护；</p>
-<p>简单粗暴的全部synchronized会使得并发程序变成串行程序，影响性能，多核CPU会有空载运行，应该缩小同步块的大小，将不影响共享状态并且执行时间较长的操作从同步代码块中分离出去。</p>
-<p>简单性（对整个方法同步）与并发性（对尽可能短的代码路径进行同步）之间的平衡；</p>
-<p>当执行较长时间或无法快速完成的操作时，比如网络I/O，一定不要持有锁，不然会影响活跃性和性能。</p>
-<a id="more"></a>
-
-<hr>
-<p><b>并发关注的就是：共享+可变的状态</b></p>
-<p>多个线程之间，不仅要防止错误地修改和读取了状态，还要共享状态，即一个线程修改了状态，另一个线程要被通知到这个修改；</p>
-<p>重排序：无同步的多线程程序中，无法正确判断代码的执行顺序。</p>
-<p>Sleep和Yield都是让cpu不让锁，跟锁没关系；Wait是让锁。</p>
-<p>非volatile的long和double不是线程安全的，64位的读写会被分解，不是原子性的；</p>
-<p>“加锁的含义不仅仅局限于互斥行为，还包括内存可见性。为了确保所有线程都能看到共享变量的最新值，所有执行读写操作的线程都必须在同一锁上同步。”</p>
 <hr>
 <p><b>volatile是比synchronized更轻量级的同步</b></p>
 <p>olatile，确保将变量的更新操作通知到其他线程；</p>
@@ -218,6 +185,629 @@ public ThisEscape(EventSource <span class="keyword">source</span>) {
 <p>某种情况下，volatile+不可变对象，保证了原子性和可见性，</p>
 <p>volatile保证可见性不保证原子性，而不可变对象保证了一种弱于synchronized的原子性；</p>
 <p>当对象的引用对所有访问该对象的线程是可见时，对象发布时的状态对于所有线程也将是可见的；</p>
+<hr>
+<p><b>Java线程的实现和调度</b></p>
+<p>如果使用内核线程，则线程的创建、切换、调度就由系统自动完成了，但是花费高；</p>
+<p>如果使用用户线程，花费低，但是线程的维护得线程自己完成，实现复杂；</p>
+<p>Java线程是抢占式调度，只能让时间（sleep或yield），不能要时间；</p>
+<p>Java的线程优先级并不是太靠谱，因为Java自定义的优先级与系统的优先级要映射，如果前者数量比后者多，则会出现Java的几种优先级被系统映射成同一个优先级的情况；</p>
+<hr>
+<p>线程安全的实现方法—互斥同步(阻塞同步)</p>
+<p>互斥是因，同步是果，互斥是方法，同步是目的；</p>
+<p>如果synchronized明确指定了锁定/解锁（字节码指令monitorenter和monitorexit需要一个reference类型的参数来指定锁定解锁对象）的对象参数，那就是这个对象的reference；如果没有指定，则如果synchronized修饰的是实例方法，取对应的实例，如果synchronized修饰的是类方法，取对应的class对象作为锁对象；</p>
+<p>synchronized是重量级Heavyweight的操作，因为java线程是映射到操作系统的原生线程之上的，状态转换消耗的时间可能比用户代码执行的时间还长；</p>
+<p>java.util.concurrent.ReentrantLock是API层面的互斥，比原生的synchronized增加了一些高级功能：等待可中断、可实现公平锁、锁可以绑定多个条件。</p>
+<p>阻塞同步是悲观的并发策略，非阻塞同步是乐观的并发策略；</p>
+<hr>
+<p>线程安全的实现方法—无同步方案</p>
+<p>有一些代码天生就是线程安全的，比如：</p>
+<p>1，可重入代码,如果一个方法，它的返回值是可预测的，可根据输入推测出输出，则这个方法就是可重入的代码，是线程安全的；</p>
+<p>2，线程本地存储，共享数据的可见范围限制在一个线程之内。当使用ThreadLocal维护变量时，ThreadLocal为每个使用该变量的线程提供独立的变量副本，所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本。</p>
+<hr>
+<p>Amdahl定律：CPU数量和串行比例对并发优化的影响</p>
+<p>加速比 = 优化前系统耗时 / 优化后系统耗时 </p>
+<pre><code>      <span class="tag">&lt;<span class="title">=</span> <span class="attribute">1</span> / (<span class="attribute">F</span> + (<span class="attribute">1</span> <span class="attribute">-</span> <span class="attribute">F</span>) / <span class="attribute">N</span>)； 其中<span class="attribute">F</span>是系统内必须保持串行化执行的代码比重，<span class="attribute">N</span>是<span class="attribute">CPU</span>核数；</code></pre>
+<p>A: 100s -&gt; B: 100s -&gt; C: 100s -&gt; D: 100s -&gt; E: 100s</p>
+<p>串行执行，上述系统总耗时：500s；</p>
+<p>假如B和E两个步骤是可以并发的，这里是说，B和E分别可以被多个CPU执行，而不是说B和E两个并发执行；</p>
+<p>那么，假如有1个CPU，耗时仍然是500s;</p>
+<p>假如有两个CPU，则B和E的执行都减少了一半，分别都是50s，总耗时400s；</p>
+<p>依此类推，假如CPU无穷个，那么总耗时趋于300s但不会小于300s；</p>
+<p>从上述公式也能推算出这个结论来；</p>
+<p>最终结论：CPU数量越多，串行化比重越低，优化效果越好；仅靠提高CPU数量而不降低程序的串行化比例，也无法有效提高系统性能；</p>
+<p>单CPU下的多线程看似是并发，但其实比串行更耗时，因为它最终还是靠一个CPU跑，还得多出来线程切换的开销，这么说的前提是程序是单纯的CPU操作，如果涉及了磁盘、网络等访问，则单CPU下的多线程仍然有意义，因为它把阻塞的时间用来执行别的操作，降低了CPU的闲置率。</p>
+<hr>
+<p><b>线程池的意义和实现</b></p>
+<p>线程池的意义：</p>
+<p>为了节省多线程并发环境下，大量创建和销毁线程所带来的额外开销；</p>
+<p>线程池就是为了线程复用；</p>
+<p>线程在run运行结束后会自动被销毁，而线程池中的线程是要复用的，不能退出，如何实现？</p>
+<p>用无线循环，让一个Thread的run永远不结束，一直等待新的任务；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="id">ReusableThread</span> <span class="id">extends</span> <span class="id">Thread</span> {</span>
+
+    <span class="keyword">private</span> ThreadPool pool = null;
+
+    <span class="keyword">private</span> Runnable target = null;
+
+    <span class="keyword">private</span> boolean isShutdown = <span class="literal">false</span>;
+
+    <span class="keyword">private</span> boolean isIdle = <span class="literal">false</span>;
+
+    <span class="keyword">public</span> ReusableThread(Runnable target, String name, ThreadPool pool) {
+
+        <span class="keyword">super</span>(name);
+
+        <span class="keyword">this</span><span class="variable">.pool</span> = pool;
+
+        <span class="keyword">this</span><span class="variable">.target</span> = target;
+
+    }
+
+    <span class="keyword">public</span> Runnable getTarget() {
+
+        <span class="keyword">return</span> target;
+
+    }
+
+    <span class="keyword">public</span> boolean isIdle() {
+
+        <span class="keyword">return</span> isIdle;
+
+    }
+
+    <span class="keyword">public</span> <span class="keyword">void</span> run() {
+
+        <span class="keyword">while</span>(!isShutdown) {
+
+            isIdle = <span class="literal">false</span>;
+
+            <span class="keyword">if</span>(target != null) {
+
+                target<span class="variable">.run</span>();
+
+            }
+
+            isIdle = <span class="literal">true</span>;
+
+            <span class="keyword">try</span> {
+
+                pool<span class="variable">.repool</span>(<span class="keyword">this</span>);
+
+                <span class="keyword">synchronized</span>(<span class="keyword">this</span>) {
+
+                        wait();
+
+                 }
+
+            } <span class="keyword">catch</span>(InterruptedException e) {};
+
+        }
+
+        isIdle = <span class="literal">false</span>;
+
+    }
+
+    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> setTarget(Runnable target) {
+
+        <span class="keyword">this</span><span class="variable">.target</span> = target;
+
+        notifyAll();
+
+    }
+
+    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> shutdown() {
+
+        isShutdown = <span class="literal">true</span>;
+
+        notifyAll();
+
+    }
+
+}
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="id">ThreadPool</span> {</span>
+
+    <span class="keyword">private</span> List&lt;ReusableThread&gt; threads;
+
+    <span class="keyword">private</span> <span class="keyword">int</span> count;
+
+    <span class="keyword">private</span> boolean isShutdown = <span class="literal">false</span>;
+
+    <span class="keyword">private</span> ThreadPool() {
+
+        <span class="keyword">this</span><span class="variable">.threads</span> = new Vector&lt;ReusableThread&gt;();
+
+        count = <span class="number">0</span>;
+
+    }
+
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="id">SingletonHolder</span> {</span>
+
+        <span class="keyword">private</span> <span class="keyword">static</span> ThreadPool instance = new ThreadPool();
+
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> ThreadPool getInstance() {
+
+        <span class="keyword">return</span> SingletonHolder<span class="variable">.instance</span>;
+
+    }
+
+    <span class="keyword">public</span> <span class="keyword">int</span> getCount() {
+
+        <span class="keyword">return</span> count;
+
+    }
+
+    <span class="keyword">protected</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> repool(ReusableThread thread) {
+
+        <span class="keyword">if</span>(!isShutdown) {
+
+            threads<span class="variable">.add</span>(thread);
+
+        } <span class="keyword">else</span> {
+
+            thread<span class="variable">.shutdown</span>();
+
+        }
+
+    }
+
+    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> shutdown() {
+
+        isShutdown = <span class="literal">true</span>;
+
+        <span class="keyword">for</span>(ReusableThread t : threads) {
+
+            t<span class="variable">.shutdown</span>();
+
+        }
+
+    }
+
+    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> start(Runnable target) {
+
+        ReusableThread thread = null;
+
+        <span class="keyword">if</span>(threads<span class="variable">.size</span>() &gt; <span class="number">0</span>) {
+
+            thread = threads<span class="variable">.remove</span>(threads<span class="variable">.size</span>() - <span class="number">1</span>);
+
+            thread<span class="variable">.setTarget</span>(target);
+
+        } <span class="keyword">else</span> {
+
+        count++;
+
+        thread = new ReusableThread(target, <span class="string">"Reusable Thread # "</span> + count, <span class="keyword">this</span>);
+
+        thread<span class="variable">.start</span>();
+
+    }
+
+}
+
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+
+    {
+
+        <span class="keyword">long</span> old = System<span class="variable">.currentTimeMillis</span>();
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i ++) {
+
+            ThreadPool<span class="variable">.getInstance</span>()<span class="variable">.start</span>(new Runnable() {
+
+                <span class="keyword">public</span> <span class="keyword">void</span> run() {
+
+                    <span class="keyword">try</span> {    
+
+                        Thread<span class="variable">.sleep</span>(<span class="number">1000</span>);
+
+                    } <span class="keyword">catch</span> (InterruptedException e) {}
+
+                }
+
+            });
+
+        }
+
+        System<span class="variable">.out</span><span class="variable">.println</span>(System<span class="variable">.currentTimeMillis</span>() - old);
+
+        ThreadPool<span class="variable">.getInstance</span>()<span class="variable">.shutdown</span>();
+
+    }
+
+    {
+
+        <span class="keyword">long</span> old = System<span class="variable">.currentTimeMillis</span>();
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i ++) {
+
+            (new Thread(new Runnable() {
+
+                <span class="keyword">public</span> <span class="keyword">void</span> run() {
+
+                    <span class="keyword">try</span> {
+
+                        Thread<span class="variable">.sleep</span>(<span class="number">1000</span>);
+
+                    } <span class="keyword">catch</span> (InterruptedException e) {}
+
+                }
+
+            }))<span class="variable">.start</span>();
+
+        }
+
+        System<span class="variable">.out</span><span class="variable">.println</span>(System<span class="variable">.currentTimeMillis</span>() - old);
+
+        }
+
+    }
+}
+</pre></td></tr></table></figure>
+
+
+<p>JDK内置了线程池，java.util.concurrent.ExecutorService；</p>
+<hr>
+<p><b>生产者消费者模型</b></p>
+<p>生产者消费者模型的意义：</p>
+<p>核心组件是共享缓冲区，它将生产者和消费者解耦；</p>
+<p>并且缓解了生产者和消费者之间的性能差；</p>
+<p>只能在同步控制方法或同步块中调用wait()、notify()和notifyAll()；</p>
+<p>synchronized的生产和消费方法是共享缓冲区的，而非生产者和消费者线程的；</p>
+<p>wait将调用自己的线程阻塞并让锁，notify使得等待的同样以缓冲区对象为锁的另一个线程获得锁；wait是阻塞自己，notify是释放别人；</p>
+<p>缓冲区空，需要生产，假如消费线程先到达，就会顺序被压入wait栈，这时候生产线程不需要被notify，因为它们还没被压入wait栈，所以生产线程直接生产，然后调用notify把wait栈的消费线程激活了，这时候如果缓冲区还没满，生产线程和消费线程抢夺锁来交替执行，偶尔的机会，消费线程消费太满，可能缓冲区满了，此时生产线程被顺序压入wait栈，等待消费线程消费后调用notify来唤醒它们；</p>
+<p>生产者和消费者是交织在一起的，是不停歇的，所以生产和消费动作都可以放在while(true)下；</p>
+<p>生产者和消费者不是两个线程，而是两类线程，是很多个这种两类线程之间的交织；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="title">Storage</span> {</span>
+
+    <span class="keyword">private</span> <span class="keyword">int</span> <span class="keyword">count</span> = <span class="number">0</span>;
+
+    <span class="keyword">public</span> synchronized <span class="keyword">void</span> produce() {
+
+        <span class="keyword">while</span> (<span class="keyword">count</span> == <span class="number">10</span>) 
+
+            wait();            
+
+        <span class="keyword">count</span>++;
+
+        notify();
+
+    }
+
+    <span class="keyword">public</span> synchronized <span class="keyword">void</span> consume() {
+
+        <span class="keyword">while</span> (<span class="keyword">count</span> == <span class="number">0</span>) {
+
+            wait();
+
+        }
+
+        <span class="keyword">count</span>--;
+
+        notify();
+
+    }
+
+<span class="class"><span class="keyword">class</span> <span class="title">ProducerThread</span> <span class="inheritance"><span class="keyword">implements</span> </span><span class="title">Runnable</span> {</span>
+
+    <span class="keyword">public</span> <span class="keyword">void</span> run() {
+
+        <span class="keyword">while</span> (<span class="keyword">true</span>) 
+
+            resource.produce();
+
+    }
+
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">ConsumerThread</span> <span class="inheritance"><span class="keyword">implements</span> </span><span class="title">Runnable</span> {</span>
+
+    <span class="keyword">public</span> <span class="keyword">void</span> run() {
+
+        <span class="keyword">while</span> (<span class="keyword">true</span>) 
+
+            resource.consume();
+
+    }
+
+}
+
+<span class="keyword">new</span> Thread(<span class="keyword">new</span> ProducerThread(resource)).start();
+
+...
+
+<span class="keyword">new</span> Thread(<span class="keyword">new</span> ConsumerThread(resource)).start();
+
+...
+</pre></td></tr></table></figure>
+
+
+<hr>
 
       
     </div>
@@ -290,13 +880,23 @@ public ThisEscape(EventSource <span class="keyword">source</span>) {
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
+    <li><a href="/tags/Algorithm/">Algorithm</a><small>2</small></li>
+  
     <li><a href="/tags/Android/">Android</a><small>7</small></li>
+  
+    <li><a href="/tags/Annotation/">Annotation</a><small>1</small></li>
+  
+    <li><a href="/tags/Class/">Class</a><small>1</small></li>
   
     <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
   
-    <li><a href="/tags/Java/">Java</a><small>2</small></li>
+    <li><a href="/tags/Design/">Design</a><small>1</small></li>
   
-    <li><a href="/tags/Sort Algorithm/">Sort Algorithm</a><small>1</small></li>
+    <li><a href="/tags/Java/">Java</a><small>3</small></li>
+  
+    <li><a href="/tags/Jvm/">Jvm</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>1</small></li>
   
   </ul>
 </div>

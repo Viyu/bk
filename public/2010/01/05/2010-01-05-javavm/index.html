@@ -164,6 +164,168 @@ System<span class="variable">.out</span><span class="variable">.println</span>(<
 <p>Eden+Survior=新生区，Eden是使用的内存，Survior是备用的采用复制算法做清除的内存。</p>
 <p>堆可能会被及时回收而不发生OOM，但堆之外的一些区域也会占用内存并且不会被频繁回收，这样也会导致OOM；</p>
 <hr>
+<p><b>Overload是静态分派，Override是动态分派</b></p>
+<p>虚拟机编译器在重载overload时是通过参数的静态类型而不是实际类型来作为判断的：</p>
+<p>下面代码中，one和two的静态类型都是Fu，实际类型只能在运行期才知道；但overload是在编译期就要确定类型的，所以就认了静态类型；</p>
+<p>静态分派：发生在编译期，overload是典型的静态分派实例，会找“最合适的方法目标”，按照char-&gt;int-&gt;long-&gt;float-&gt;double(char不会转到byte和short，不安全)的顺序转型进行方法匹配；或者char-&gt;Character，自动装箱；还能继续转型，比如char-&gt;Character-&gt;Serializable/Comparable，因为Character实现了Serializable和Comparable，从子类转到父类是理所当然的，但如果同时有多个Character父类类型参数的方法，则编译错误，因为类型模糊，拒绝编译；接着会继续转型为Object，再继续还可以转为char …；</p>
+<p>public class Test {</p>
+<p>public static void main(String[] args) {</p>
+<p>Fu one = new One();</p>
+<p>Fu two = new Two();</p>
+<p>Load l = new Load();</p>
+<p>l.call(one);</p>
+<p>l.call(two);</p>
+<p>}</p>
+<p>}</p>
+<p>class Load {</p>
+<p>public void call(Fu f) {</p>
+<p>System.out.println(“Fu”);</p>
+<p>}</p>
+<p>public void call(One o) {</p>
+<p>System.out.println(“One”);</p>
+<p>}</p>
+<p>public void call(Two t) {</p>
+<p>System.out.println(“Two”);</p>
+<p>}</p>
+<p>}</p>
+<p>class Fu {</p>
+<p>}</p>
+<p>class One extends Fu {</p>
+<p>}</p>
+<p>class Two extends Fu {</p>
+<p>}</p>
+<p>Override是动态分派，可以进行多态选择：</p>
+<p>动态分派的过程：invokevirtual指令执行的第一步就是在运行期确定接受者的实际类型，所以调用中的invokevirual指令把常量池中的类方法符号引用解析到了不同的直接引用上，这就是重写的本质，也是动态分派的过程；</p>
+<p>但实际上虚拟机会做优化，因为动态分派的方法版本选择过程需要运行时在类的方法元数据中搜索合适的目标方法，因此这种频繁的搜索对性能有影响；</p>
+<p>最常用的优化手段就是在方法去中建立一个虚方法表/接口方法表，虚方法表就是提前将各个方法的实际入口地址存放好，在执行时使用虚方法表索引替代元数据查找以提高性能；</p>
+<p>稳定优化的原则：虚方法表示每个类都有一个，如果方法在子类中没有被重写，那么子类的虚方法表里面的地址入口和父类方法的地址入口时一致的（本来是先从子类里找，找不到再去父类中找，现在直接将父类的地址复制到子类中了，直接从子类中获取）；如果重写了，子类方法表中的地址会被替换为指向子类实现版本的入口地址；</p>
+<p>所以，如果一个类没有重写Object的方法，这个很常见，那么这个类的虚方法表中的Object继承而来的方法…；</p>
+<hr>
+<p>方法调用：虚方法和非虚方法</p>
+<p>多态针对的是什么时机的多态？多态指的是运行期的多态选择；</p>
+<p>非虚方法可以在编译期就确定其调用目标，无法多态，非虚方法包括：</p>
+<p>静态方法-invokestatic；</p>
+<p>私有方法、实例构造方法、父类方法-invokespecial；</p>
+<p>final方法-invokevirtual(特例)；</p>
+<p>而虚方法和接口方法都是在运行期动态指定调用目标的：</p>
+<p>invokevirtual-虚方法； invokeinterface-接口方法；</p>
+<hr>
+<p><b>把用完的变量赋null的意义</b></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>{
+
+        <span class="keyword">byte</span> [] placeholder = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">64</span> *<span class="number">1024</span> * <span class="number">1024</span>];
+
+        system.gc();
+
+}
+</pre></td></tr></table></figure>
+
+
+<p>以上代码，JVM加上-verbose.gc查看，system.gc后并没有回收掉placeholder；</p>
+<p>初步怀疑是因为gc的时候placeholder还在作用域，就是说这个局部变量表中的slot还有用；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre>{
+
+        {
+
+                <span class="keyword">byte</span> [] placeholder = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">64</span> *<span class="number">1024</span> * <span class="number">1024</span>];
+
+        }    
+
+        system.gc();
+
+}
+</pre></td></tr></table></figure>
+
+
+<p>但以上代码仍然没有及时回收placeholder；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre>{
+
+        {
+
+                <span class="keyword">byte</span> [] placeholder = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">64</span> *<span class="number">1024</span> * <span class="number">1024</span>];
+
+        }    
+
+        <span class="keyword">int</span> a = <span class="number">0</span>;
+
+        system.gc();
+
+}
+</pre></td></tr></table></figure>
+
+
+<p>而这段代码则及时回收了placeholder，why？</p>
+<p>这三段代码依次是：</p>
+<ol>
+<li><p>局部变量表中的Slot还有关于placeholder数组对象的引用；</p>
+</li>
+<li><p>已经没有对placeholder的引用，但是，没有新的读写操作，placeholder原来占用的Slot还没有被其他变量复用。</p>
+</li>
+</ol>
+<p>这段代码是编译不过的，因为局部变量只有一次赋值机会，不像全局变量；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>{
+
+int a<span class="comment">;</span>
+
+System<span class="preprocessor">.out</span><span class="preprocessor">.println</span>(a)<span class="comment">;</span>
+
+}
+</pre></td></tr></table></figure>
+
+
+<hr>
+<p>形象地理解栈帧：每一个方法从调用开始到执行完成的过程，就对应着一个栈帧在虚拟机栈里面从入栈到出栈的过程；</p>
+<p>栈帧中存放的局部变量表、操作数栈、动态连接、方法返回地址等在编译期就确定并写入到.class文件中了(类文件的Code属性)；</p>
+<p>Slot是局部变量表中存放变量的最小单位，一般32或64位，boolean, byte,char,int, short, float, reference, returnAddress等被一个32位的slot存放；double和long可被slot存放；但这些都不一定；</p>
+<p>局部变量表就是存放局部变量的，可以复用；</p>
+<p>操作数栈是执行该栈帧时动态的存取操作数的区域，比如要做加法，就存两个加数到操作数栈上；</p>
+<p>动态连接就是指向运行时常量池（和虚拟机栈同级别的另一个内存块），连接与该栈帧相关的引用，比如当前栈帧要调用哪个方法，指向常量池中的方法引用；</p>
+<p>方法退出就是栈帧出栈；</p>
+<hr>
+<p>Java虚拟机的解释引擎成为基于栈的执行引擎的意义</p>
+<p>这里的栈就是操作数栈，栈帧中的一个单元；</p>
+<p>Java编译器：词法分析，语法分析，抽象语法树，遍历语法树生成字节码指令流；</p>
+<p>Java虚拟机中的解释器：Slot和操作数栈配合，中间变量都以操作数的出栈和入栈为信息交换途径；</p>
+<p>说Java的指令集是基于栈的指令集架构，是相对于基于寄存器的指令集而言的；前者的优点是可移植性，后者的优点是速度快；</p>
+<hr>
 <p>FinalizeEscapeGC演示</p>
 <p>当一个对象到GC roots不可达时，并不会被马上回收，还会在队列中标记；</p>
 <p>任何一个对象的finalize只会被系统自动调用一次，所以finalize方法是对象拯救自己的最后一次机会，如果在调用finalize时对象拯救了自己，下一次回收就无法拯救了。</p>
@@ -326,6 +488,62 @@ System<span class="variable">.out</span><span class="variable">.println</span>(<
 <p>2， 复制算法，按照1：1预留内存空间以保证极端的100%存活的对象能够有空间复制；</p>
 <p>3， 标记-整理算法，就是标记-整理，再清除，整理就是把标记的对象往一端移动，最后全部清理，可保证清理后内存的连续性；</p>
 <p>4，分代收集算法，分情况使用不同算法，堆的新生代的对象被回收后会大批死去，所以可以使用复制算法，把1：1的预留方案调整为8：1等比例来节约空间，而堆中的老年代对象存活率高，适合用标记-清除/整理算法。</p>
+<hr>
+<p>Java基础回顾</p>
+<p>int: 32, short和long的整型分别是16和64；</p>
+<p>char: 16位；</p>
+<p>byte: 8位；</p>
+<p>float: 32位，单精度实数； double：64位， 双精度实数；</p>
+<p>数值会自动被提升为高级的数据类型，就是位少的被转为位多的，相反方向的转换不安全；</p>
+<p>数组只可以：= new int[3] or ={1, 2, 3}；</p>
+<hr>
+<p>内存泄漏：pop方法导致对象游离</p>
+<p>一般来说内存泄漏有两种情况。一种情况如在C/C++语言中的，在堆中的分配的内存，在没有将其释放掉的时候，就将所有能访问这块内存的方式都删掉（如指针重新赋值）；另一种情况则是在内存对象明明已经不需要的时候，还仍然保留着这块内存和它的访问方式（引用）。第一种情况，在Java中已经由于垃圾回收机制的引入，得到了很好的解决。所以，Java中的内存泄漏，主要指的是第二种情况。</p>
+<p>例子：</p>
+<p>Vector v=new Vector(10);</p>
+<p>for (int i=1;i&lt;100; i++){</p>
+<pre><code><span class="built_in">Object</span> o=<span class="keyword">new</span> <span class="built_in">Object</span>();
+
+v.add(o);
+
+o=<span class="literal">null</span>;</code></pre>
+<p>}</p>
+<p>//原文是说，o 被置为null了，但仍然被v引用所以无法释放；</p>
+<p>//但此时v.get(i)还是可用的，从逻辑上讲o还有存在意义，也不该被释放；</p>
+<p>//当v被null之后，o应该会被回收了吧？ </p>
+<p>看下面的描述：</p>
+<p>对象游离： Stack的pop方法写的不好，就有可能导致内存泄漏；</p>
+<p>用数组实现堆栈，pop之后，当前对象在堆栈范围内已经无用了，如果客户代码那也用完了这个对象，其该被回收，但是，因为Stack内部的数组还有对这个对象的引用，导致无法被GC，除非再次push，该数组位的引用值被重新指向另一个对象，原来那个对象就被GC了；</p>
+<p>如果用API中的List实现堆栈，因为List本身的remove方法已经采取了避免对象游离的措施，所以就没这个问题；</p>
+<p>//当v被null之后，o应该会被回收了吧？ </p>
+<p>这个问题的答案就是，o不能陪着有可能常驻内存的一个堆栈中的v一起常驻内存，这显然不合理。</p>
+<hr>
+<p>JVM常用参数</p>
+<p>【设置堆的整体参数】</p>
+<p>-Xms:      起始堆大小，堆分配超过这个值后会先Full GC，如果还不够，才申请至-Xmx；</p>
+<p>-Xmx:     可获取的最大的堆大小，-Xmx=-Xms可以减少Full GC的次数；</p>
+<p>-XX:MinHeapFreeRatio: 堆空间的最小空闲比，当堆空间的空闲内存小于这个值时，JVM会扩展堆空间；</p>
+<p>-XX:MaxHeapFreeRatio: 堆空间的最大空闲比，当堆空间的空闲内存大于这个值时，JVM会压缩堆空间；</p>
+<p>【设置堆中的新生代参数】</p>
+<p>-XX:NewSize: 设置新生代的初始大小；</p>
+<p>-XX:MaxNewSize: 设置新生代的最大空间大小；</p>
+<p>-Xmn: 同时设定-XX:NewSize和-XX:MaxNewSize，推荐；</p>
+<p>【设置堆中的新生代和老年代的关系】</p>
+<p>-XX:NewRatio: 老年代大小 / 新生代大小</p>
+<p>【设置新生代中的eden和survivior的关系】</p>
+<p>-XX:SurviorRatio: eden / survivior</p>
+<p>【设置survivior与老年代的传送关系】</p>
+<p>-XX:TargetSurvivorRatio: 当Survivior区的空间使用率达到这个数时，会将对象送入老年代；</p>
+<p>【设置Perm区】</p>
+<p>-XX:PermSize 永久区的初始值，这个区主要是常量池和类信息；</p>
+<p>-XX:MaxPermSize </p>
+<p>【设置JVM栈】</p>
+<p>-Xss:       设置虚拟机栈（线程栈）的大小；</p>
+<p>虚拟机栈空间(-Xss) * 线程数 = 内存 - 堆空间</p>
+<p>虚拟机栈中的栈帧空间 * 函数调用深度 = 虚拟机栈空间</p>
+<p>【设置JVM信息报告参数】</p>
+<p>-XX:+PrintGCDetails</p>
+<p>-XX:+PrintGC</p>
 <hr>
 <p>制造Heap OOM</p>
 <p>//-verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:+PrintGCDetails -XX:SurvivorRatio=8</p>
@@ -523,6 +741,117 @@ list.add(String.valueOf(i).intern());
 }
 </pre></td></tr></table></figure>
 
+
+<hr>
+<p><b>JVM内存模型</b></p>
+<p>【程序计数器】</p>
+<p>线程私有，一个线程一个，有多个；</p>
+<p>如果当前线程执行Java方法，则程序计数器是Java字节码地址；如果是执行本地native方法，则为空 ；</p>
+<p>【Java虚拟机栈】</p>
+<p>线程私有，一个线程一个，有多个；</p>
+<p>-Xss    栈的大小，决定了可被调用的函数的深度； </p>
+<p>private int count = 0;</p>
+<p>public void recursion() {</p>
+<pre><code>count++;
+
+<span class="function"><span class="title">recursion</span><span class="params">()</span>;</code></pre>
+<p>}</p>
+<p>E:\JVM&gt;java -Xss1m TestStack</p>
+<p>deep of stack is 39828</p>
+<p>E:\JVM&gt;java -Xss2m TestStack</p>
+<p>deep of stack is 83699</p>
+<p>E:\JVM&gt;java -Xss3m TestStack</p>
+<p>deep of stack is 127877</p>
+<p>【Java虚拟机栈-栈帧】</p>
+<p>一个函数一个，保存局部变量表、操作数栈、动态链接方法和返回地址等；</p>
+<p>栈的-Xss一定的情况下，栈帧越大，可被调用的函数深度越小；</p>
+<p>private int count = 0;</p>
+<p>public void recursion(long a, long b, long c) throws InterruptedException {</p>
+<pre><code>long d = <span class="number">0</span>, e = <span class="number">0</span>, f = <span class="number">0</span>;
+
+count++;
+
+<span class="function"><span class="title">recursion</span><span class="params">(a, b, c)</span>;</code></pre>
+<p>}</p>
+<p>E:\JVM&gt;java -Xss1m TestStack2</p>
+<p>deep of stack is 21942</p>
+<p>E:\JVM&gt;java -Xss2m TestStack2</p>
+<p>deep of stack is 48163</p>
+<p>E:\JVM&gt;java -Xss3m TestStack2</p>
+<p>deep of stack is 74429</p>
+<p>【Java虚拟机栈-栈帧-局部变量表】</p>
+<p>Slot是局部变量表中存放变量的最小单位，一般32或64位，boolean, byte,char,int, short, float, reference, returnAddress等被一个32位的slot存放；double和long可被slot存放；但这些都不一定；</p>
+<p>public void test1() {</p>
+<pre><code>{
+
+    <span class="keyword">long</span> a = <span class="number">0</span>;
+
+}
+
+<span class="keyword">long</span> b = <span class="number">0</span>;</code></pre>
+<p>}</p>
+<p>public void test2() {</p>
+<pre><code><span class="title">long</span> a = <span class="number">0</span>;
+
+<span class="title">long</span> b = <span class="number">0</span>;</code></pre>
+<p>}</p>
+<p>用jclasslib查看class结构：</p>
+<p>test1():</p>
+<p>Maximum local variables: 3    long占两个slot，b复用a，加上this占1个，一共3个；</p>
+<p>test2():</p>
+<p>Maximum local variables: 5    a, b共占2 * 2个slot，加this 1个，共5个；</p>
+<p>局部变量表中的局部变量所指向的对象，在退出作用域后，也无法被GC，除非被另一个局部变量复用了对应的Slot或者被置为NULL；</p>
+<p>详见：把用完的变量赋null的意义；</p>
+<p> -XX:+PrintGCDetails  查看GC详情            -XX:+PrintGC 查看简要GC情况</p>
+<p>test1():</p>
+<p>{</p>
+<pre><code><span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">6</span> * <span class="number">1024</span> * <span class="number">1024</span>];</code></pre>
+<p>}</p>
+<p>System.gc();</p>
+<p>test2():</p>
+<p>{</p>
+<pre><code><span class="keyword">byte</span>[]  b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">6</span> * <span class="number">1024</span> * <span class="number">1024</span>];
+
+b = <span class="keyword">null</span>;</code></pre>
+<p>}</p>
+<p>System.gc();</p>
+<p>E:\JVM&gt;java -XX:+PrintGCDetails TestLocalGC</p>
+<p>[Full GC (System) [Tenured: 6144K-&gt;6294K(10944K), 0.0040662 secs] 6457K-&gt;6294K(15872K), [Perm : 2131K-&gt;2131K(12288K)], 0.0047115 secs] [Times: user=0.00 sys=0.00, real=0.01 secs]</p>
+<p>E:\JVM&gt;java -XX:+PrintGCDetails TestLocalGC</p>
+<p>[Full GC (System) [Tenured: 6144K-&gt;150K(10944K), 0.0040463 secs] 6457K-&gt;150K(15872K), [Perm : 2131K-&gt;2131K(12288K)], 0.0045470 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]</p>
+<p>为啥上面6MB的空间就会被Full GC？是新生代太小么？不是，是调用System.gc()就是进行Full GC；</p>
+<p>【Java堆】</p>
+<p>eden[&#39;i:dən],   s0  survivor space0, from space,   s1   survivor space1, to space</p>
+<p>tenured [tɛnjɚd]</p>
+<p>s0和s1中的对象达到一定幸存次数，再进入tenured区；</p>
+<p>byte[] b1 = new byte[1024 * 1024 / 2];</p>
+<p>byte[] b2 = new byte[1024 <em> 1024 </em> 8];</p>
+<p>b2 = null;</p>
+<p>b2 = new byte[1024 <em> 1024 </em> 8];</p>
+<p>System.gc();</p>
+<p>不使用System.gc，堆要设置足够大，不然依然会 Full GC：</p>
+<p>E:\JVM&gt;java -XX:+PrintGC -XX:SurvivorRatio=8 -XX:MaxTenuringThreshold=15 -Xms40M -Xmx40M -Xmn20M TestHeapGC</p>
+<p>[GC 9031K-&gt;662K(38912K), 0.0107908 secs]</p>
+<p>使用了System.gc，即使堆足够大，也会Full GC：</p>
+<p>E:\JVM&gt;java -XX:+PrintGC -XX:SurvivorRatio=8 -XX:MaxTenuringThreshold=15 -Xms40M -Xmx40M -Xmn20M TestHeapGC</p>
+<p>[GC 9031K-&gt;662K(38912K), 0.0168696 secs]</p>
+<p>[Full GC 8854K-&gt;8854K(38912K), 0.0126251 secs]</p>
+<p>【方法区(Permanent, [&#39;pɜːm(ə)nənt]】</p>
+<p>类信息，常量池，域信息，方法信息等；</p>
+<p>1, 对常量池的GC：</p>
+<p>int i = 0;</p>
+<p>while(true) {<br>    String t = String.valueOf(i++).intern();<br>}</p>
+<p>E:\JVM&gt;java -XX:PermSize=2m -XX:MaxPermSize=4m -XX:+PrintGCDetails PermGenGC</p>
+<p>[Full GC [Tenured: 150K-&gt;150K(10944K), 0.0069401 secs] 2368K-&gt;150K(15936K),</p>
+<p>[Perm : 4095K-&gt;2203K(4096K)], 0.0076854 secs] [Times: user=0.00 sys=0.00, real=0.01 secs]</p>
+<p>String是加入常量池的，Perm不断地被GC；</p>
+<p>2, 对类信息的回收，对动态生成类的程序敏感，最好使用自定义的ClassLoader</p>
+<p>一个类信息被GC的条件是：所有该类的实例被GC了+装载该类的ClassLoader被回收 ；</p>
+<p>所以动态生成字节码的技术总是与自定义ClassLoader配合使用；不然Perm区的GC有可能不够及时，被动态生成的类信息占满了，但由于ClassLoader没有回收，使得这些类信息也无法回收；</p>
+<p>【虚拟机栈空间和堆空间的关系：竞争】</p>
+<p>虚拟机栈空间(-Xss) * 线程数 = 内存 - 堆空间</p>
+<p>虚拟机栈中的栈帧空间 * 函数调用深度 = 虚拟机栈空间</p>
+
       
     </div>
     <footer>
@@ -531,7 +860,7 @@ list.add(String.valueOf(i).intern());
         
   
   <div class="tags">
-    <a href="/tags/Java/">Java</a>
+    <a href="/tags/Jvm/">Jvm</a>
   </div>
 
         
@@ -594,13 +923,23 @@ list.add(String.valueOf(i).intern());
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
+    <li><a href="/tags/Algorithm/">Algorithm</a><small>2</small></li>
+  
     <li><a href="/tags/Android/">Android</a><small>7</small></li>
+  
+    <li><a href="/tags/Annotation/">Annotation</a><small>1</small></li>
+  
+    <li><a href="/tags/Class/">Class</a><small>1</small></li>
   
     <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
   
-    <li><a href="/tags/Java/">Java</a><small>2</small></li>
+    <li><a href="/tags/Design/">Design</a><small>1</small></li>
   
-    <li><a href="/tags/Sort Algorithm/">Sort Algorithm</a><small>1</small></li>
+    <li><a href="/tags/Java/">Java</a><small>3</small></li>
+  
+    <li><a href="/tags/Jvm/">Jvm</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>1</small></li>
   
   </ul>
 </div>

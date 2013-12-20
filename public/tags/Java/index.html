@@ -131,29 +131,44 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2010-01-05T00:00:00.000Z"><a href="/2010/01/05/2010-01-05-javavm/">Jan 5 2010</a></time>
+        <time datetime="2009-10-20T00:00:00.000Z"><a href="/2009/10/20/2009-10-20-string/">Oct 20 2009</a></time>
       
       
   
-    <h1 class="title"><a href="/2010/01/05/2010-01-05-javavm/">Java VM学习笔记</a></h1>
+    <h1 class="title"><a href="/2009/10/20/2009-10-20-string/">String</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>局部变量表（虚拟机栈中的一部分）在编译期完成分配，运行期不会再改变大小；</p>
-<p>每个方法对应一个栈帧（存储局部变量表、操作数栈、动态链接、方法出口等），栈帧被存储到虚拟机栈中，每个线程对应一个虚拟机栈，方法结束，栈帧生命周期结束，线程结束，虚拟机栈生命周期结束；</p>
-<p>如果线程请求的虚拟机栈深度大于虚拟机所允许的深度，throw StackOverflowerror；</p>
-<p>如果动态扩展时请求不到足够内存，throw OutOfMemoryError；</p>
-<p>所有的对象实例以及数组都要在堆上分配（不绝对），堆是所有线程共享的，在虚拟机启动时创建，堆是垃圾回收的主要区域，GC堆；</p>
-<p>Java虚拟机栈、本地方法栈、堆都等，除了程序计数器，其他内存区都会throw OutOfMemoryError；</p>
-<p>堆物理上可以不连续，逻辑上是连续的；</p>
-<p>方法区也是各个线程共享的，其中包括运行时常量池，类的描述以及常量都存放在这个池里；</p>
-<p>直接内存常用于I/O库的操作；直接内存操作能提高性能，因为避免了Java堆和Native堆的数据复制；</p>
-<hr>
-<p>指针方式<br>句柄方式可以带来更大的伸缩性，对象被移动时reference的值不必被修改；</p>
-<p>指针方式可以带来更高的访问性能，因为它节省了一次指针定位；</p>
-<p>虚拟机用哪种方式是虚拟机自己实现的；</p>
+        <p>【String】就是对char[]数组进行封装的对象，由三部分组成：</p>
+<p>1， char数组：它是String对象所表示的字符串的超集；</p>
+<p>2, 3， offset和count，表示了String对象表示的字符串在char数组中的起始段；</p>
+<p>String是特定设计的，包含以下三个特点：</p>
+<p>1， 不变性： 不变模式immutable，节省了同步和锁等待的消耗；</p>
+<p>2， 针对【常量池】的优化：</p>
+<p>变量                                                            内存空间                           常量池</p>
+<p>String str1 = “abc”   ———————&gt;</p>
+<p>String str2 = “abc”   ———————&gt;                                                   abc</p>
+<p>String str3 = new String(“abc”)  —-&gt;      str实例         ———&gt;</p>
+<p>注意：str1 == str3.intern()是true；str2, str2直接指向常量池中的“abc”，不拷贝；</p>
+<p>3，类的final定义;</p>
+<p>String的两个构造方法：</p>
+<pre><code><span class="keyword">public</span> String(<span class="keyword">char</span> <span class="keyword">value</span>[]) {
+
+    <span class="keyword">this</span>.<span class="keyword">value</span> = Arrays.copyOf(<span class="keyword">value</span>, <span class="keyword">value</span>.length);
+
+}
+
+String(<span class="keyword">char</span>[] <span class="keyword">value</span>, boolean share) {
+
+    <span class="keyword">this</span>.<span class="keyword">value</span> = <span class="keyword">value</span>;
+
+}</code></pre>
+<p>第一个构造方法会构造全新的char[]数组；</p>
+<p>第二个构造方法共享了原来的char[]数组；</p>
+<p>【内存泄漏】第二个包可见的共享char[]数组的构造方法会导致内存泄露</p>
+<p>这个构造方法是空间换时间的策略（很有可能理解为时间换空间，因为share了空间，但这里大多数情况下是阻止大空间的GC）；</p>
 
       
     </div>
@@ -161,7 +176,57 @@
       
         
           <div class="alignleft">
-            <a href="/2010/01/05/2010-01-05-javavm/#more" class="more-link">Read More</a>
+            <a href="/2009/10/20/2009-10-20-string/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-08-17T16:00:00.000Z"><a href="/2009/08/18/2009-08-18-set/">Aug 18 2009</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/08/18/2009-08-18-set/">集合</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>【ArrayList LinkedList Vector】</p>
+<p>Vector对于ArrayList，因为同步而引起的性能差别并不明显；</p>
+<p>LinkedList是循环双向链表，无论是否为空，总包含一个header表项：</p>
+<p>|——————————————————————&gt;</p>
+<p>header ——&gt; ele1 ——-&gt; ele2 ——&gt;  ele3</p>
+<pre><code>          &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>       &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>         &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>        </code></pre>
+<p>&lt;—————————————————————-|</p>
+<p>增加元素到表尾，ArrayList 优于 LinkedList：</p>
+<p>ArrayList的扩容最终调用System.arraycopy()方法；</p>
+<p>数组是连续的，ArrayList只有在扩容时才会低效一些；</p>
+<p>而链表，虽然无须扩容，但新建对象和大量赋值操作会低效；</p>
+<p>插入元素到任意位置，LinkedList优于ArrayList：</p>
+<p>因为Array的连续性，每次插入操作都需要是数组重排；</p>
+<p>LinkedList在任意位置插入和尾部插入是一样的；</p>
+<p>删除任意位置元素，ArrayList尾部删除、LinkedList在头部删除和尾部删除这三个都是高效的，其他的都是低效的：</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2009/08/18/2009-08-18-set/#more" class="more-link">Read More</a>
           </div>
         
         
@@ -195,13 +260,23 @@
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
+    <li><a href="/tags/Algorithm/">Algorithm</a><small>2</small></li>
+  
     <li><a href="/tags/Android/">Android</a><small>7</small></li>
+  
+    <li><a href="/tags/Annotation/">Annotation</a><small>1</small></li>
+  
+    <li><a href="/tags/Class/">Class</a><small>1</small></li>
   
     <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
   
-    <li><a href="/tags/Java/">Java</a><small>2</small></li>
+    <li><a href="/tags/Design/">Design</a><small>1</small></li>
   
-    <li><a href="/tags/Sort Algorithm/">Sort Algorithm</a><small>1</small></li>
+    <li><a href="/tags/Java/">Java</a><small>3</small></li>
+  
+    <li><a href="/tags/Jvm/">Jvm</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>1</small></li>
   
   </ul>
 </div>

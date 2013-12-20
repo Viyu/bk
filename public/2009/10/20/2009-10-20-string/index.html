@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>String | Viyu</title>
+  <meta name="author" content="Viyu">
+  
+  <meta name="description" content="【String】就是对char[]数组进行封装的对象，由三部分组成：
+1， char数组：它是String对象所表示的字符串的超集；
+2, 3， offset和count，表示了String对象表示的字符串在char数组中的起始段；
+String是特定设计的，包含以下三个特点：
+1， 不变性： 不变模式immutable，节省了同步和锁等待的消耗；
+2， 针对【常量池】的优化：
+变量                                                            内存空间                           常量池
+String str1 = “abc”   ———————&gt;
+String str2 = “abc”   ———————&gt;                                                   abc
+String str3 = new String(“abc”)  —-&gt;      str实例         ———&gt;
+注意：str1 == str3.intern()是true；str2, str2直接指向常量池中的“abc”，不拷贝；
+3，类的final定义;
+String的两个构造方法：
+public String(char value[]) {
+
+    this.value = Arrays.copyOf(value, value.length);
+
+}
+
+String(char[] value, boolean share) {
+
+    this.value = value;
+
+}
+第一个构造方法会构造全新的char[]数组；
+第二个构造方法共享了原来的char[]数组；
+【内存泄漏】第二个包可见的共享char[]数组的构造方法会导致内存泄露
+这个构造方法是空间换时间的策略（很有可能理解为时间换空间，因为share了空间，但这里大多数情况下是阻止大空间的GC）；">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="String"/>
+  <meta property="og:site_name" content="Viyu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Viyu</a></h1>
+  <h2><a href="/">Viyu's Blog</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-10-20T00:00:00.000Z"><a href="/2009/10/20/2009-10-20-string/">Oct 20 2009</a></time>
+      
+      
+  
+    <h1 class="title">String</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>【String】就是对char[]数组进行封装的对象，由三部分组成：</p>
+<p>1， char数组：它是String对象所表示的字符串的超集；</p>
+<p>2, 3， offset和count，表示了String对象表示的字符串在char数组中的起始段；</p>
+<p>String是特定设计的，包含以下三个特点：</p>
+<p>1， 不变性： 不变模式immutable，节省了同步和锁等待的消耗；</p>
+<p>2， 针对【常量池】的优化：</p>
+<p>变量                                                            内存空间                           常量池</p>
+<p>String str1 = “abc”   ———————&gt;</p>
+<p>String str2 = “abc”   ———————&gt;                                                   abc</p>
+<p>String str3 = new String(“abc”)  —-&gt;      str实例         ———&gt;</p>
+<p>注意：str1 == str3.intern()是true；str2, str2直接指向常量池中的“abc”，不拷贝；</p>
+<p>3，类的final定义;</p>
+<p>String的两个构造方法：</p>
+<pre><code><span class="keyword">public</span> String(<span class="keyword">char</span> <span class="keyword">value</span>[]) {
+
+    <span class="keyword">this</span>.<span class="keyword">value</span> = Arrays.copyOf(<span class="keyword">value</span>, <span class="keyword">value</span>.length);
+
+}
+
+String(<span class="keyword">char</span>[] <span class="keyword">value</span>, boolean share) {
+
+    <span class="keyword">this</span>.<span class="keyword">value</span> = <span class="keyword">value</span>;
+
+}</code></pre>
+<p>第一个构造方法会构造全新的char[]数组；</p>
+<p>第二个构造方法共享了原来的char[]数组；</p>
+<p>【内存泄漏】第二个包可见的共享char[]数组的构造方法会导致内存泄露</p>
+<p>这个构造方法是空间换时间的策略（很有可能理解为时间换空间，因为share了空间，但这里大多数情况下是阻止大空间的GC）；</p>
+<a id="more"></a>
+
+<p>调用这个构造方法，会使得原始的char[]数组无法被GC，假如原char[]很大，按新的String对象只引用了其中很小的一部分，这就是subString(begin, end)的潜在风险，因为这个方法使用了这个包可见的构造方法返回了新的共享了旧的char[]数组的String对象：</p>
+<p>new String(offset + beginIndex, endIndex-beginIndex, value)；</p>
+<p>包可见的构造方法，客户代码虽然无法使用，但调用以下方法则间接调用了这个构造方法：</p>
+<p>Integer.toString;</p>
+<p>Long.toString;</p>
+<p>String.concat;</p>
+<p>String.replace;</p>
+<p>String.subString;</p>
+<p>String.toLower;</p>
+<p>String.toUpper;</p>
+<p>String.valueOf;</p>
+<p>比如：</p>
+<p>String str = new String(new char[10000000]);</p>
+<p>String str2 = str.subString(1, 5);</p>
+<p>1000000个字符常驻内存，无法GC，因为5个字符串的使用；</p>
+<p>【字符串分割】</p>
+<p>String.split提供【正则表达式】分割功能：</p>
+<p>“a;b,c:d”.split(&quot;[;|,|:]&quot;);</p>
+<p>StringTokenizer是分割字符串的迭代器：</p>
+<p>StringTokenizer st = new StringTokenizer(orignalString, “;”);</p>
+<p>while(st.hasMoreTokens())</p>
+<pre><code><span class="keyword">st</span><span class="preprocessor">.nextToken</span>()<span class="comment">;</span></code></pre>
+<p>用String.indexOf和String.subString来分割字符串：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre><span class="keyword">while</span>(<span class="literal">true</span>) {
+
+    String splitStr = null;
+
+    <span class="keyword">int</span> j = orignalStr<span class="variable">.indexOf</span>(<span class="string">';'</span>);
+
+    <span class="keyword">if</span>(j &lt; <span class="number">0</span>)
+
+        <span class="keyword">break</span>;
+
+    splitStr = orignalStr<span class="variable">.subString</span>(<span class="number">0</span>, j);
+
+    orignalStr = orignalStr<span class="variable">.subString</span>(j + <span class="number">1</span>); <span class="comment">//更新string</span>
+}
+</pre></td></tr></table></figure>
+
+
+<p>分割性能：split &lt; StringTokenizer &lt; indexOf&amp;subString</p>
+<hr>
+<p>【字符串查找】</p>
+<p>indexOf(char c)与charAt(int index)是String互补的方法；</p>
+<p>用startWith和endsWith进行字符串；</p>
+<p>用charAt实现startWith：</p>
+<p>if(origStr.charAt(0) == ‘a’ &amp;&amp; origStr.charAt(1) == ‘b’ &amp;&amp; origStr.char(2) == ‘c’);</p>
+<p>用charAt实现endsWith:</p>
+<p>if(origStr.charAt(len - 1) == ‘c’ &amp;&amp; origStr.charAt(len - 2) == ‘b’ &amp;&amp; origStr.char(len - 3) == ‘a’);</p>
+<p>charAt性能高于startWith和endsWith；</p>
+<hr>
+<p>【字符串连接 + += concat StringBuilder StringBuffer】</p>
+<p>静态字符串(String常量)的连接操作，会在编译期被编译器直接运算优化：</p>
+<p>String result = “abc + ”and“ + ”123&quot;; 的性能高于</p>
+<p>StringBuilder builder = new StringBuilder();</p>
+<p>builder.append(“abc”);</p>
+<p>…</p>
+<p>因为静态字符串的+操作在编译期就被运算了，运行期只存在“abcand123”一个字符串，并非：</p>
+<p>“abc”, “and”, “123”, “abcand”, “abcand123”；</p>
+<p>动态字符串(String变量)的连接操作，会在编译期被编译器转换为StringBuilder实现，循环中的局部变量也不例外：</p>
+<p>所以，</p>
+<p>String str1 = “abc”;</p>
+<p>String str2 = “and”;</p>
+<p>String str3 = “append”;</p>
+<p>String result = str1 + str2 + str3;</p>
+<p>的字节码等同于：</p>
+<p>String result = (new StringBuilder(String.valueOf(str1))).append(str2).append(str3).toString();</p>
+<p>所以，其实用+操作和StringBuilder的性能是一样的 ；</p>
+<p>但编译器把+转换为StringBuilder时不够聪明，经常会过多new StringBuilder的对象：</p>
+<p>for(int i = 0; i &lt; 10000; i++)</p>
+<pre><code><span class="keyword">str</span> = <span class="keyword">str</span> + i;</code></pre>
+<p>会被编译器转换为：</p>
+<p>for(int i = 0; i &lt; 10000; i++)</p>
+<pre><code>str = (new StringBuilder(String<span class="preprocessor">.valueOf</span>(str)))<span class="preprocessor">.append</span>(i)<span class="preprocessor">.toString</span>()<span class="comment">;</span></code></pre>
+<p>所以应该显式使用StringBuilder而不是依靠编译器转换为StringBuilder实现：</p>
+<p>StringBuilder sb = new StringBuilder();</p>
+<p>for(int i = 0; i &lt; 100000; i++)</p>
+<pre><code>sb<span class="preprocessor">.append</span>(i)<span class="comment">;</span></code></pre>
+<p>StringBuffer是线程安全的，理论上性能略低于StringBuilder；</p>
+<p>StringBuilder和StringBuffer就是变长的char[]数组，跟所有变长数组一样，指定合适capacity可以节省扩容的消耗，提高性能：</p>
+<p>StringBuffer(int capacity)            StringBuilder(int capacity);</p>
+<p>字符串连接的效率：StringBuilder &gt;&gt; concat &gt; +</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Java/">Java</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://mosthink.net/2009/10/20/2009-10-20-string/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mosthink.net">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Algorithm/">Algorithm</a><small>2</small></li>
+  
+    <li><a href="/tags/Android/">Android</a><small>7</small></li>
+  
+    <li><a href="/tags/Annotation/">Annotation</a><small>1</small></li>
+  
+    <li><a href="/tags/Class/">Class</a><small>1</small></li>
+  
+    <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
+  
+    <li><a href="/tags/Design/">Design</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>3</small></li>
+  
+    <li><a href="/tags/Jvm/">Jvm</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="search">
+  <a href="http://info.flagcounter.com/yHDb"><img src="http://s11.flagcounter.com/map/yHDb/size_s/txt_000000/border_CCCCCC/pageviews_0/viewers_0/flags_0/" alt="Flag Counter" border="0"></a>
+</div>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Viyu
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

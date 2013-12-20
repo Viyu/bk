@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives: 2011/6 | Viyu</title>
+  <meta name="author" content="Viyu">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Viyu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Viyu</a></h1>
+  <h2><a href="/">Viyu's Blog</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title">2011/6</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-06-22T00:00:00.000Z"><a href="/2011/06/22/2011-06-22-design/">Jun 22 2011</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/06/22/2011-06-22-design/">设计模式</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><b>单例模式的并发问题和延迟加载</b></p>
+<p>非并发的单例模式：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span>  
+
+    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>; 
+
+    <span class="keyword">private</span> Singleton() { 
+
+    } 
+
+    <span class="keyword">public</span> <span class="keyword">static</span> Singleton getInstance() { 
+
+        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) {     
+
+              instance = <span class="keyword">new</span> Singleton(); 
+
+        } 
+
+        <span class="keyword">return</span> instance; 
+
+    } 
+} 
+</pre></td></tr></table></figure>
+
+
+<p>多线程下，上面的instance == null 与 instance = new Singleton()的操作不是原子的，所以会导致instance == null的判断不正确，从而导致出现多个实例；</p>
+<p>synchronized能保证上述的原子性：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span>  
+
+    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>; 
+
+    <span class="keyword">private</span> Singleton () { 
+
+    } 
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton getInstance() { 
+
+        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) { 
+
+                 instance = <span class="keyword">new</span> SynchronizedSingleton(); 
+
+        } 
+
+       <span class="keyword">return</span> instance; 
+
+     } 
+} 
+</pre></td></tr></table></figure>
+
+
+<p>synchronized解决了原子性问题，但是，当第一次Singleton实例构造之后，这个instance对所有线程都可见了，所有线程都能正确判断instance == null为false了，此时再synchronized就没必要了，造成性能开销；</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2011/06/22/2011-06-22-design/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mosthink.net">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Algorithm/">Algorithm</a><small>2</small></li>
+  
+    <li><a href="/tags/Android/">Android</a><small>7</small></li>
+  
+    <li><a href="/tags/Annotation/">Annotation</a><small>1</small></li>
+  
+    <li><a href="/tags/Class/">Class</a><small>1</small></li>
+  
+    <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
+  
+    <li><a href="/tags/Design/">Design</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>3</small></li>
+  
+    <li><a href="/tags/Jvm/">Jvm</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="search">
+  <a href="http://info.flagcounter.com/yHDb"><img src="http://s11.flagcounter.com/map/yHDb/size_s/txt_000000/border_CCCCCC/pageviews_0/viewers_0/flags_0/" alt="Flag Counter" border="0"></a>
+</div>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Viyu
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

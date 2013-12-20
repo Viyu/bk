@@ -395,18 +395,174 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
     <header>
       
         <div class="icon"></div>
-        <time datetime="2011-03-01T00:00:00.000Z"><a href="/2011/03/01/2011-03-01-multithread/">Mar 1 2011</a></time>
+        <time datetime="2011-11-09T00:00:00.000Z"><a href="/2011/11/09/2011-11-09-zhujie/">Nov 9 2011</a></time>
       
       
   
-    <h1 class="title"><a href="/2011/03/01/2011-03-01-multithread/">并发和多线程</a></h1>
+    <h1 class="title"><a href="/2011/11/09/2011-11-09-zhujie/">注解Demo</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p><b>线程安全性的需求不一定来自于对线程的直接使用，而是来源于对比如Servlet这种框架的使用</B></p>
-<p>无状态对象一定是线程安全的；有状态但是状态对象是线程安全的，比如是原子的，也是线程安全的。但如果有多个状态对象，则线程不安全，除非在一个原子操作中同时更新了所有状态对象。synchronized(obj){}就可以保证代码块的原子性。如果一个线程试图获取被另一个线程池有的锁，则该线程会阻塞；如果一个线程试图获取已经被自己池有的锁，“重入”机制使得该线程可以获取；</p>
+        <p>定义描述类名或者方法名的注解：ClassOrMethodFullName.java</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>@Target({ElementType<span class="variable">.TYPE</span>, ElementType<span class="variable">.METHOD</span>})
+
+@Retention(RetentionPolicy<span class="variable">.RUNTIME</span>)
+
+<span class="keyword">public</span> @<span class="class"><span class="keyword">interface</span> <span class="id">ClassOrMethodFullName</span> {</span>
+
+        String value() <span class="keyword">default</span> <span class="string">"Unknown"</span>;
+
+        String fullName() <span class="keyword">default</span> <span class="string">"Unknown"</span>;
+}
+</pre></td></tr></table></figure>
+
+
+<p>定义描述方法参数个数的注解：MethodParameterCount.java</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2011/11/09/2011-11-09-zhujie/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-08-30T00:00:00.000Z"><a href="/2011/08/30/2011-08-30-js/">Aug 30 2011</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/08/30/2011-08-30-js/">js笔记</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>定义描述类名或者方法名的注解：ClassOrMethodFullName.java</p>
+<p>【写一个js方法】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">alertdemo</span><span class="params">()</span> {</span>
+    <span class="comment">//</span>
+};  
+</pre></td></tr></table></figure>
+
+
+<p>function + 方法名 + 括号 + 代码块</p>
+<p>【调用这个js方法得加括号】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">button</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">onclick</span>=<span class="value">"alertdemo()"</span>&gt;</span>点击这里<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+
+<p>【带参数的函数，参数是不需要声明类型部分的】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">alertmsg</span><span class="params">(msg)</span> {</span>
+
+alert(msg);
+
+}
+</pre></td></tr></table></figure>
+
+
+<p>【带返回值的函数，很好理解】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">getAResult</span><span class="params">()</span> {</span>
+
+<span class="keyword">return</span> <span class="string">"返回的结果"</span>;
+
+}
+</pre></td></tr></table></figure>
+
+
+<p>返回值是可选的，means，你想在哪个分支返回就返回，在另一个分支不返回就不返回，返回啥都没人管，因为function根本不会申明返回类型，真是随便的语言啊。</p>
+<p>【修改html元素内容】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>x=document<span class="variable">.getElementById</span>(<span class="string">"demo"</span>) <span class="comment">//查找元素</span>
+
+x<span class="variable">.innerHTML</span>=<span class="string">"Hello JavaScript"</span>; <span class="comment">//改变内容</span>
+
+x<span class="variable">.style</span><span class="variable">.color</span>=<span class="string">"#ff0000"</span>;    <span class="comment">//改变样式</span>
+</pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2011/08/30/2011-08-30-js/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-06-22T00:00:00.000Z"><a href="/2011/06/22/2011-06-22-design/">Jun 22 2011</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/06/22/2011-06-22-design/">设计模式</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><b>单例模式的并发问题和延迟加载</b></p>
+<p>非并发的单例模式：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -424,32 +580,125 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 15
 16
 17
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Widget</span> {</span>
+18
+19
+20
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span>  
 
-<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> dosth() {
-}
+    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>; 
 
-}
+    <span class="keyword">private</span> Singleton() { 
 
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Loggingwidget</span> <span class="keyword">extends</span> <span class="title">Widget</span> {</span>
+    } 
 
-<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> dosth() {
+    <span class="keyword">public</span> <span class="keyword">static</span> Singleton getInstance() { 
 
-System.out.println(<span class="string">"do sth"</span>);
+        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) {     
 
-<span class="keyword">super</span>.dosht();
+              instance = <span class="keyword">new</span> Singleton(); 
 
-}
-}
+        } 
+
+        <span class="keyword">return</span> instance; 
+
+    } 
+} 
 </pre></td></tr></table></figure>
 
 
-<hr>
-<p><b>某个线程获得对象的锁之后，只能阻止其他线程获得同一个锁，并不能阻止其他线程通过另外的锁来访问对象的变量</b></p>
+<p>多线程下，上面的instance == null 与 instance = new Singleton()的操作不是原子的，所以会导致instance == null的判断不正确，从而导致出现多个实例；</p>
+<p>synchronized能保证上述的原子性：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span>  
+
+    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>; 
+
+    <span class="keyword">private</span> Singleton () { 
+
+    } 
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton getInstance() { 
+
+        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) { 
+
+                 instance = <span class="keyword">new</span> SynchronizedSingleton(); 
+
+        } 
+
+       <span class="keyword">return</span> instance; 
+
+     } 
+} 
+</pre></td></tr></table></figure>
+
+
+<p>synchronized解决了原子性问题，但是，当第一次Singleton实例构造之后，这个instance对所有线程都可见了，所有线程都能正确判断instance == null为false了，此时再synchronized就没必要了，造成性能开销；</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2011/06/22/2011-06-22-design/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-03-01T00:00:00.000Z"><a href="/2011/03/01/2011-03-01-multithread/">Mar 1 2011</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/03/01/2011-03-01-multithread/">并发和多线程</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><b>某个线程获得对象的锁之后，只能阻止其他线程获得同一个锁，并不能阻止其他线程通过另外的锁来访问对象的变量</b></p>
 <p>每个可变或共享的变量都该由同一个锁来保护；</p>
 <p>简单粗暴的全部synchronized会使得并发程序变成串行程序，影响性能，多核CPU会有空载运行，应该缩小同步块的大小，将不影响共享状态并且执行时间较长的操作从同步代码块中分离出去。</p>
 <p>简单性（对整个方法同步）与并发性（对尽可能短的代码路径进行同步）之间的平衡；</p>
 <p>当执行较长时间或无法快速完成的操作时，比如网络I/O，一定不要持有锁，不然会影响活跃性和性能。</p>
+<hr>
+<p><b>并发关注的就是：共享+可变的状态</b></p>
+<p>多个线程之间，不仅要防止错误地修改和读取了状态，还要共享状态，即一个线程修改了状态，另一个线程要被通知到这个修改；</p>
+<p>重排序：无同步的多线程程序中，无法正确判断代码的执行顺序。</p>
+<p>Sleep和Yield都是让cpu不让锁，跟锁没关系；Wait是让锁。</p>
+<p>非volatile的long和double不是线程安全的，64位的读写会被分解，不是原子性的；</p>
+<p>“加锁的含义不仅仅局限于互斥行为，还包括内存可见性。为了确保所有线程都能看到共享变量的最新值，所有执行读写操作的线程都必须在同一锁上同步。”</p>
 
       
     </div>
@@ -537,6 +786,54 @@ System.out.println(<span class="string">"do sth"</span>);
         
           <div class="alignleft">
             <a href="/2010/03/06/2010-03-06-fx/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-02-10T00:00:00.000Z"><a href="/2010/02/10/2010-02-10-class/">Feb 10 2010</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/02/10/2010-02-10-class/">Java与Class</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><b>类与类加载器</b></p>
+<p>类加载器阶段的“通过一个类的全限定名来获取描述此类的二进制字节流”这个动作被放到了Java虚拟机外部去实现，以便让应用程序自己定义如何获取所需要的类，即，可在自己的代码中实现一个java.lang.ClassLoader类作为自定义的类加载器；</p>
+<p>不同的类加载器加载上来的类并不相等，即使是来源于同一个二进制字节流的class定义；换言之，比较两个类是否相等，只有在这两个类是同一个类加载器的前提下才有意义；</p>
+<p>如果不自定义类加载器，则会有系统应用程序类加载器来加载类，除了虚拟机中的“启动类加载器”之外，其他独立于虚拟机之外的类加载器都继承自java.lang.ClassLoader；</p>
+<p>启动类加载器：负责<JAVA_HOME>\lib中的类加载，如rt.jar；</p>
+<p>扩展类加载器：负责<JAVA_HOME>\lib\ext中的类加载，或者被java.ext.dirs指定的路径中的类加载，开发者可以直接使用这个加载器；sun.misc.Launcher$ExtClassLoader来实现；</p>
+<p>应用程序类加载器：java.lang.ClassLoader.getSystemClassLoader()返回的就是这个加载器，这也是程序中的默认类加载器，sun.misc.Launcher$AppClassLoader来实现；</p>
+<p>双亲委派模型的意思是，除了顶层的启动类加载器外，其余的类加载器都要有自己的父类加载器，这种继承关系用组合来实现，如果一个类加载器收到了类加载请求，先把这个请求委派给父类加载器去完成，最终一层层把请求传送给了顶层的启动类加载器中，当父类加载器无法加载时再自己加载；</p>
+<p>这样就可以保证，基础类，比如java.lang.Object在程序中都被交给了启动类加载器从rt.jar中加载的同一个类；</p>
+<p>越基础的类由越上层的加载器进行加载；</p>
+<p>天下所有的类都继承于java.lang.Object类，不错，但是，如果不保证用同一个加载器的话，将是不同的java.lang.Object；</p>
+<p>所以说，也可以自己定义一个类叫java.lang.Object；</p>
+<p>注意，上面必须是java.lang.Object，而不是Object，因为即使是同一个加载器下，也可以定义一个非java.lang包下的Object类；</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2010/02/10/2010-02-10-class/#more" class="more-link">Read More</a>
           </div>
         
         
@@ -681,6 +978,243 @@ System.out.println(<span class="string">"do sth"</span>);
 
 
 
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-10-20T00:00:00.000Z"><a href="/2009/10/20/2009-10-20-string/">Oct 20 2009</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/10/20/2009-10-20-string/">String</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>【String】就是对char[]数组进行封装的对象，由三部分组成：</p>
+<p>1， char数组：它是String对象所表示的字符串的超集；</p>
+<p>2, 3， offset和count，表示了String对象表示的字符串在char数组中的起始段；</p>
+<p>String是特定设计的，包含以下三个特点：</p>
+<p>1， 不变性： 不变模式immutable，节省了同步和锁等待的消耗；</p>
+<p>2， 针对【常量池】的优化：</p>
+<p>变量                                                            内存空间                           常量池</p>
+<p>String str1 = “abc”   ———————&gt;</p>
+<p>String str2 = “abc”   ———————&gt;                                                   abc</p>
+<p>String str3 = new String(“abc”)  —-&gt;      str实例         ———&gt;</p>
+<p>注意：str1 == str3.intern()是true；str2, str2直接指向常量池中的“abc”，不拷贝；</p>
+<p>3，类的final定义;</p>
+<p>String的两个构造方法：</p>
+<pre><code><span class="keyword">public</span> String(<span class="keyword">char</span> <span class="keyword">value</span>[]) {
+
+    <span class="keyword">this</span>.<span class="keyword">value</span> = Arrays.copyOf(<span class="keyword">value</span>, <span class="keyword">value</span>.length);
+
+}
+
+String(<span class="keyword">char</span>[] <span class="keyword">value</span>, boolean share) {
+
+    <span class="keyword">this</span>.<span class="keyword">value</span> = <span class="keyword">value</span>;
+
+}</code></pre>
+<p>第一个构造方法会构造全新的char[]数组；</p>
+<p>第二个构造方法共享了原来的char[]数组；</p>
+<p>【内存泄漏】第二个包可见的共享char[]数组的构造方法会导致内存泄露</p>
+<p>这个构造方法是空间换时间的策略（很有可能理解为时间换空间，因为share了空间，但这里大多数情况下是阻止大空间的GC）；</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2009/10/20/2009-10-20-string/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-08-17T16:00:00.000Z"><a href="/2009/08/18/2009-08-18-set/">Aug 18 2009</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/08/18/2009-08-18-set/">集合</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>【ArrayList LinkedList Vector】</p>
+<p>Vector对于ArrayList，因为同步而引起的性能差别并不明显；</p>
+<p>LinkedList是循环双向链表，无论是否为空，总包含一个header表项：</p>
+<p>|——————————————————————&gt;</p>
+<p>header ——&gt; ele1 ——-&gt; ele2 ——&gt;  ele3</p>
+<pre><code>          &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>       &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>         &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>        </code></pre>
+<p>&lt;—————————————————————-|</p>
+<p>增加元素到表尾，ArrayList 优于 LinkedList：</p>
+<p>ArrayList的扩容最终调用System.arraycopy()方法；</p>
+<p>数组是连续的，ArrayList只有在扩容时才会低效一些；</p>
+<p>而链表，虽然无须扩容，但新建对象和大量赋值操作会低效；</p>
+<p>插入元素到任意位置，LinkedList优于ArrayList：</p>
+<p>因为Array的连续性，每次插入操作都需要是数组重排；</p>
+<p>LinkedList在任意位置插入和尾部插入是一样的；</p>
+<p>删除任意位置元素，ArrayList尾部删除、LinkedList在头部删除和尾部删除这三个都是高效的，其他的都是低效的：</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2009/08/18/2009-08-18-set/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-07-02T00:00:00.000Z"><a href="/2009/07/02/2009-07-02-sfsjjg/">Jul 2 2009</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/07/02/2009-07-02-sfsjjg/">算法和数据结构</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><b>几个对数组的算法</b></p>
+<p>1， 找出数组中的最大值：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>double max = a<span class="matrix">[<span class="number">0</span>]</span>;
+
+<span class="keyword">for</span>(int <span class="built_in">i</span> = <span class="number">1</span>; <span class="built_in">i</span> &lt; <span class="transposed_variable">a.</span><span class="built_in">length</span>; <span class="built_in">i</span>++)
+
+    <span class="keyword">if</span>(a<span class="matrix">[i]</span> &gt; max) max = a<span class="matrix">[i]</span>;
+</pre></td></tr></table></figure>
+
+
+<p>//把最大值马上设定为数组的第一个元素，然后遍历数组，如果有别当前这个最大值更大的元素，则把最大值更新，直到遍历结束；</p>
+<p>2， 计算数组的平均值：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>double sum = <span class="number">0.0</span>;
+
+<span class="function"><span class="title">for</span><span class="params">(int i = <span class="number">0</span>; i &lt; a.length; i++)</span>
+
+    <span class="title">sum</span> += <span class="title">a</span>[<span class="title">i</span>];
+
+<span class="title">double</span> <span class="title">average</span> = <span class="title">sum</span> / <span class="title">a</span>.<span class="title">length</span>;
+</pre></td></tr></table></figure>
+
+
+<p>//算出总值，然后除以数组的元素数；</p>
+<p>3，复制数组：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="keyword">double</span>[] b = new <span class="keyword">double</span>[a.<span class="built_in">length</span>];
+
+<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.<span class="built_in">length</span>; i++) 
+
+    b[i] = a[i];
+
+<span class="comment">//new 一个和原数组同length同类型的数组，然后遍历赋值每个元素；</span>
+</pre></td></tr></table></figure>
+
+
+<p>4，颠倒数组元素的顺序：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre><span class="keyword">double</span> [] b = new <span class="keyword">double</span>[a.<span class="built_in">length</span>];
+
+<span class="keyword">for</span>(<span class="keyword">int</span> i = a.<span class="built_in">length</span> - <span class="number">1</span>, j = <span class="number">0</span>; i &gt; -<span class="number">1</span> &amp;&amp; j &lt; b.<span class="built_in">length</span> ; i--, j++) 
+
+    b[j] = a[i];
+
+<span class="comment">//这是个直观低效率算法，时间消耗(a.length)，空间消耗(2 * a.length)，并且有两个循环指数i, j；</span>
+
+<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>; i &lt; a.<span class="built_in">length</span> / <span class="number">2</span>; i++) {
+
+    <span class="keyword">double</span> temp = a[i];
+
+    a[i] = a[a.<span class="built_in">length</span> - <span class="number">1</span> - i];
+
+    a[a.<span class="built_in">length</span> - <span class="number">1</span> - i] = temp;
+}
+</pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2009/07/02/2009-07-02-sfsjjg/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
 
 <nav id="pagination">
   
@@ -702,13 +1236,23 @@ System.out.println(<span class="string">"do sth"</span>);
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
+    <li><a href="/tags/Algorithm/">Algorithm</a><small>2</small></li>
+  
     <li><a href="/tags/Android/">Android</a><small>7</small></li>
+  
+    <li><a href="/tags/Annotation/">Annotation</a><small>1</small></li>
+  
+    <li><a href="/tags/Class/">Class</a><small>1</small></li>
   
     <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
   
-    <li><a href="/tags/Java/">Java</a><small>2</small></li>
+    <li><a href="/tags/Design/">Design</a><small>1</small></li>
   
-    <li><a href="/tags/Sort Algorithm/">Sort Algorithm</a><small>1</small></li>
+    <li><a href="/tags/Java/">Java</a><small>3</small></li>
+  
+    <li><a href="/tags/Jvm/">Jvm</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>1</small></li>
   
   </ul>
 </div>
