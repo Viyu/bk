@@ -1,0 +1,333 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>并发和多线程 | Viyu</title>
+  <meta name="author" content="Viyu">
+  
+  <meta name="description" content="线程安全性的需求不一定来自于对线程的直接使用，而是来源于对比如Servlet这种框架的使用
+无状态对象一定是线程安全的；有状态但是状态对象是线程安全的，比如是原子的，也是线程安全的。但如果有多个状态对象，则线程不安全，除非在一个原子操作中同时更新了所有状态对象。synchronized(obj){}就可以保证代码块的原子性。如果一个线程试图获取被另一个线程池有的锁，则该线程会阻塞；如果一个线程试图获取已经被自己池有的锁，“重入”机制使得该线程可以获取；
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+public class Widget {
+
+public synchronized void dosth() {
+}
+
+}
+
+public class Loggingwidget extends Widget {
+
+public synchronized void dosth() {
+
+System.out.println(&quot;do sth&quot;);
+
+super.dosht();
+
+}
+}
+
+
+
+
+某个线程获得对象的锁之后，只能阻止其他线程获得同一个锁，并不能阻止其他线程通过另外的锁来访问对象的变量
+每个可变或共享的变量都该由同一个锁来保护；
+简单粗暴的全部synchronized会使得并发程序变成串行程序，影响性能，多核CPU会有空载运行，应该缩小同步块的大小，将不影响共享状态并且执行时间较长的操作从同步代码块中分离出去。
+简单性（对整个方法同步）与并发性（对尽可能短的代码路径进行同步）之间的平衡；
+当执行较长时间或无法快速完成的操作时，比如网络I/O，一定不要持有锁，不然会影响活跃性和性能。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="并发和多线程"/>
+  <meta property="og:site_name" content="Viyu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Viyu</a></h1>
+  <h2><a href="/">Viyu's Blog</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-03-01T00:00:00.000Z"><a href="/2011/03/01/2011-03-01-multithread/">Mar 1 2011</a></time>
+      
+      
+  
+    <h1 class="title">并发和多线程</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><b>线程安全性的需求不一定来自于对线程的直接使用，而是来源于对比如Servlet这种框架的使用</B></p>
+<p>无状态对象一定是线程安全的；有状态但是状态对象是线程安全的，比如是原子的，也是线程安全的。但如果有多个状态对象，则线程不安全，除非在一个原子操作中同时更新了所有状态对象。synchronized(obj){}就可以保证代码块的原子性。如果一个线程试图获取被另一个线程池有的锁，则该线程会阻塞；如果一个线程试图获取已经被自己池有的锁，“重入”机制使得该线程可以获取；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Widget</span> {</span>
+
+<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> dosth() {
+}
+
+}
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Loggingwidget</span> <span class="keyword">extends</span> <span class="title">Widget</span> {</span>
+
+<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> dosth() {
+
+System.out.println(<span class="string">"do sth"</span>);
+
+<span class="keyword">super</span>.dosht();
+
+}
+}
+</pre></td></tr></table></figure>
+
+
+<hr>
+<p><b>某个线程获得对象的锁之后，只能阻止其他线程获得同一个锁，并不能阻止其他线程通过另外的锁来访问对象的变量</b></p>
+<p>每个可变或共享的变量都该由同一个锁来保护；</p>
+<p>简单粗暴的全部synchronized会使得并发程序变成串行程序，影响性能，多核CPU会有空载运行，应该缩小同步块的大小，将不影响共享状态并且执行时间较长的操作从同步代码块中分离出去。</p>
+<p>简单性（对整个方法同步）与并发性（对尽可能短的代码路径进行同步）之间的平衡；</p>
+<p>当执行较长时间或无法快速完成的操作时，比如网络I/O，一定不要持有锁，不然会影响活跃性和性能。</p>
+<a id="more"></a>
+
+<hr>
+<p><b>并发关注的就是：共享+可变的状态</b></p>
+<p>多个线程之间，不仅要防止错误地修改和读取了状态，还要共享状态，即一个线程修改了状态，另一个线程要被通知到这个修改；</p>
+<p>重排序：无同步的多线程程序中，无法正确判断代码的执行顺序。</p>
+<p>Sleep和Yield都是让cpu不让锁，跟锁没关系；Wait是让锁。</p>
+<p>非volatile的long和double不是线程安全的，64位的读写会被分解，不是原子性的；</p>
+<p>“加锁的含义不仅仅局限于互斥行为，还包括内存可见性。为了确保所有线程都能看到共享变量的最新值，所有执行读写操作的线程都必须在同一锁上同步。”</p>
+<hr>
+<p><b>volatile是比synchronized更轻量级的同步</b></p>
+<p>olatile，确保将变量的更新操作通知到其他线程；</p>
+<p>从内存可见性的角度，写入volatile变量相当于退出同步代码块，读取volatile变量相当于进入同步代码块。</p>
+<p>加锁既可以保证可见性又可确保原子性，而volatile只确保可见性；</p>
+<hr>
+<p><b>逸出</b></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="keyword">private</span> String[] strs = {<span class="string">"Hello"</span>, <span class="string">"World"</span>};
+
+<span class="keyword">public</span> String getStrs() {
+
+<span class="keyword">return</span> <span class="keyword">this</span><span class="variable">.strs</span>;
+}
+</pre></td></tr></table></figure>
+
+
+<p>strs是被设计为private的，但是通过getStrs方法，外部类可以修改strs的内容，这就是逸出。</p>
+<p>不要再构造过程中使thisy引用逸出:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>public class ThisEscape {
+
+public ThisEscape(EventSource <span class="keyword">source</span>) {
+
+    source.registerListener() { new EventListener() {
+
+        public void onEvent(Event e) {
+
+        }
+<span class="keyword">...</span>
+</pre></td></tr></table></figure>
+
+
+<p>上面的内部类把尚未构造完成的this给逸出了；</p>
+<p>在构造方法中使用内部类，会逸出this;</p>
+<p>在构造方法中启动线程，会逸出this;</p>
+<p>在构造方法中调用可改写的实例方法（非private非final），会逸出this；</p>
+<hr>
+<p><b>调用栈和线程</b></p>
+<p>基本类型的局部变量的固有属性之一就是封闭在执行线程中，它们位于执行线程的栈中，其他线程无法访问这些栈；非基本类型的局部变量，可能被各种方式逸出，比如把该非基本类型的局部变量传递给其他的方法，而基本类型是无法被引用的，所以不会被逸出；</p>
+<p>而全局变量，是被每一个线程-调用栈，共享的；</p>
+<hr>
+<p>除非需要更高的可见性，否则应将所有的域都声明为私有域；</p>
+<p>除非需要某个域是可变的，否则应将其声明为final域；</p>
+<p>某种情况下，volatile+不可变对象，保证了原子性和可见性，</p>
+<p>volatile保证可见性不保证原子性，而不可变对象保证了一种弱于synchronized的原子性；</p>
+<p>当对象的引用对所有访问该对象的线程是可见时，对象发布时的状态对于所有线程也将是可见的；</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Concurrence/">Concurrence</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://mosthink.net/2011/03/01/2011-03-01-multithread/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mosthink.net">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Android/">Android</a><small>7</small></li>
+  
+    <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>2</small></li>
+  
+    <li><a href="/tags/Sort Algorithm/">Sort Algorithm</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="search">
+  <a href="http://info.flagcounter.com/yHDb"><img src="http://s11.flagcounter.com/map/yHDb/size_s/txt_000000/border_CCCCCC/pageviews_0/viewers_0/flags_0/" alt="Flag Counter" border="0"></a>
+</div>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Viyu
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

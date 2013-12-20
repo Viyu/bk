@@ -1,0 +1,400 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android初学笔记 | Viyu</title>
+  <meta name="author" content="Viyu">
+  
+  <meta name="description" content="Eclipse 【ADT】 源
+https://dl-ssl.google.com/android/eclipse
+
+Notice that no matter what scenario causes the activity to stop, the system always calls onPause() before calling onStop().
+Although the onPause() method is called before onStop(), you should use onStop() to perform larger, more CPU intensive shut-down operations, such as writing information to a database.
+the system calls onStart() both when it creates your activity and when it restarts the activity from the stopped state.
+Resumed
+In this state, the activity is in the foreground and the user can interact with it. (Also sometimes referred to as the “running” state.)
+Paused
+In this state, the activity is partially obscured by another activity—the other activity that‘s in the foreground is semi-transparent or doesn’t cover the entire screen. The paused activity does not receive user input and cannot execute any code. 
+Stopped
+In this state, the activity is completely hidden and not visible to the user; it is considered to be in the background. While stopped, the activity instance and all its state information such as member variables is retained, but it cannot execute any code.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Android初学笔记"/>
+  <meta property="og:site_name" content="Viyu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Viyu</a></h1>
+  <h2><a href="/">Viyu's Blog</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-12-10T00:00:00.000Z"><a href="/2012/12/10/2012-12-10-startandroid/">Dec 10 2012</a></time>
+      
+      
+  
+    <h1 class="title">Android初学笔记</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Eclipse 【ADT】 源</p>
+<p><a href="https://dl-ssl.google.com/android/eclipse" target="_blank">https://dl-ssl.google.com/android/eclipse</a></p>
+<hr>
+<p>Notice that no matter what scenario causes the activity to stop, the system always calls onPause() before calling onStop().</p>
+<p>Although the onPause() method is called before onStop(), you should use onStop() to perform larger, more CPU intensive shut-down operations, such as writing information to a database.</p>
+<p>the system calls onStart() both when it creates your activity and when it restarts the activity from the stopped state.</p>
+<p>Resumed</p>
+<p>In this state, the activity is in the foreground and the user can interact with it. (Also sometimes referred to as the “running” state.)</p>
+<p>Paused</p>
+<p>In this state, the activity is partially obscured by another activity—the other activity that‘s in the foreground is semi-transparent or doesn’t cover the entire screen. The paused activity does not receive user input and cannot execute any code. </p>
+<p>Stopped</p>
+<p>In this state, the activity is completely hidden and not visible to the user; it is considered to be in the background. While stopped, the activity instance and all its state information such as member variables is retained, but it cannot execute any code.</p>
+<a id="more"></a>
+
+<hr>
+<p>//保证当前的版本可以执行某段代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="keyword">if</span> ( <span class="transposed_variable">Build.</span><span class="transposed_variable">VERSION.</span>SDK_INT &gt;=<span class="transposed_variable">Build.</span><span class="transposed_variable">VERSION_CODES.</span>HONEYCOMB ) <span class="cell">{   
+
+}</span>
+</pre></td></tr></table></figure>
+
+<hr>
+<p>onCreate&lt;—&gt;onDestroy，执行一次；</p>
+<p>onStart&lt;—&gt;onStop，循环；</p>
+<p>onResume&lt;—&gt;onPause，循环；</p>
+<hr>
+<p>In order for the Android system to restore the state of the views in your activity, each view must have a unique ID, supplied by the android:id attribute.</p>
+<hr>
+<p>As the system begins to stop your activity, it calls onSaveInstanceState() (1) so you can specify additional state data you&#39;d like to save in case the Activity instance must be recreated. If the activity is destroyed and the same instance must be recreated, the system passes the state data defined at (1) to both the onCreate() method (2) and the onRestoreInstanceState() method (3).</p>
+<p>When your activity is recreated after it was previously destroyed, you can recover your saved state from the Bundle that the system passes your activity. Both the onCreate() and onRestoreInstanceState() callback methods receive the same Bundle that containes the instance state information.</p>
+<p>Because the onCreate() method is called whether the system is creating a new instance of your activity or recreating a previous one, you must check whether the state Bundle is null before you attempt to read it. If it is null, then the system is creating a new instance of the activity, instead of restoring a previous one that was destroyed.</p>
+<p>Instead of restoring the state during onCreate() you may choose to implement onRestoreInstanceState(), which the system calls after the onStart() method. The system calls onRestoreInstanceState() only if there is a saved state to restore, so you do not need to check whether the Bundle is null.</p>
+<hr>
+<p>从.java中和从.xml中load resource</p>
+<p>// Get a string resource from your app&#39;s Resources</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>String hello =getResources()<span class="preprocessor">.getString</span>(R<span class="preprocessor">.string</span><span class="preprocessor">.hello</span>_world)<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+
+<p>// Or supply a string resource to a method that requires a string</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>TextView textView =newTextView(this)<span class="comment">;</span>
+
+textView<span class="preprocessor">.setText</span>(R<span class="preprocessor">.string</span><span class="preprocessor">.hello</span>_world)<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">TextView
+
+</span>    <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span>
+
+    <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span>
+
+    <span class="attribute">android:text</span>=<span class="value">"@string/hello_world"</span> /&gt;</span>
+</pre></td></tr></table></figure>
+
+
+<hr>
+<p>【Supporting different screens】</p>
+<p>There are four generalized sizes: small, normal, large, xlarge</p>
+<p>And four generalized densities: low (ldpi), medium (mdpi), high (hdpi), extra high (xhdpi)</p>
+<p>Also be aware that the screens orientation (landscape or portrait) is considered a variation of screen size, so many apps should revise the layout to optimize the user experience in each orientation</p>
+<p>Android automatically scales your layout in order to properly fit the screen. Thus, your layouts for different screen sizes don&#39;t need to worry about the absolute size of UI elements but instead focus on the layout structure that affects the user experience (such as the size or position of important views relative to sibling views).</p>
+<p>By default, the layout/main.xml file is used for portrait orientation.</p>
+<p>If you want a provide a special layout for landscape, including while on large screens, then you need to use both the large and land qualifier:</p>
+<p>MyProject/ </p>
+<pre><code>    res/ 
+
+            <span class="keyword">layout</span>/main.xml                                  <span class="preprocessor"># default (portrait)  </span>
+
+            <span class="keyword">layout</span>-land/main.xml            <span class="preprocessor"># landscape</span>
+
+            <span class="keyword">layout</span>-large/main.xml            <span class="preprocessor"># large (portrait) </span>
+
+            <span class="keyword">layout</span>-large-land/main.xml       <span class="preprocessor"># large landscape</span></code></pre>
+<p>xhdpi: 2.0</p>
+<p>hdpi: 1.5</p>
+<p>mdpi: 1.0 (baseline)</p>
+<p>ldpi: 0.75</p>
+<p>This means that if you generate a 200x200 image for xhdpi devices, you should generate the same  resource in 150x150 for hdpi, 100x100 for mdpi, and 75x75 for ldpi devices.</p>
+<hr>
+<p>如果用Android SDK Manager下载了Support lib，则无论创建mini SDK version为多高的project，android-support-v4.jar都会被自动拷贝到lib下，并且关联起来。</p>
+<p>The Android Support Library provides a JAR file with an API library that allow you to use some of the more recent Android APIs in your app while running on earlier versions of Android.</p>
+<p>If you decide for other reasons that the minimum API level your app requires is 11 or higher, you don‘t need to use the Support Library and can instead use the framework’s built in Fragment class and related APIs. </p>
+<hr>
+<p>activity与其对应的layout/*.xml并不需要名字对应</p>
+<p>而是，得在<em>.xml中添加的元素中至少有一个@+id，这样才会让R注册这个</em>.xml作为一个layout.</p>
+<hr>
+<p>Your app‘s internal storage directory is specified by your app’s package name in a special location of the Android file system.</p>
+<p>Tip: Although apps are installed onto the internal storage by default, you can specify the android:installLocation attribute in your manifest so your app may be installed on external storage. Users appreciate this option when the APK size is very large and they have an external storage space that&#39;s larger than the internal storage. For more information</p>
+<p>Caution: Currently, all apps have the ability to read the external storage without a special permission. However, this will change in a future release. If your app needs to read the external storage (but not write to it), then you will need to declare the READ_EXTERNAL_STORAGE permission. To ensure that your app continues to work as expected, you should declare this permission now, before the change takes effect.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre> &lt;manifest <span class="keyword">...</span>&gt;
+
+    &lt;uses-permission android:name=<span class="string">"android.permission.READ_EXTERNAL_STORAGE"</span> /&gt;
+
+    <span class="keyword">...</span>
+
+&lt;/manifest&gt;
+</pre></td></tr></table></figure>
+
+
+<p>However, if your app uses the WRITE_EXTERNAL_STORAGE permission, then it implicitly has permission to read the external storage as well.</p>
+<p>You don’t need any permissions to save files on the internal storage. Your application always has permission to read and write files in its internal storage directory.</p>
+<hr>
+<p>Remember that getExternalFilesDir()creates a directory inside a directory that is deleted when the user uninstalls your app. If the files you&#39;re saving should remain available after the user uninstalls your app—such as when your app is a camera and the user will want to keep the photos—you should instead use getExternalStoragePublicDirectory().</p>
+<p>Note: When the user uninstalls your app, the Android system deletes the following:</p>
+<p> •All files you saved on internal storage</p>
+<p> •All files you saved on external storage using getExternalFilesDir().</p>
+<p>However, you should manually delete all cached files created with getCacheDir() on a regular basis and also regularly delete other files you no longer need.</p>
+<hr>
+<p>Just like files that you save on the device‘s internal storage, Android stores your database in private disk space that’s associated application. Your data is secure, because by default this area is not accessible to other applications.</p>
+<hr>
+<p>Eclispe 【Git】 plug-in:</p>
+<p><a href="http://download.eclipse.org/egit/updates" target="_blank">http://download.eclipse.org/egit/updates</a></p>
+<p><a href="http://www.eclipse.org/egit/download/" target="_blank">http://www.eclipse.org/egit/download/</a></p>
+<hr>
+<p>MPC is included in all of the packages available from the Eclipse download page (except the Classic Package).        </p>
+<hr>
+<p>【subversion SVN】 eclipse plugin subeclipse source:</p>
+<p><a href="http://subclipse.tigris.org/update_1.0.x" target="_blank">http://subclipse.tigris.org/update_1.0.x</a></p>
+<hr>
+<p>【Activities组成一个Stack】</p>
+<p>不同应用程序之间的Activities共同组成一个Stack的Task，call的过程是1.onCreate-1.onStart-1.onResume-1.onPause-2.onCreate-2.onStart-2.onResume-1.onStop-2.onPause-3.onStart-… …  back的过程是3.onPause-2.onRestart-2.onStart-2.onResume-3.onStop-3.onDestory..</p>
+<p>可见back的过程中出栈的activity是被destory掉了；默认在call的过程中不会destory掉上一个activity，但如果调用了fininsh，则在back的过程中由于此activity已经被destory了，不会出现在back链上。</p>
+<p>假如一个Activity的manifest定义其theme是diaolog，则状态链条中会少一个onStop，只是onPause.</p>
+<hr>
+<p>在layout.xml中和在.java中声明组件的意义</p>
+<p>在layout.xml中声明的组件可以在任何地方被R.layout.id调用到；</p>
+<p>而在.java中声明的组件是.java私有的。</p>
+<hr>
+<p>如果在setContentView为layout.xml之前调用findViewById，则返回null</p>
+<hr>
+<p>getCacheDir()方法用于获取/data/data/<package name>/cache目录<br>getFilesDir()方法用于获取/data/data/<package name>/files目录</p>
+<hr>
+<p>【探测键盘是否呼出的一种不靠谱方法】</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">android</span>:windowSoftInputMode=<span class="string">"adjustResize"</span>
+</pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+</pre></td><td class="code"><pre>final View root = findViewById(R<span class="preprocessor">.id</span><span class="preprocessor">.editnotelayout</span>)<span class="comment">;</span>
+
+root<span class="preprocessor">.getViewTreeObserver</span>()<span class="preprocessor">.addOnGlobalLayoutListener</span>(
+
+new OnGlobalLayoutListener() {
+
+@Override
+
+public void onGlobalLayout() {
+
+Rect r = new Rect()<span class="comment">;</span>
+
+root<span class="preprocessor">.getWindowVisibleDisplayFrame</span>(r)<span class="comment">;</span>
+
+int heightDiff = root<span class="preprocessor">.getRootView</span>()<span class="preprocessor">.getHeight</span>() - (r<span class="preprocessor">.bottom</span> - r<span class="preprocessor">.top</span>)<span class="comment">;</span>
+
+if (heightDiff &gt; <span class="number">100</span>) {
+
+System<span class="preprocessor">.out</span><span class="preprocessor">.println</span>(<span class="string">"1: ....Keyboard show"</span>)<span class="comment">;</span>
+
+} else {
+
+System<span class="preprocessor">.out</span><span class="preprocessor">.println</span>(<span class="string">"1: ....Keyboard hidden"</span>)<span class="comment">;</span>
+
+}
+
+}
+})<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Android/">Android</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://mosthink.net/2012/12/10/2012-12-10-startandroid/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mosthink.net">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Android/">Android</a><small>7</small></li>
+  
+    <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>2</small></li>
+  
+    <li><a href="/tags/Sort Algorithm/">Sort Algorithm</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <div class="search">
+  <a href="http://info.flagcounter.com/yHDb"><img src="http://s11.flagcounter.com/map/yHDb/size_s/txt_000000/border_CCCCCC/pageviews_0/viewers_0/flags_0/" alt="Flag Counter" border="0"></a>
+</div>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2013 Viyu
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

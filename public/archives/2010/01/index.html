@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2013/10 | Viyu</title>
+  <title>Archives: 2010/1 | Viyu</title>
   <meta name="author" content="Viyu">
   
   
@@ -42,7 +42,7 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2013/10</h2>
+<h2 class="archive-title">2010/1</h2>
 
 
   
@@ -52,35 +52,29 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2013-10-18T00:00:00.000Z"><a href="/2013/10/18/2013-10-18-units issue/">Oct 18 2013</a></time>
+        <time datetime="2010-01-05T00:00:00.000Z"><a href="/2010/01/05/2010-01-05-javavm/">Jan 5 2010</a></time>
       
       
   
-    <h1 class="title"><a href="/2013/10/18/2013-10-18-units issue/">Units Problem: How to read text size as custom attr from xml and set it to TextView in java code</a></h1>
+    <h1 class="title"><a href="/2010/01/05/2010-01-05-javavm/">Java VM学习笔记</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Here is this topic’s background:</p>
-<p>I defined a custom View which extends FrameLayout and contains a TextView, calledMyView here. And I defined custom attribute “myviewtextsize” in attrs.xml for MyView so that clients can set different text size in layout xml for the TextView of MyView.</p>
-<p>So far, clients code can set text size like this:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">MyView</span>  
-     <span class="attribute">android:</span>…  
-     …
-     <span class="attribute">my:myviewtextsize</span>=<span class="value">”@dimen</span>/<span class="attribute">textsize_24</span>″  
-     …  
-/&gt;</span> 
-</pre></td></tr></table></figure>
-
-
-<p>The problem is: how to read the client’s text size number and set it to the TextVew of MyView?</p>
+        <p>局部变量表（虚拟机栈中的一部分）在编译期完成分配，运行期不会再改变大小；</p>
+<p>每个方法对应一个栈帧（存储局部变量表、操作数栈、动态链接、方法出口等），栈帧被存储到虚拟机栈中，每个线程对应一个虚拟机栈，方法结束，栈帧生命周期结束，线程结束，虚拟机栈生命周期结束；</p>
+<p>如果线程请求的虚拟机栈深度大于虚拟机所允许的深度，throw StackOverflowerror；</p>
+<p>如果动态扩展时请求不到足够内存，throw OutOfMemoryError；</p>
+<p>所有的对象实例以及数组都要在堆上分配（不绝对），堆是所有线程共享的，在虚拟机启动时创建，堆是垃圾回收的主要区域，GC堆；</p>
+<p>Java虚拟机栈、本地方法栈、堆都等，除了程序计数器，其他内存区都会throw OutOfMemoryError；</p>
+<p>堆物理上可以不连续，逻辑上是连续的；</p>
+<p>方法区也是各个线程共享的，其中包括运行时常量池，类的描述以及常量都存放在这个池里；</p>
+<p>直接内存常用于I/O库的操作；直接内存操作能提高性能，因为避免了Java堆和Native堆的数据复制；</p>
+<hr>
+<p>指针方式<br>句柄方式可以带来更大的伸缩性，对象被移动时reference的值不必被修改；</p>
+<p>指针方式可以带来更高的访问性能，因为它节省了一次指针定位；</p>
+<p>虚拟机用哪种方式是虚拟机自己实现的；</p>
 
       
     </div>
@@ -88,7 +82,7 @@
       
         
           <div class="alignleft">
-            <a href="/2013/10/18/2013-10-18-units issue/#more" class="more-link">Read More</a>
+            <a href="/2010/01/05/2010-01-05-javavm/#more" class="more-link">Read More</a>
           </div>
         
         

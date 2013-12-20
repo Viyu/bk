@@ -346,6 +346,53 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 
 
   
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2012-12-10T00:00:00.000Z"><a href="/2012/12/10/2012-12-10-startandroid/">Dec 10 2012</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/12/10/2012-12-10-startandroid/">Android初学笔记</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Eclipse 【ADT】 源</p>
+<p><a href="https://dl-ssl.google.com/android/eclipse" target="_blank">https://dl-ssl.google.com/android/eclipse</a></p>
+<hr>
+<p>Notice that no matter what scenario causes the activity to stop, the system always calls onPause() before calling onStop().</p>
+<p>Although the onPause() method is called before onStop(), you should use onStop() to perform larger, more CPU intensive shut-down operations, such as writing information to a database.</p>
+<p>the system calls onStart() both when it creates your activity and when it restarts the activity from the stopped state.</p>
+<p>Resumed</p>
+<p>In this state, the activity is in the foreground and the user can interact with it. (Also sometimes referred to as the “running” state.)</p>
+<p>Paused</p>
+<p>In this state, the activity is partially obscured by another activity—the other activity that‘s in the foreground is semi-transparent or doesn’t cover the entire screen. The paused activity does not receive user input and cannot execute any code. </p>
+<p>Stopped</p>
+<p>In this state, the activity is completely hidden and not visible to the user; it is considered to be in the background. While stopped, the activity instance and all its state information such as member variables is retained, but it cannot execute any code.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2012/12/10/2012-12-10-startandroid/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
 
   <nav id="pagination">
   
@@ -368,15 +415,21 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/Android/">Android</a><small>6</small></li>
+    <li><a href="/tags/Android/">Android</a><small>7</small></li>
   
-    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+    <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>2</small></li>
   
     <li><a href="/tags/Sort Algorithm/">Sort Algorithm</a><small>1</small></li>
   
   </ul>
 </div>
 
+
+  <div class="search">
+  <a href="http://info.flagcounter.com/yHDb"><img src="http://s11.flagcounter.com/map/yHDb/size_s/txt_000000/border_CCCCCC/pageviews_0/viewers_0/flags_0/" alt="Flag Counter" border="0"></a>
+</div>
 </aside>
     <div class="clearfix"></div>
   </div>

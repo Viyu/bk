@@ -352,6 +352,133 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
     <header>
       
         <div class="icon"></div>
+        <time datetime="2012-12-10T00:00:00.000Z"><a href="/2012/12/10/2012-12-10-startandroid/">Dec 10 2012</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2012/12/10/2012-12-10-startandroid/">Android初学笔记</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Eclipse 【ADT】 源</p>
+<p><a href="https://dl-ssl.google.com/android/eclipse" target="_blank">https://dl-ssl.google.com/android/eclipse</a></p>
+<hr>
+<p>Notice that no matter what scenario causes the activity to stop, the system always calls onPause() before calling onStop().</p>
+<p>Although the onPause() method is called before onStop(), you should use onStop() to perform larger, more CPU intensive shut-down operations, such as writing information to a database.</p>
+<p>the system calls onStart() both when it creates your activity and when it restarts the activity from the stopped state.</p>
+<p>Resumed</p>
+<p>In this state, the activity is in the foreground and the user can interact with it. (Also sometimes referred to as the “running” state.)</p>
+<p>Paused</p>
+<p>In this state, the activity is partially obscured by another activity—the other activity that‘s in the foreground is semi-transparent or doesn’t cover the entire screen. The paused activity does not receive user input and cannot execute any code. </p>
+<p>Stopped</p>
+<p>In this state, the activity is completely hidden and not visible to the user; it is considered to be in the background. While stopped, the activity instance and all its state information such as member variables is retained, but it cannot execute any code.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2012/12/10/2012-12-10-startandroid/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2011-03-01T00:00:00.000Z"><a href="/2011/03/01/2011-03-01-multithread/">Mar 1 2011</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2011/03/01/2011-03-01-multithread/">并发和多线程</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><b>线程安全性的需求不一定来自于对线程的直接使用，而是来源于对比如Servlet这种框架的使用</B></p>
+<p>无状态对象一定是线程安全的；有状态但是状态对象是线程安全的，比如是原子的，也是线程安全的。但如果有多个状态对象，则线程不安全，除非在一个原子操作中同时更新了所有状态对象。synchronized(obj){}就可以保证代码块的原子性。如果一个线程试图获取被另一个线程池有的锁，则该线程会阻塞；如果一个线程试图获取已经被自己池有的锁，“重入”机制使得该线程可以获取；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Widget</span> {</span>
+
+<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> dosth() {
+}
+
+}
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Loggingwidget</span> <span class="keyword">extends</span> <span class="title">Widget</span> {</span>
+
+<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> dosth() {
+
+System.out.println(<span class="string">"do sth"</span>);
+
+<span class="keyword">super</span>.dosht();
+
+}
+}
+</pre></td></tr></table></figure>
+
+
+<hr>
+<p><b>某个线程获得对象的锁之后，只能阻止其他线程获得同一个锁，并不能阻止其他线程通过另外的锁来访问对象的变量</b></p>
+<p>每个可变或共享的变量都该由同一个锁来保护；</p>
+<p>简单粗暴的全部synchronized会使得并发程序变成串行程序，影响性能，多核CPU会有空载运行，应该缩小同步块的大小，将不影响共享状态并且执行时间较长的操作从同步代码块中分离出去。</p>
+<p>简单性（对整个方法同步）与并发性（对尽可能短的代码路径进行同步）之间的平衡；</p>
+<p>当执行较长时间或无法快速完成的操作时，比如网络I/O，一定不要持有锁，不然会影响活跃性和性能。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2011/03/01/2011-03-01-multithread/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2010-03-06T00:00:00.000Z"><a href="/2010/03/06/2010-03-06-fx/">Mar 6 2010</a></time>
       
       
@@ -510,6 +637,54 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 
 
   
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2010-01-05T00:00:00.000Z"><a href="/2010/01/05/2010-01-05-javavm/">Jan 5 2010</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/01/05/2010-01-05-javavm/">Java VM学习笔记</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>局部变量表（虚拟机栈中的一部分）在编译期完成分配，运行期不会再改变大小；</p>
+<p>每个方法对应一个栈帧（存储局部变量表、操作数栈、动态链接、方法出口等），栈帧被存储到虚拟机栈中，每个线程对应一个虚拟机栈，方法结束，栈帧生命周期结束，线程结束，虚拟机栈生命周期结束；</p>
+<p>如果线程请求的虚拟机栈深度大于虚拟机所允许的深度，throw StackOverflowerror；</p>
+<p>如果动态扩展时请求不到足够内存，throw OutOfMemoryError；</p>
+<p>所有的对象实例以及数组都要在堆上分配（不绝对），堆是所有线程共享的，在虚拟机启动时创建，堆是垃圾回收的主要区域，GC堆；</p>
+<p>Java虚拟机栈、本地方法栈、堆都等，除了程序计数器，其他内存区都会throw OutOfMemoryError；</p>
+<p>堆物理上可以不连续，逻辑上是连续的；</p>
+<p>方法区也是各个线程共享的，其中包括运行时常量池，类的描述以及常量都存放在这个池里；</p>
+<p>直接内存常用于I/O库的操作；直接内存操作能提高性能，因为避免了Java堆和Native堆的数据复制；</p>
+<hr>
+<p>指针方式<br>句柄方式可以带来更大的伸缩性，对象被移动时reference的值不必被修改；</p>
+<p>指针方式可以带来更高的访问性能，因为它节省了一次指针定位；</p>
+<p>虚拟机用哪种方式是虚拟机自己实现的；</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2010/01/05/2010-01-05-javavm/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
 
   <nav id="pagination">
   
@@ -532,15 +707,21 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/Android/">Android</a><small>6</small></li>
+    <li><a href="/tags/Android/">Android</a><small>7</small></li>
   
-    <li><a href="/tags/Java/">Java</a><small>1</small></li>
+    <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>2</small></li>
   
     <li><a href="/tags/Sort Algorithm/">Sort Algorithm</a><small>1</small></li>
   
   </ul>
 </div>
 
+
+  <div class="search">
+  <a href="http://info.flagcounter.com/yHDb"><img src="http://s11.flagcounter.com/map/yHDb/size_s/txt_000000/border_CCCCCC/pageviews_0/viewers_0/flags_0/" alt="Flag Counter" border="0"></a>
+</div>
 </aside>
     <div class="clearfix"></div>
   </div>

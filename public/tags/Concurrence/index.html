@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2013/10 | Viyu</title>
+  <title>Concurrence | Viyu</title>
   <meta name="author" content="Viyu">
   
   
@@ -42,7 +42,7 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2013/10</h2>
+<h2 class="archive-title tag">Concurrence</h2>
 
 
   
@@ -52,35 +52,61 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2013-10-18T00:00:00.000Z"><a href="/2013/10/18/2013-10-18-units issue/">Oct 18 2013</a></time>
+        <time datetime="2011-03-01T00:00:00.000Z"><a href="/2011/03/01/2011-03-01-multithread/">Mar 1 2011</a></time>
       
       
   
-    <h1 class="title"><a href="/2013/10/18/2013-10-18-units issue/">Units Problem: How to read text size as custom attr from xml and set it to TextView in java code</a></h1>
+    <h1 class="title"><a href="/2011/03/01/2011-03-01-multithread/">并发和多线程</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Here is this topic’s background:</p>
-<p>I defined a custom View which extends FrameLayout and contains a TextView, calledMyView here. And I defined custom attribute “myviewtextsize” in attrs.xml for MyView so that clients can set different text size in layout xml for the TextView of MyView.</p>
-<p>So far, clients code can set text size like this:</p>
+        <p><b>线程安全性的需求不一定来自于对线程的直接使用，而是来源于对比如Servlet这种框架的使用</B></p>
+<p>无状态对象一定是线程安全的；有状态但是状态对象是线程安全的，比如是原子的，也是线程安全的。但如果有多个状态对象，则线程不安全，除非在一个原子操作中同时更新了所有状态对象。synchronized(obj){}就可以保证代码块的原子性。如果一个线程试图获取被另一个线程池有的锁，则该线程会阻塞；如果一个线程试图获取已经被自己池有的锁，“重入”机制使得该线程可以获取；</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
 5
 6
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">MyView</span>  
-     <span class="attribute">android:</span>…  
-     …
-     <span class="attribute">my:myviewtextsize</span>=<span class="value">”@dimen</span>/<span class="attribute">textsize_24</span>″  
-     …  
-/&gt;</span> 
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Widget</span> {</span>
+
+<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> dosth() {
+}
+
+}
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Loggingwidget</span> <span class="keyword">extends</span> <span class="title">Widget</span> {</span>
+
+<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> dosth() {
+
+System.out.println(<span class="string">"do sth"</span>);
+
+<span class="keyword">super</span>.dosht();
+
+}
+}
 </pre></td></tr></table></figure>
 
 
-<p>The problem is: how to read the client’s text size number and set it to the TextVew of MyView?</p>
+<hr>
+<p><b>某个线程获得对象的锁之后，只能阻止其他线程获得同一个锁，并不能阻止其他线程通过另外的锁来访问对象的变量</b></p>
+<p>每个可变或共享的变量都该由同一个锁来保护；</p>
+<p>简单粗暴的全部synchronized会使得并发程序变成串行程序，影响性能，多核CPU会有空载运行，应该缩小同步块的大小，将不影响共享状态并且执行时间较长的操作从同步代码块中分离出去。</p>
+<p>简单性（对整个方法同步）与并发性（对尽可能短的代码路径进行同步）之间的平衡；</p>
+<p>当执行较长时间或无法快速完成的操作时，比如网络I/O，一定不要持有锁，不然会影响活跃性和性能。</p>
 
       
     </div>
@@ -88,7 +114,7 @@
       
         
           <div class="alignleft">
-            <a href="/2013/10/18/2013-10-18-units issue/#more" class="more-link">Read More</a>
+            <a href="/2011/03/01/2011-03-01-multithread/#more" class="more-link">Read More</a>
           </div>
         
         
