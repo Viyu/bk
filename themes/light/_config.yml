@@ -5,6 +5,7 @@ menu:
 widgets:
 - search
 - category
+- myproject
 - tag
 
 excerpt_link: Read More
