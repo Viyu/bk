@@ -15,6 +15,7 @@ language:
 url: http://mosthink.net
 root: /
 permalink: :year/:month/:day/:title/
+gist: https://gist.github.com/Viyu/
 tag_dir: tags
 archive_dir: archives
 category_dir: categories

@@ -329,235 +329,8 @@ public abstract <span class="type">boolean</span> onDrag (View v, DragEvent even
 </pre></td></tr></table></figure>
 
 
-<p>————————————————代码———————————————————-<br>MainActivity.java</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-</pre></td><td class="code"><pre>
-public class MainActivity extends Activity{
-	private TextView mNote_1 = null<span class="comment">;</span>
-	private TextView mNote_2 = null<span class="comment">;</span>
-	
-	private ImageView trashView = null<span class="comment">;</span>
-	
-   private static final String TAG_NOTE_1 = <span class="string">"Note_1"</span><span class="comment">;</span>
-   private static final String TAG_NOTE_2 = <span class="string">"Note_2"</span><span class="comment">;</span>
-
-   @Override
-   public void onCreate(Bundle savedInstanceState) {
-      super<span class="preprocessor">.onCreate</span>(savedInstanceState)<span class="comment">;</span>
-      setContentView(R<span class="preprocessor">.layout</span><span class="preprocessor">.activity</span>_main)<span class="comment">;</span>
-
-      trashView = (ImageView)findViewById(R<span class="preprocessor">.id</span><span class="preprocessor">.main</span>_trash)<span class="comment">;</span>
-      
-      mNote_1 = (TextView)findViewById(R<span class="preprocessor">.id</span><span class="preprocessor">.main</span>_note_1)<span class="comment">;</span>
-      mNote_1<span class="preprocessor">.setTag</span>(TAG_NOTE_1)<span class="comment">;</span>
-      mNote_1<span class="preprocessor">.setOnLongClickListener</span>(new View<span class="preprocessor">.OnLongClickListener</span>() {
-         @Override
-         public boolean onLongClick(View v) {
-            ClipData<span class="preprocessor">.Item</span> item = new ClipData<span class="preprocessor">.Item</span>((CharSequence)v<span class="preprocessor">.getTag</span>())<span class="comment">;</span>
-            String[] mimeTypes = {ClipDescription<span class="preprocessor">.MIMETYPE</span>_TEXT_PLAIN}<span class="comment">;</span>
-            ClipData dragData = new ClipData(v<span class="preprocessor">.getTag</span>()<span class="preprocessor">.toString</span>(), 
-            mimeTypes, item)<span class="comment">;</span>
-            View<span class="preprocessor">.DragShadowBuilder</span> myShadow = new DragShadowBuilder(mNote_1)<span class="comment">;</span>
-            v<span class="preprocessor">.startDrag</span>(dragData, myShadow, null, <span class="number">0</span>)<span class="comment">;</span>
-            return true<span class="comment">;</span>
-         }
-      })<span class="comment">;</span>
-      
-      mNote_2 = (TextView)findViewById(R<span class="preprocessor">.id</span><span class="preprocessor">.main</span>_note_2)<span class="comment">;</span>
-      mNote_2<span class="preprocessor">.setTag</span>(TAG_NOTE_2)<span class="comment">;</span>
-      mNote_2<span class="preprocessor">.setOnLongClickListener</span>(new View<span class="preprocessor">.OnLongClickListener</span>() {
-         @Override
-         public boolean onLongClick(View v) {
-            ClipData<span class="preprocessor">.Item</span> item = new ClipData<span class="preprocessor">.Item</span>((CharSequence)v<span class="preprocessor">.getTag</span>())<span class="comment">;</span>
-            String[] mimeTypes = {ClipDescription<span class="preprocessor">.MIMETYPE</span>_TEXT_PLAIN}<span class="comment">;</span>
-            ClipData dragData = new ClipData(v<span class="preprocessor">.getTag</span>()<span class="preprocessor">.toString</span>(), mimeTypes, item)<span class="comment">;</span>
-            View<span class="preprocessor">.DragShadowBuilder</span> myShadow = new DragShadowBuilder(mNote_2)<span class="comment">;</span>
-            v<span class="preprocessor">.startDrag</span>(dragData, myShadow, null, <span class="number">0</span>)<span class="comment">;</span>
-            return true<span class="comment">;</span>
-         }
-      })<span class="comment">;</span>
-      
-      trashView<span class="preprocessor">.setOnDragListener</span>( new OnDragListener(){
-         @Override
-         public boolean onDrag(View v,  DragEvent event){
-         switch(event<span class="preprocessor">.getAction</span>())                   
-         {
-            case DragEvent<span class="preprocessor">.ACTION</span>_DROP:
-               Log<span class="preprocessor">.d</span>(<span class="string">"trash view"</span>, <span class="string">"ACTION_DROP event"</span>)<span class="comment">;</span>
-               ClipData data = event<span class="preprocessor">.getClipData</span>()<span class="comment">;</span>
-               CharSequence noteName = data<span class="preprocessor">.getItemAt</span>(<span class="number">0</span>)<span class="preprocessor">.getText</span>()<span class="comment">;</span>
-               if(noteName<span class="preprocessor">.equals</span>(TAG_NOTE_1)) {
-            	   mNote_1<span class="preprocessor">.setVisibility</span>(View<span class="preprocessor">.GONE</span>)<span class="comment">;</span>
-            	   Toast<span class="preprocessor">.makeText</span>(MainActivity<span class="preprocessor">.this</span>, <span class="string">"Note 1 has been removed."</span>, Toast<span class="preprocessor">.LENGTH</span>_SHORT)<span class="preprocessor">.show</span>()<span class="comment">;</span>
-               } else if(noteName<span class="preprocessor">.equals</span>(TAG_NOTE_2)) {
-            	   Toast<span class="preprocessor">.makeText</span>(MainActivity<span class="preprocessor">.this</span>, <span class="string">"Note 2 has been removed."</span>, Toast<span class="preprocessor">.LENGTH</span>_SHORT)<span class="preprocessor">.show</span>()<span class="comment">;</span>
-            	   mNote_2<span class="preprocessor">.setVisibility</span>(View<span class="preprocessor">.GONE</span>)<span class="comment">;</span>
-               }
-               <span class="keyword">break</span><span class="comment">;</span>
-            default: <span class="keyword">break</span><span class="comment">;</span>
-            }
-            return true<span class="comment">;</span>
-         }
-      })<span class="comment">;</span>
-   }
-}
-</pre></td></tr></table></figure>
-
-
-<p>activity_main.xml</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-</pre></td><td class="code"><pre><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
-<span class="tag">&lt;<span class="title">RelativeLayout</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span>
-    <span class="attribute">android:id</span>=<span class="value">"@+id/container"</span>
-    <span class="attribute">android:layout_width</span>=<span class="value">"fill_parent"</span>
-    <span class="attribute">android:layout_height</span>=<span class="value">"fill_parent"</span>
-    <span class="attribute">android:orientation</span>=<span class="value">"vertical"</span> &gt;</span>
-
-    <span class="tag">&lt;<span class="title">TextView
-</span>        <span class="attribute">android:id</span>=<span class="value">"@+id/main_note_1"</span>
-        <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span>
-        <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span>
-        <span class="attribute">android:layout_alignParentTop</span>=<span class="value">"true"</span>
-        <span class="attribute">android:layout_marginTop</span>=<span class="value">"20dip"</span>
-		<span class="attribute">android:layout_centerHorizontal</span>=<span class="value">"true"</span>
-		<span class="attribute">android:background</span>=<span class="value">"@color/note_bg"</span>
-		<span class="attribute">android:text</span>=<span class="value">"@string/note1"</span>
-		<span class="attribute">android:textSize</span>=<span class="value">"24sp"</span>
-		<span class="attribute">android:padding</span>=<span class="value">"10dip"</span>  /&gt;</span>
-    
-    <span class="tag">&lt;<span class="title">TextView
-</span>        <span class="attribute">android:id</span>=<span class="value">"@+id/main_note_2"</span>
-        <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span>
-        <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span>
-		<span class="attribute">android:layout_below</span>=<span class="value">"@id/main_note_1"</span>
-        <span class="attribute">android:layout_marginTop</span>=<span class="value">"20dip"</span>
-		<span class="attribute">android:layout_centerHorizontal</span>=<span class="value">"true"</span>
-		<span class="attribute">android:background</span>=<span class="value">"@color/note_bg"</span>
-		<span class="attribute">android:text</span>=<span class="value">"@string/note2"</span>
-		<span class="attribute">android:textSize</span>=<span class="value">"24sp"</span>
-		<span class="attribute">android:padding</span>=<span class="value">"10dip"</span>  /&gt;</span>
-
-    <span class="tag">&lt;<span class="title">ImageView
-</span>        <span class="attribute">android:id</span>=<span class="value">"@+id/main_trash"</span>
-        <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span>
-        <span class="attribute">android:layout_height</span>=<span class="value">"wrap_content"</span>
-        <span class="attribute">android:layout_alignParentBottom</span>=<span class="value">"true"</span>
-		<span class="attribute">android:layout_centerHorizontal</span>=<span class="value">"true"</span>
-		<span class="attribute">android:layout_marginBottom</span>=<span class="value">"20dip"</span>
-        <span class="attribute">android:src</span>=<span class="value">"@drawable/trash"</span> /&gt;</span>
-
-<span class="tag">&lt;/<span class="title">RelativeLayout</span>&gt;</span>
-</pre></td></tr></table></figure>
-
+<p>源代码： </p>
+<script src="https://gist.github.com/Viyu/8093281.js"></script>
       
     </div>
     <footer>
@@ -635,6 +408,16 @@ public class MainActivity extends Activity{
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>
   </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">My Codes(gist)</h3>
+  <ul class="entry">
+    <li><a href="https://gist.github.com/Viyu/8093281" target="_blank">DragAndDropDemo</a></li>
+    <li><a href="https://gist.github.com/Viyu/8093389" target="_blank">LedLightDemo</a></li>
+
+  </ul> 
 </div>
 
 
