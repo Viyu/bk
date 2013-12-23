@@ -52,6 +52,54 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-12-23T00:00:00.000Z"><a href="/2013/12/23/2013-12-23-draganddrop/">Dec 23 2013</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2013/12/23/2013-12-23-draganddrop/">Android客户端的图形化拖放操作的设计实现</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><b>为什么要拖放？</b><br>拖放在某些UI交互中可以简化用户操作。</p>
+<p><b>拖放的步骤包括哪些？</b><br>“Drag and Drop”，拖放，顾名思义，总共就分三步：<br>1，    开始拖起来；<br>2，    正在拖；<br>3，    放下，进行操作；<br>在这三步里，贯穿的是数据的传输，从拖的地方传输到放的地方。</p>
+<p>现在，我们就以一个简单的拖放删除笔记的App来讲解上面三个步骤都怎么实现的。<br>App见截图，拽住上面的笔记，然后拖至底下的垃圾桶然后放开，笔记就被删除了。</p>
+<p><img src="http://a.hiphotos.bdimg.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=4b2bee88b54543a9f11bfac92e2cfbbf/eac4b74543a9822637ce1b5b8882b9014a90ebbb.jpg?referer=83c60f9d60d9f2d3790611df5559&x=.jpg"/></p>
+<p><b>1，开始拖拽：</b><br>开始拖拽要解决三个问题：<br>1， 什么时候开始？如何开始？<br>一般是在用户长按一个组件的时候，我们开始拖拽，所以给要被拖拽的View定义它的OnLongClickListener，在其中调用View.startDrag()方法就可以了。<br>startDrag()方法的定义：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>boolean android<span class="variable">.view</span><span class="variable">.View</span><span class="variable">.startDrag</span>(
+		ClipData data, DragShadowBuilder shadowBuilder, Object myLocalState, <span class="keyword">int</span> flags)
+</pre></td></tr></table></figure>
+
+
+<p>第一个参数ClipData data是拖拽的对象，下面第2条来讲解；第二个参数DragShadowBuilder shadowBuilder是拖拽时的样子，下面的第3条来讲解。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2013/12/23/2013-12-23-draganddrop/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-12-15T00:00:00.000Z"><a href="/2013/12/15/2013-12-15-lednoti/">Dec 15 2013</a></time>
       
       
@@ -439,7 +487,7 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
   
     <li><a href="/tags/Algorithm/">Algorithm</a><small>2</small></li>
   
-    <li><a href="/tags/Android/">Android</a><small>7</small></li>
+    <li><a href="/tags/Android/">Android</a><small>8</small></li>
   
     <li><a href="/tags/Annotation/">Annotation</a><small>1</small></li>
   
