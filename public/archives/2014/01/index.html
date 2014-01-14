@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2010/3 | Viyu</title>
+  <title>Archives: 2014/1 | Viyu</title>
   <meta name="author" content="Viyu">
   
   
@@ -42,7 +42,7 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2010/3</h2>
+<h2 class="archive-title">2014/1</h2>
 
 
   
@@ -52,19 +52,17 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2010-03-06T00:00:00.000Z"><a href="/2010/03/06/2010-03-06-fx/">Mar 6 2010</a></time>
+        <time datetime="2014-01-14T00:00:00.000Z"><a href="/2014/01/14/2014-01-14-ping/">Jan 14 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2010/03/06/2010-03-06-fx/">泛型：有限通配符的用法</a></h1>
+    <h1 class="title"><a href="/2014/01/14/2014-01-14-ping/">PingUtil in Android</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>发送一个子类对象给声明了其父类类型的方法，是没问题的；</p>
-<p>但是发送一个子类对象List给声明了其父类类型List的方法，是不行的；</p>
-<p>这个时候，有限通配符就可以派上用场，在接受方法的声明中：List&lt;? extends E&gt; o;</p>
+        <p>Ping a host in Android:<br> “ping -c 1 127.0.0.1”<br> -c 1: The ping times.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -83,29 +81,29 @@
 16
 17
 18
-19
-</pre></td><td class="code"><pre>{      
-  Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span> stack = new Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span>();
-
-  stack.pushSingle(new One());
-
-  stack.pushSingle(new Two());
-
-  List<span class="tag">&lt;<span class="title">One</span>&gt;</span> arrayList = new ArrayList<span class="tag">&lt;<span class="title">One</span>&gt;</span>();
-
-  stack.push(arrayList);
-
-  //有限通配符的用法
-
-  List<span class="tag">&lt;<span class="title">Two</span>&gt;</span> list = new ArrayList<span class="tag">&lt;<span class="title">Two</span>&gt;</span>();
-
-  stack.push(list); //The method push(List<span class="tag">&lt;<span class="title">One</span>&gt;</span>) in the type Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span> is not applicable for the arguments (List<span class="tag">&lt;<span class="title">Two</span>&gt;</span>)
-
-  stack.push2(list);
+</pre></td><td class="code"><pre>boolean flag = <span class="literal">false</span>;
+Runtime run = Runtime<span class="variable">.getRuntime</span>();
+Process proc = null;
+<span class="keyword">try</span> {
+	proc = run<span class="variable">.exec</span>(<span class="string">"ping -c 1 127.0.0.1"</span>);
+	<span class="keyword">int</span> result = proc<span class="variable">.waitFor</span>();
+	<span class="keyword">if</span> (result == <span class="number">0</span>) {
+		flag = <span class="literal">true</span>;
+	} <span class="keyword">else</span> {
+		flag = <span class="literal">false</span>;
+	}
+} <span class="keyword">catch</span> (IOException e) {
+	e<span class="variable">.printStackTrace</span>();
+} <span class="keyword">catch</span> (InterruptedException e) {
+	e<span class="variable">.printStackTrace</span>();
+} <span class="keyword">finally</span> {
+	proc<span class="variable">.destroy</span>();
 }
 </pre></td></tr></table></figure>
 
 
+<p>Ping codes is simple, but:<br>1, you must run it in background thread since Process.waitfor() will blocks current thread.<br>2, And you should control the the execution time for Process.waitfor().</p>
+<p>The solutions of above 2 issues could be:<br>1, AsyncTask to run Process.waitfor() in background;<br>2, Handler.sendEmptyMessageDelayed() to send a delayed message which cancel the AsyncTask if the background codes running too long time.</p>
 
       
     </div>
@@ -113,7 +111,7 @@
       
         
           <div class="alignleft">
-            <a href="/2010/03/06/2010-03-06-fx/#more" class="more-link">Read More</a>
+            <a href="/2014/01/14/2014-01-14-ping/#more" class="more-link">Read More</a>
           </div>
         
         

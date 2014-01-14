@@ -48,6 +48,83 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-01-14T00:00:00.000Z"><a href="/2014/01/14/2014-01-14-ping/">Jan 14 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/01/14/2014-01-14-ping/">PingUtil in Android</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Ping a host in Android:<br> “ping -c 1 127.0.0.1”<br> -c 1: The ping times.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="code"><pre>boolean flag = <span class="literal">false</span>;
+Runtime run = Runtime<span class="variable">.getRuntime</span>();
+Process proc = null;
+<span class="keyword">try</span> {
+	proc = run<span class="variable">.exec</span>(<span class="string">"ping -c 1 127.0.0.1"</span>);
+	<span class="keyword">int</span> result = proc<span class="variable">.waitFor</span>();
+	<span class="keyword">if</span> (result == <span class="number">0</span>) {
+		flag = <span class="literal">true</span>;
+	} <span class="keyword">else</span> {
+		flag = <span class="literal">false</span>;
+	}
+} <span class="keyword">catch</span> (IOException e) {
+	e<span class="variable">.printStackTrace</span>();
+} <span class="keyword">catch</span> (InterruptedException e) {
+	e<span class="variable">.printStackTrace</span>();
+} <span class="keyword">finally</span> {
+	proc<span class="variable">.destroy</span>();
+}
+</pre></td></tr></table></figure>
+
+
+<p>Ping codes is simple, but:<br>1, you must run it in background thread since Process.waitfor() will blocks current thread.<br>2, And you should control the the execution time for Process.waitfor().</p>
+<p>The solutions of above 2 issues could be:<br>1, AsyncTask to run Process.waitfor() in background;<br>2, Handler.sendEmptyMessageDelayed() to send a delayed message which cancel the AsyncTask if the background codes running too long time.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/01/14/2014-01-14-ping/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-12-23T00:00:00.000Z"><a href="/2013/12/23/2013-12-23-draganddrop/">Dec 23 2013</a></time>
       
       
@@ -1298,6 +1375,7 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
   <ul class="entry">
     <li><a href="https://gist.github.com/Viyu/8093281" target="_blank">DragAndDropDemo</a></li>
     <li><a href="https://gist.github.com/Viyu/8093389" target="_blank">LedLightDemo</a></li>
+    <li><a href="https://gist.github.com/Viyu/d0df67fb40be217638a3" target="_blank">PingUtil</a></li>
 
   </ul> 
 </div>
@@ -1319,6 +1397,8 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
     <li><a href="/tags/Algorithm/">Algorithm</a><small>2</small></li>
   
     <li><a href="/tags/Android/">Android</a><small>8</small></li>
+  
+    <li><a href="/tags/Android ping/">Android ping</a><small>1</small></li>
   
     <li><a href="/tags/Annotation/">Annotation</a><small>1</small></li>
   
@@ -1342,7 +1422,7 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2013 Viyu
+  &copy; 2014 Viyu
   
 </div>
 <div class="clearfix"></div></footer>
