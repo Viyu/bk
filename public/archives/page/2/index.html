@@ -1,0 +1,332 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 2 | Archives | Viyu</title>
+  <meta name="author" content="Viyu">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Viyu"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Viyu</a></h1>
+  <h2><a href="/">Viyu's Blog</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title">Archives</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-08-17T16:00:00.000Z"><a href="/2009/08/18/2009-08-18-set/">Aug 18 2009</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/08/18/2009-08-18-set/">集合</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>【ArrayList LinkedList Vector】</p>
+<p>Vector对于ArrayList，因为同步而引起的性能差别并不明显；</p>
+<p>LinkedList是循环双向链表，无论是否为空，总包含一个header表项：</p>
+<p>|——————————————————————&gt;</p>
+<p>header ——&gt; ele1 ——-&gt; ele2 ——&gt;  ele3</p>
+<pre><code>          &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>       &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>         &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>        </code></pre>
+<p>&lt;—————————————————————-|</p>
+<p>增加元素到表尾，ArrayList 优于 LinkedList：</p>
+<p>ArrayList的扩容最终调用System.arraycopy()方法；</p>
+<p>数组是连续的，ArrayList只有在扩容时才会低效一些；</p>
+<p>而链表，虽然无须扩容，但新建对象和大量赋值操作会低效；</p>
+<p>插入元素到任意位置，LinkedList优于ArrayList：</p>
+<p>因为Array的连续性，每次插入操作都需要是数组重排；</p>
+<p>LinkedList在任意位置插入和尾部插入是一样的；</p>
+<p>删除任意位置元素，ArrayList尾部删除、LinkedList在头部删除和尾部删除这三个都是高效的，其他的都是低效的：</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2009/08/18/2009-08-18-set/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2009-07-02T00:00:00.000Z"><a href="/2009/07/02/2009-07-02-sfsjjg/">Jul 2 2009</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/07/02/2009-07-02-sfsjjg/">算法和数据结构</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><b>几个对数组的算法</b></p>
+<p>1， 找出数组中的最大值：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>double max = a<span class="matrix">[<span class="number">0</span>]</span>;
+
+<span class="keyword">for</span>(int <span class="built_in">i</span> = <span class="number">1</span>; <span class="built_in">i</span> &lt; <span class="transposed_variable">a.</span><span class="built_in">length</span>; <span class="built_in">i</span>++)
+
+    <span class="keyword">if</span>(a<span class="matrix">[i]</span> &gt; max) max = a<span class="matrix">[i]</span>;
+</pre></td></tr></table></figure>
+
+
+<p>//把最大值马上设定为数组的第一个元素，然后遍历数组，如果有别当前这个最大值更大的元素，则把最大值更新，直到遍历结束；</p>
+<p>2， 计算数组的平均值：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>double sum = <span class="number">0.0</span>;
+
+<span class="function"><span class="title">for</span><span class="params">(int i = <span class="number">0</span>; i &lt; a.length; i++)</span>
+
+    <span class="title">sum</span> += <span class="title">a</span>[<span class="title">i</span>];
+
+<span class="title">double</span> <span class="title">average</span> = <span class="title">sum</span> / <span class="title">a</span>.<span class="title">length</span>;
+</pre></td></tr></table></figure>
+
+
+<p>//算出总值，然后除以数组的元素数；</p>
+<p>3，复制数组：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="keyword">double</span>[] b = new <span class="keyword">double</span>[a.<span class="built_in">length</span>];
+
+<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.<span class="built_in">length</span>; i++) 
+
+    b[i] = a[i];
+
+<span class="comment">//new 一个和原数组同length同类型的数组，然后遍历赋值每个元素；</span>
+</pre></td></tr></table></figure>
+
+
+<p>4，颠倒数组元素的顺序：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre><span class="keyword">double</span> [] b = new <span class="keyword">double</span>[a.<span class="built_in">length</span>];
+
+<span class="keyword">for</span>(<span class="keyword">int</span> i = a.<span class="built_in">length</span> - <span class="number">1</span>, j = <span class="number">0</span>; i &gt; -<span class="number">1</span> &amp;&amp; j &lt; b.<span class="built_in">length</span> ; i--, j++) 
+
+    b[j] = a[i];
+
+<span class="comment">//这是个直观低效率算法，时间消耗(a.length)，空间消耗(2 * a.length)，并且有两个循环指数i, j；</span>
+
+<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>; i &lt; a.<span class="built_in">length</span> / <span class="number">2</span>; i++) {
+
+    <span class="keyword">double</span> temp = a[i];
+
+    a[i] = a[a.<span class="built_in">length</span> - <span class="number">1</span> - i];
+
+    a[a.<span class="built_in">length</span> - <span class="number">1</span> - i] = temp;
+}
+</pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2009/07/02/2009-07-02-sfsjjg/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+
+  <nav id="pagination">
+  
+    <a href="/archives/" class="alignleft prev">Prev</a>
+  
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mosthink.net">
+  </form>
+</div>
+
+  
+
+  <div class="widget tag">
+  <h3 class="title">My Projects</h3>
+  <ul class="entry">
+    <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
+    <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
+    <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
+    
+    <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
+    <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
+    <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>
+  </ul>
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">My Codes(gist)</h3>
+  <ul class="entry">
+    <li><a href="https://gist.github.com/Viyu/8093281" target="_blank">DragAndDropDemo</a></li>
+    <li><a href="https://gist.github.com/Viyu/8093389" target="_blank">LedLightDemo</a></li>
+    <li><a href="https://gist.github.com/Viyu/d0df67fb40be217638a3" target="_blank">PingUtil</a></li>
+
+  </ul> 
+</div>
+
+
+  <div class="widget tag">
+  <h3 class="title">Link</h3>
+  <ul class="entry">
+    <li><a href="http://haoffer.com" target="_blank">Haoffer.com</a></li>
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Algorithm/">Algorithm</a><small>2</small></li>
+  
+    <li><a href="/tags/Android/">Android</a><small>8</small></li>
+  
+    <li><a href="/tags/Android Dex/">Android Dex</a><small>1</small></li>
+  
+    <li><a href="/tags/Android ListView/">Android ListView</a><small>1</small></li>
+  
+    <li><a href="/tags/Android ping/">Android ping</a><small>1</small></li>
+  
+    <li><a href="/tags/Annotation/">Annotation</a><small>1</small></li>
+  
+    <li><a href="/tags/Class/">Class</a><small>1</small></li>
+  
+    <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
+  
+    <li><a href="/tags/Design/">Design</a><small>1</small></li>
+  
+    <li><a href="/tags/Java/">Java</a><small>3</small></li>
+  
+    <li><a href="/tags/Jvm/">Jvm</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 Viyu
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

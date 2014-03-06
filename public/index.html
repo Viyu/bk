@@ -48,6 +48,104 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-03-06T00:00:00.000Z"><a href="/2014/03/06/2014-03-06-dexdongtai/">Mar 6 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/06/2014-03-06-dexdongtai/">Dex动态加载</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><b>Dex动态加载是为了解决什么问题？ </b></p>
+<p>在Android系统中，一个App的所有代码都在一个Dex文件里面。</p>
+<p>Dex是一个类似Jar的存储了多个Java编译字节码的归档文件。</p>
+<p>因为Android系统使用Dalvik虚拟机，所以需要把使用Java Compiler编译之后的class文件转换成Dalvik能够执行的class文件。这里需要强调的是，Dex和Jar一样是一个归档文件，里面仍然是Java代码对应的字节码文件。</p>
+<p>当Android系统启动一个应用的时候，有一步是对Dex进行优化，这个过程有一个专门的工具来处理，叫DexOpt。DexOpt的执行过程是在第一次加载Dex文件的时候执行的。</p>
+<p>这个过程会生成一个ODEX文件，即Optimised Dex。执行ODex的效率会比直接执行Dex文件的效率要高很多。</p>
+<p>但是在早期的Android系统中，DexOpt有一个问题，也就是这篇文章想要说明并解决的问题。</p>
+<p>DexOpt会把每一个类的方法id检索起来，存在一个链表结构里面。但是这个链表的长度是用一个short类型来保存的，导致了方法id的数目不能够超过65536个。</p>
+<p>当一个项目足够大的时候，显然这个方法数的上限是不够的。尽管在新版本的Android系统中，DexOpt修复了这个问题，但是我们仍然需要对老系统做兼容。</p>
+<p><b>Dex动态加载思路</b></p>
+<p>一种有效的解决思路是把Dex文件分割成多个较小的Dex。这就如同很多项目会把自己分割成多个Jar文件一样，不同的功能在不同的Jar文件里面，通过一些配置和额外的操作，可以让虚拟机有选择性的加载Jar文件。</p>
+<p>但是在Android系统中，一个应用是只允许有一个Dex文件的。也就是说在编译期的时候，所有的Jar文件最终会被合并成一个Dex文件。我们没有办法在Apk文件里面打包两个Dex，让DexOpt分别对两个Dex文件做处理，而Android系统也不会同时为一个Apk加载两个Dex。</p>
+<p><b>如果我们把Dex分成多个文件，然后在程序运行的时候，再把多的那几个动态的加载进来是否可行呢？</b></p>
+<p>也就是说我们能否在运行时阶段把代码加入虚拟机中。对于虚拟机来说，其实所有的代码都是在运行时被加载进来的。而不同于C语言还存在着静态链接。虚拟机在所有Java代码执行之前被启动，然后开始把字节码加载到环境中执行，我们可以理解成所有的代码都是动态加载到虚拟机里的。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/03/06/2014-03-06-dexdongtai/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-02-21T00:00:00.000Z"><a href="/2014/02/21/2014-02-21-listviewpos/">Feb 21 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/02/21/2014-02-21-listviewpos/">ListView滑动位置精准记忆</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>需求场景：<br>一个ListView页面，滑动阅读到某一位置，然后退出页面，下次再进入页面的时候，想要直接滑动到上次阅读的位置。</p>
+<p>方案1：<br>页面退出的时候，ListView.getFirstVisiblePosition()来获取当前可见的第一个Item的position并记录，下次再进入页面的时候通过ListView.setSelection(int position)把ListView直接滑动到记忆的position。</p>
+<p>此方案记忆的ListView的位置不够精准，因为position指定的是ListView的Item的index，setSelection(int pos)只能把index为pos的item作为第一个可见的item来显示，所以item总是顶头显示的，不会显示滑出屏幕一半的item，所以ListView的位置只能定位到某个item的开始位置，并不精准。</p>
+<p>方案1的升级：<br>在方案1的基础上，再记录FirstVisiblePosition item的top/bottom等位置参数，然后恢复的时候ListView再scrollTo一下。</p>
+<p>此方案仍然不行，ListView的scrollTo没效果。</p>
+<p>终极方案：<br>退出页面的时候：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="title">Parcelable</span> listState = listView.<span class="built_in">on</span>SaveInstanceState();
+</pre></td></tr></table></figure>
+
+<p>记住listState对象；<br>再次进入页面的时候：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>listView<span class="preprocessor">.onRestoreInstanceState</span>(listState)<span class="comment">;</span>
+</pre></td></tr></table></figure>
+
+
+<p>记忆的位置分毫不差。</p>
+<p>要注意：listView的状态记忆后，还要保证其数据在两次进入页面时的一致性；<br>另：ListView的header会影响其状态对象，不过这个是小问题。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-01-14T00:00:00.000Z"><a href="/2014/01/14/2014-01-14-ping/">Jan 14 2014</a></time>
       
       
@@ -1166,183 +1264,11 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-08-17T16:00:00.000Z"><a href="/2009/08/18/2009-08-18-set/">Aug 18 2009</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/08/18/2009-08-18-set/">集合</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>【ArrayList LinkedList Vector】</p>
-<p>Vector对于ArrayList，因为同步而引起的性能差别并不明显；</p>
-<p>LinkedList是循环双向链表，无论是否为空，总包含一个header表项：</p>
-<p>|——————————————————————&gt;</p>
-<p>header ——&gt; ele1 ——-&gt; ele2 ——&gt;  ele3</p>
-<pre><code>          &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>       &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>         &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>        </code></pre>
-<p>&lt;—————————————————————-|</p>
-<p>增加元素到表尾，ArrayList 优于 LinkedList：</p>
-<p>ArrayList的扩容最终调用System.arraycopy()方法；</p>
-<p>数组是连续的，ArrayList只有在扩容时才会低效一些；</p>
-<p>而链表，虽然无须扩容，但新建对象和大量赋值操作会低效；</p>
-<p>插入元素到任意位置，LinkedList优于ArrayList：</p>
-<p>因为Array的连续性，每次插入操作都需要是数组重排；</p>
-<p>LinkedList在任意位置插入和尾部插入是一样的；</p>
-<p>删除任意位置元素，ArrayList尾部删除、LinkedList在头部删除和尾部删除这三个都是高效的，其他的都是低效的：</p>
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2009/08/18/2009-08-18-set/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2009-07-02T00:00:00.000Z"><a href="/2009/07/02/2009-07-02-sfsjjg/">Jul 2 2009</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2009/07/02/2009-07-02-sfsjjg/">算法和数据结构</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><b>几个对数组的算法</b></p>
-<p>1， 找出数组中的最大值：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>double max = a<span class="matrix">[<span class="number">0</span>]</span>;
-
-<span class="keyword">for</span>(int <span class="built_in">i</span> = <span class="number">1</span>; <span class="built_in">i</span> &lt; <span class="transposed_variable">a.</span><span class="built_in">length</span>; <span class="built_in">i</span>++)
-
-    <span class="keyword">if</span>(a<span class="matrix">[i]</span> &gt; max) max = a<span class="matrix">[i]</span>;
-</pre></td></tr></table></figure>
-
-
-<p>//把最大值马上设定为数组的第一个元素，然后遍历数组，如果有别当前这个最大值更大的元素，则把最大值更新，直到遍历结束；</p>
-<p>2， 计算数组的平均值：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre>double sum = <span class="number">0.0</span>;
-
-<span class="function"><span class="title">for</span><span class="params">(int i = <span class="number">0</span>; i &lt; a.length; i++)</span>
-
-    <span class="title">sum</span> += <span class="title">a</span>[<span class="title">i</span>];
-
-<span class="title">double</span> <span class="title">average</span> = <span class="title">sum</span> / <span class="title">a</span>.<span class="title">length</span>;
-</pre></td></tr></table></figure>
-
-
-<p>//算出总值，然后除以数组的元素数；</p>
-<p>3，复制数组：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre><span class="keyword">double</span>[] b = new <span class="keyword">double</span>[a.<span class="built_in">length</span>];
-
-<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.<span class="built_in">length</span>; i++) 
-
-    b[i] = a[i];
-
-<span class="comment">//new 一个和原数组同length同类型的数组，然后遍历赋值每个元素；</span>
-</pre></td></tr></table></figure>
-
-
-<p>4，颠倒数组元素的顺序：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="code"><pre><span class="keyword">double</span> [] b = new <span class="keyword">double</span>[a.<span class="built_in">length</span>];
-
-<span class="keyword">for</span>(<span class="keyword">int</span> i = a.<span class="built_in">length</span> - <span class="number">1</span>, j = <span class="number">0</span>; i &gt; -<span class="number">1</span> &amp;&amp; j &lt; b.<span class="built_in">length</span> ; i--, j++) 
-
-    b[j] = a[i];
-
-<span class="comment">//这是个直观低效率算法，时间消耗(a.length)，空间消耗(2 * a.length)，并且有两个循环指数i, j；</span>
-
-<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>; i &lt; a.<span class="built_in">length</span> / <span class="number">2</span>; i++) {
-
-    <span class="keyword">double</span> temp = a[i];
-
-    a[i] = a[a.<span class="built_in">length</span> - <span class="number">1</span> - i];
-
-    a[a.<span class="built_in">length</span> - <span class="number">1</span> - i] = temp;
-}
-</pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2009/07/02/2009-07-02-sfsjjg/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
 
 <nav id="pagination">
   
+  
+    <a href="/page/2/" class="alignright next">Next</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
@@ -1397,6 +1323,10 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
     <li><a href="/tags/Algorithm/">Algorithm</a><small>2</small></li>
   
     <li><a href="/tags/Android/">Android</a><small>8</small></li>
+  
+    <li><a href="/tags/Android Dex/">Android Dex</a><small>1</small></li>
+  
+    <li><a href="/tags/Android ListView/">Android ListView</a><small>1</small></li>
   
     <li><a href="/tags/Android ping/">Android ping</a><small>1</small></li>
   
