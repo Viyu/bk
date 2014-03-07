@@ -48,6 +48,69 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2009-10-20T00:00:00.000Z"><a href="/2009/10/20/2009-10-20-string/">Oct 20 2009</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2009/10/20/2009-10-20-string/">String</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>【String】就是对char[]数组进行封装的对象，由三部分组成：</p>
+<p>1， char数组：它是String对象所表示的字符串的超集；</p>
+<p>2, 3， offset和count，表示了String对象表示的字符串在char数组中的起始段；</p>
+<p>String是特定设计的，包含以下三个特点：</p>
+<p>1， 不变性： 不变模式immutable，节省了同步和锁等待的消耗；</p>
+<p>2， 针对【常量池】的优化：</p>
+<p>变量                                                            内存空间                           常量池</p>
+<p>String str1 = “abc”   ———————&gt;</p>
+<p>String str2 = “abc”   ———————&gt;                                                   abc</p>
+<p>String str3 = new String(“abc”)  —-&gt;      str实例         ———&gt;</p>
+<p>注意：str1 == str3.intern()是true；str2, str2直接指向常量池中的“abc”，不拷贝；</p>
+<p>3，类的final定义;</p>
+<p>String的两个构造方法：</p>
+<pre><code><span class="keyword">public</span> String(<span class="keyword">char</span> <span class="keyword">value</span>[]) {
+
+    <span class="keyword">this</span>.<span class="keyword">value</span> = Arrays.copyOf(<span class="keyword">value</span>, <span class="keyword">value</span>.length);
+
+}
+
+String(<span class="keyword">char</span>[] <span class="keyword">value</span>, boolean share) {
+
+    <span class="keyword">this</span>.<span class="keyword">value</span> = <span class="keyword">value</span>;
+
+}</code></pre>
+<p>第一个构造方法会构造全新的char[]数组；</p>
+<p>第二个构造方法共享了原来的char[]数组；</p>
+<p>【内存泄漏】第二个包可见的共享char[]数组的构造方法会导致内存泄露</p>
+<p>这个构造方法是空间换时间的策略（很有可能理解为时间换空间，因为share了空间，但这里大多数情况下是阻止大空间的GC）；</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2009/10/20/2009-10-20-string/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2009-08-17T16:00:00.000Z"><a href="/2009/08/18/2009-08-18-set/">Aug 18 2009</a></time>
       
       
@@ -254,7 +317,7 @@
     <li><a href="https://gist.github.com/Viyu/8093281" target="_blank">DragAndDropDemo</a></li>
     <li><a href="https://gist.github.com/Viyu/8093389" target="_blank">LedLightDemo</a></li>
     <li><a href="https://gist.github.com/Viyu/d0df67fb40be217638a3" target="_blank">PingUtil</a></li>
-
+    <li><a href="https://gist.github.com/Viyu/9406327" target="_blank">GPS utility</a></li>
   </ul> 
 </div>
 
@@ -289,6 +352,8 @@
     <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
   
     <li><a href="/tags/Design/">Design</a><small>1</small></li>
+  
+    <li><a href="/tags/GPS/">GPS</a><small>1</small></li>
   
     <li><a href="/tags/Java/">Java</a><small>3</small></li>
   

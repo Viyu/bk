@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2012 | Viyu</title>
+  <title>GPS | Viyu</title>
   <meta name="author" content="Viyu">
   
   
@@ -42,7 +42,7 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2012</h2>
+<h2 class="archive-title tag">GPS</h2>
 
 
   
@@ -52,36 +52,60 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2012-12-10T00:00:00.000Z"><a href="/2012/12/10/2012-12-10-startandroid/">Dec 10 2012</a></time>
+        <time datetime="2014-01-18T00:00:00.000Z"><a href="/2014/01/18/2014-01-18-gpshelp/">Jan 18 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2012/12/10/2012-12-10-startandroid/">Android初学笔记</a></h1>
+    <h1 class="title"><a href="/2014/01/18/2014-01-18-gpshelp/">2 GPS utility methods</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Eclipse 【ADT】 源</p>
-<p><a href="https://dl-ssl.google.com/android/eclipse" target="_blank">https://dl-ssl.google.com/android/eclipse</a></p>
-<hr>
-<p>Notice that no matter what scenario causes the activity to stop, the system always calls onPause() before calling onStop().</p>
-<p>Although the onPause() method is called before onStop(), you should use onStop() to perform larger, more CPU intensive shut-down operations, such as writing information to a database.</p>
-<p>the system calls onStart() both when it creates your activity and when it restarts the activity from the stopped state.</p>
-<p>Resumed</p>
-<p>In this state, the activity is in the foreground and the user can interact with it. (Also sometimes referred to as the “running” state.)</p>
-<p>Paused</p>
-<p>In this state, the activity is partially obscured by another activity—the other activity that‘s in the foreground is semi-transparent or doesn’t cover the entire screen. The paused activity does not receive user input and cannot execute any code. </p>
-<p>Stopped</p>
-<p>In this state, the activity is completely hidden and not visible to the user; it is considered to be in the background. While stopped, the activity instance and all its state information such as member variables is retained, but it cannot execute any code.</p>
+        <p>Methond 1 is to check whether the GPS is on:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="keyword">public</span> boolean isGPSIsOn() {
+	LocationManager locationManager = (LocationManager) mContext
+			<span class="variable">.getSystemService</span>(Context<span class="variable">.LOCATION_SERVICE</span>);
+	<span class="keyword">return</span> locationManager<span class="variable">.isProviderEnabled</span>(LocationManager<span class="variable">.GPS_PROVIDER</span>);
+}
+</pre></td></tr></table></figure>
 
+
+<p>Method 2 is to open GPS setting page in Android device:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">void</span> openGPSSettingPage() {
+	Intent intent = new Intent();
+	intent<span class="variable">.setAction</span>(Settings<span class="variable">.ACTION_LOCATION_SOURCE_SETTINGS</span>);
+	intent<span class="variable">.setFlags</span>(Intent<span class="variable">.FLAG_ACTIVITY_NEW_TASK</span>);
+	<span class="keyword">try</span> {
+		context<span class="variable">.startActivity</span>(intent);
+	} <span class="keyword">catch</span> (ActivityNotFoundException ex) {
+	}
+}
+</pre></td></tr></table></figure>
+
+
+ 
       
     </div>
     <footer>
       
         
           <div class="alignleft">
-            <a href="/2012/12/10/2012-12-10-startandroid/#more" class="more-link">Read More</a>
+            <a href="/2014/01/18/2014-01-18-gpshelp/#more" class="more-link">Read More</a>
           </div>
         
         

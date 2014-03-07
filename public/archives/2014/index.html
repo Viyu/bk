@@ -150,6 +150,77 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-01-18T00:00:00.000Z"><a href="/2014/01/18/2014-01-18-gpshelp/">Jan 18 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/01/18/2014-01-18-gpshelp/">2 GPS utility methods</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Methond 1 is to check whether the GPS is on:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="keyword">public</span> boolean isGPSIsOn() {
+	LocationManager locationManager = (LocationManager) mContext
+			<span class="variable">.getSystemService</span>(Context<span class="variable">.LOCATION_SERVICE</span>);
+	<span class="keyword">return</span> locationManager<span class="variable">.isProviderEnabled</span>(LocationManager<span class="variable">.GPS_PROVIDER</span>);
+}
+</pre></td></tr></table></figure>
+
+
+<p>Method 2 is to open GPS setting page in Android device:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">void</span> openGPSSettingPage() {
+	Intent intent = new Intent();
+	intent<span class="variable">.setAction</span>(Settings<span class="variable">.ACTION_LOCATION_SOURCE_SETTINGS</span>);
+	intent<span class="variable">.setFlags</span>(Intent<span class="variable">.FLAG_ACTIVITY_NEW_TASK</span>);
+	<span class="keyword">try</span> {
+		context<span class="variable">.startActivity</span>(intent);
+	} <span class="keyword">catch</span> (ActivityNotFoundException ex) {
+	}
+}
+</pre></td></tr></table></figure>
+
+
+ 
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/01/18/2014-01-18-gpshelp/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-01-14T00:00:00.000Z"><a href="/2014/01/14/2014-01-14-ping/">Jan 14 2014</a></time>
       
       
@@ -258,7 +329,7 @@ Process proc = null;
     <li><a href="https://gist.github.com/Viyu/8093281" target="_blank">DragAndDropDemo</a></li>
     <li><a href="https://gist.github.com/Viyu/8093389" target="_blank">LedLightDemo</a></li>
     <li><a href="https://gist.github.com/Viyu/d0df67fb40be217638a3" target="_blank">PingUtil</a></li>
-
+    <li><a href="https://gist.github.com/Viyu/9406327" target="_blank">GPS utility</a></li>
   </ul> 
 </div>
 
@@ -293,6 +364,8 @@ Process proc = null;
     <li><a href="/tags/Concurrence/">Concurrence</a><small>1</small></li>
   
     <li><a href="/tags/Design/">Design</a><small>1</small></li>
+  
+    <li><a href="/tags/GPS/">GPS</a><small>1</small></li>
   
     <li><a href="/tags/Java/">Java</a><small>3</small></li>
   
