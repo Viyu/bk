@@ -52,6 +52,56 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-03-12T00:00:00.000Z"><a href="/2014/03/12/2014-03-13-popupwindow/">Mar 12 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/03/12/2014-03-13-popupwindow/">使用PopupWindow</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>PopupWindow可以用来实现弹出任意位置的菜单，比Context Menu和Option Menu灵活性更高。<br> Android中弹出一个PopupWindow基本有两个方法：</p>
+ <figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>//Display <span class="keyword">the</span> content view <span class="keyword">in</span> a popup window anchored <span class="keyword">to</span> <span class="keyword">the</span> bottom-left corner <span class="keyword">of</span> <span class="keyword">the</span> anchor view.
+public void showAsDropDown(View anchor, int xoff, int yoff);
+</pre></td></tr></table></figure>
+
+<p>这个方法是弹出的窗口在anchor view的bottom-left,一般Android应用的菜单都在右上，实现思路就是以app中右上的view作为anchor，然后用屏幕宽度减去popup window的宽度作为xoff.</p>
+<p> 还有一个方法：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre> <span class="keyword">public</span> <span class="keyword">void</span> showAtLocation(IBinder token, <span class="keyword">int</span> gravity, <span class="keyword">int</span> x, <span class="keyword">int</span> y);
+</pre></td></tr></table></figure>
+
+
+<p>再来说如何实现一个PopupWindow，步骤基本如下，下面代码时extends了PopupWindow的子类的实现：</p>
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/03/12/2014-03-13-popupwindow/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-03-06T00:00:00.000Z"><a href="/2014/03/06/2014-03-06-dexdongtai/">Mar 6 2014</a></time>
       
       
@@ -330,6 +380,7 @@ Process proc = null;
     <li><a href="https://gist.github.com/Viyu/8093389" target="_blank">LedLightDemo</a></li>
     <li><a href="https://gist.github.com/Viyu/d0df67fb40be217638a3" target="_blank">PingUtil</a></li>
     <li><a href="https://gist.github.com/Viyu/9406327" target="_blank">GPS utility</a></li>
+    <li><a href="https://gist.github.com/Viyu/9521561" target="_blank">PopupWindow</a></li>
   </ul> 
 </div>
 
@@ -370,6 +421,8 @@ Process proc = null;
     <li><a href="/tags/Java/">Java</a><small>3</small></li>
   
     <li><a href="/tags/Jvm/">Jvm</a><small>1</small></li>
+  
+    <li><a href="/tags/PopupWindow/">PopupWindow</a><small>1</small></li>
   
     <li><a href="/tags/javascript/">javascript</a><small>1</small></li>
   

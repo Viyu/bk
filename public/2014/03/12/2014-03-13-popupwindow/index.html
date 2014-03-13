@@ -3,30 +3,29 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Implement a TextView with an animation in its left side | Viyu</title>
+  <title>使用PopupWindow | Viyu</title>
   <meta name="author" content="Viyu">
   
-  <meta name="description" content="In my case, I want to write a TextView with an animation in its left side.
-ImageView + TextView could work but it’s not frugal enough.
-TextView with drawableLeft would be the best option.
-1
+  <meta name="description" content="PopupWindow可以用来实现弹出任意位置的菜单，比Context Menu和Option Menu灵活性更高。 Android中弹出一个PopupWindow基本有两个方法：
+ 1
 2
-3
-4
-&lt;TextView  
-     … …  
-     android:drawablePadding=”10dip”  
-     android:drawableLeft=”@drawable/loadingicon” /&gt;  
+//Display the content view in a popup window anchored to the bottom-left corner of the anchor view.
+public void showAsDropDown(View anchor, int xoff, int yoff);
+
+
+这个方法是弹出的窗口在anchor view的bottom-left,一般Android应用的菜单都在右上，实现思路就是以app中右上的view作为anchor，然后用屏幕宽度减去popup window的宽度作为xoff.
+ 还有一个方法：
+1
+ public void showAtLocation(IBinder token, int gravity, int x, int y);
 
 
 
-But above implementation just show a icon in the left of TextView, not an animation.
-How to show an animation instead of a icon?">
+再来说如何实现一个PopupWindow，步骤基本如下，下面代码时extends了PopupWindow的子类的实现：">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Implement a TextView with an animation in its left side"/>
+  <meta property="og:title" content="使用PopupWindow"/>
   <meta property="og:site_name" content="Viyu"/>
 
   
@@ -64,36 +63,33 @@ How to show an animation instead of a icon?">
     <header>
       
         <div class="icon"></div>
-        <time datetime="2013-11-25T00:00:00.000Z"><a href="/2013/11/25/2013-11-25-TextViewwithanim/">Nov 25 2013</a></time>
+        <time datetime="2014-03-12T00:00:00.000Z"><a href="/2014/03/12/2014-03-13-popupwindow/">Mar 12 2014</a></time>
       
       
   
-    <h1 class="title">Implement a TextView with an animation in its left side</h1>
+    <h1 class="title">使用PopupWindow</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>In my case, I want to write a TextView with an animation in its left side.</p>
-<p>ImageView + TextView could work but it’s not frugal enough.</p>
-<p>TextView with drawableLeft would be the best option.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
+        <p>PopupWindow可以用来实现弹出任意位置的菜单，比Context Menu和Option Menu灵活性更高。<br> Android中弹出一个PopupWindow基本有两个方法：</p>
+ <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
-3
-4
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">TextView</span>  
-     … …  
-     <span class="attribute">android:drawablePadding</span>=<span class="value">”10dip”</span>  
-     <span class="attribute">android:drawableLeft</span>=<span class="value">”@drawable</span>/<span class="attribute">loadingicon</span>” /&gt;</span>  
+</pre></td><td class="code"><pre>//Display <span class="keyword">the</span> content view <span class="keyword">in</span> a popup window anchored <span class="keyword">to</span> <span class="keyword">the</span> bottom-left corner <span class="keyword">of</span> <span class="keyword">the</span> anchor view.
+public void showAsDropDown(View anchor, int xoff, int yoff);
+</pre></td></tr></table></figure>
+
+<p>这个方法是弹出的窗口在anchor view的bottom-left,一般Android应用的菜单都在右上，实现思路就是以app中右上的view作为anchor，然后用屏幕宽度减去popup window的宽度作为xoff.</p>
+<p> 还有一个方法：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre> <span class="keyword">public</span> <span class="keyword">void</span> showAtLocation(IBinder token, <span class="keyword">int</span> gravity, <span class="keyword">int</span> x, <span class="keyword">int</span> y);
 </pre></td></tr></table></figure>
 
 
-<p>But above implementation just show a icon in the left of TextView, not an animation.</p>
-<p>How to show an animation instead of a icon?</p>
-<a id="more"></a>
+<p>再来说如何实现一个PopupWindow，步骤基本如下，下面代码时extends了PopupWindow的子类的实现：</p>
+<a id="more"></a> 
 
-<p>Assume you have 4 pictures which would be an animation if display them one after one. Then define animation xml in res/anim folder in your project.</p>
-<p>loading_animation.xml:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -109,58 +105,45 @@ How to show an animation instead of a icon?">
 13
 14
 15
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">animation-list</span> <span class="attribute">xmlns:android</span>=<span class="value">”http:</span>//<span class="attribute">schemas.android.com</span>/<span class="attribute">apk</span>/<span class="attribute">res</span>/<span class="attribute">android</span>”  
-      <span class="attribute">android:oneshot</span>=<span class="value">”false”</span> &gt;</span>  
-      <span class="tag">&lt;<span class="title">item</span>  
-           <span class="attribute">android:drawable</span>=<span class="value">”@drawable</span>/<span class="attribute">loading_1</span>″  
-           <span class="attribute">android:duration</span>=<span class="value">”500″</span>&gt;</span>  
-       <span class="tag">&lt;/<span class="title">item</span>&gt;</span>  
-       <span class="tag">&lt;<span class="title">item</span>  
-            <span class="attribute">android:drawable</span>=<span class="value">”@drawable</span>/<span class="attribute">loading_2</span>″  
-            <span class="attribute">android:duration</span>=<span class="value">”500″</span>&gt;</span>  
-        <span class="tag">&lt;/<span class="title">item</span>&gt;</span>  
-        <span class="tag">&lt;<span class="title">item</span>  
-             <span class="attribute">android:drawable</span>=<span class="value">”@drawable</span>/<span class="attribute">loading_3</span>″  
-             <span class="attribute">android:duration</span>=<span class="value">”500″</span>&gt;</span>  
-        <span class="tag">&lt;/<span class="title">item</span>&gt;</span>  
-<span class="tag">&lt;/<span class="title">animation-list</span>&gt;</span>  
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td><td class="code"><pre>//inflate一个content view并设置给PopupWindow
+mContentView = (View) mInflater.inflate(R.layout.popup_window, null);
+setContentView(mContentView);
+
+//给组件定义事件
+mQuitView = (TextView) mContentView.findViewById(R.id.popup_window_quit);
+mQuitView.setOnClickListener(this);
+<span class="keyword">...</span> <span class="keyword">...</span>
+
+//设置popup window的背景，如果设置了非null，PopupWindow内部会将其包起来作为root view展示
+//如果设置了null，则setOutsideTouchable(true)不起作用
+setBackgroundDrawable(<span class="keyword">...</span>);
+
+//设置在popup window之外点击dismiss window
+setOutsideTouchable(true);
+
+//如果设置为true, popup window打开的话，系统menu键就不响应了，back键还可以响应，因为PopupWindow内部接收了back键但没关menu键
+//所以假如要用menu键来控制popup window的打开和关闭的话，就需要额外的实现，后面会讲。
+setFocusable(true);
+
+//setWidth和setHeight是必须的，不然window没尺寸，但又不想hardcoded尺寸的话怎么办？用如下的方法
+mContentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+setWidth(mContentView.getMeasuredWidth());
+setHeight(mContentView.getMeasuredHeight());
 </pre></td></tr></table></figure>
 
 
-<p>“android:oneshot” determines whether or not play the animation just once.<br>“android:duration” determines the duration of pictures switching.</p>
-<p>Then in layout xml, use above animation like this:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">TextView</span>  
-      … …  
-      <span class="attribute">android:drawablePadding</span>=<span class="value">”10dip”</span>  
-      <span class="attribute">android:drawableLeft</span>=<span class="value">”@anim</span>/<span class="attribute">loading_animation</span>” /&gt;</span>  
-</pre></td></tr></table></figure>
-
-
-<p>Bingo? no, no, no, the animation can not switching yet.</p>
-<p>You need to do more.</p>
-<p>In java/Activity code, you must get the animation drawable and start it.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre><span class="variable">Drawable</span>[] draws = locate<span class="variable">AreaTextView</span>.get<span class="variable">CompoundDrawables</span>();  
-<span class="function"><span class="title">if</span> <span class="params">(draws != null &amp;&amp; draws.length &gt; <span class="number">0</span> &amp;&amp; draws[<span class="number">0</span>] instanceof <span class="variable">AnimationDrawable</span>)</span> {  
-       <span class="title">loadingAnimation</span> = <span class="params">(<span class="variable">AnimationDrawable</span>)</span> <span class="title">draws</span>[0];  
-       <span class="title">loadingAnimation</span>.<span class="title">start</span><span class="params">()</span>;  
-}  
-</pre></td></tr></table></figure>
-
-
-<p>In above, we get index 0 of the drawable array since drawableLeft is in 0 position of the array.</p>
-<p>Now, the animation works. But there is one more trap.</p>
-<p>If you put above codes in onCreate() of Activity, draws will be a [null, null, null, null] array.</p>
-<p>You must put it in onResumse() of Activity.</p>
-
+<p> 再来讲刚才说到的用系统menu来控制popup window的方法:<br>1, 自定义自己的content view;<br>2, 在自定义的content view中接收menu key event(dispatchKeyEvent);<br>到此为止，如果popupWindow.setFocusable(true)，则自定义content view的dispatchKeyEvent不会被执行，必须加上：<br>3, setFocusableInTouchMode(true);</p>
+<p>详细代码：</p>
+<script src="https://gist.github.com/Viyu/9521561.js"></script>
       
     </div>
     <footer>
@@ -169,7 +152,7 @@ How to show an animation instead of a icon?">
         
   
   <div class="tags">
-    <a href="/tags/Android/">Android</a>
+    <a href="/tags/PopupWindow/">PopupWindow</a>
   </div>
 
         
@@ -212,7 +195,7 @@ How to show an animation instead of a icon?">
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://mosthink.net/2013/11/25/2013-11-25-TextViewwithanim/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://mosthink.net/2014/03/12/2014-03-13-popupwindow/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>
