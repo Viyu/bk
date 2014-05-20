@@ -4,6 +4,16 @@ http://zespia.tw/hexo/
 
 git clone https://github.com/Viyu/bk.git
 
+cd bk
+
+npm install
+
+hexo generate
+
+hexo server
+
+hexo generate -deploy //先删除下载的.deploy目录
+
 
 删除：
 git rm -r themes/....
@@ -16,4 +26,4 @@ git push origin master
 如果冲突
 先git pull origin
 
-hexo generate -deploy //先删除下载的.deploy目录
+

@@ -64,6 +64,101 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2010-02-05T00:00:00.000Z"><a href="/2010/02/05/2010-02-05-sort/">Feb 5 2010</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2010/02/05/2010-02-05-sort/">排序</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><b>【选择排序】</b></p>
+<p>a[i++] —&gt; a[n]，从前往后看、选择最小值、一次交换到位</p>
+<p>1，完整循环找到数组中最小的元素；</p>
+<p>2，把这个最小的元素与a[0]交换；</p>
+<p>3，在a[i]-a<a href="i = 1, 2, ... n">n</a>的子数组中重复1-2步骤；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {
+
+    <span class="keyword">int</span> <span class="built_in">min</span> = i;
+
+    <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++) {
+
+        <span class="keyword">if</span>(a[j] &lt; <span class="built_in">min</span>) 
+
+            <span class="built_in">min</span> = j;
+
+    }
+
+    swap(i, j, a);
+}
+</pre></td></tr></table></figure>
+
+<p>简写：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>; i &lt; n; i++) {
+    <span class="built_in">min</span> = <span class="comment">//本次循环的i...n中的最小的元素的index；</span>
+
+    <span class="comment">//将min和本次循环的i两个元素交换；</span>
+}
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2010/02/05/2010-02-05-sort/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2010-01-05T00:00:00.000Z"><a href="/2010/01/05/2010-01-05-javavm/">Jan 5 2010</a></time>
       
       
@@ -440,6 +535,8 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
     <li><a href="/tags/Android Dex/">Android Dex</a><small>1</small></li>
   
     <li><a href="/tags/Android ListView/">Android ListView</a><small>1</small></li>
+  
+    <li><a href="/tags/Android LockPattern/">Android LockPattern</a><small>1</small></li>
   
     <li><a href="/tags/Android ping/">Android ping</a><small>1</small></li>
   
