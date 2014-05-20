@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android初学笔记 | Viyu</title>
+  <title>Android初学笔记 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="Eclipse 【ADT】 源
@@ -15,7 +15,7 @@ the system calls onStart() both when it creates your activity and when it restar
 Resumed
 In this state, the activity is in the foreground and the user can interact with it. (Also sometimes referred to as the “running” state.)
 Paused
-In this state, the activity is partially obscured by another activity—the other activity that‘s in the foreground is semi-transparent or doesn’t cover the entire screen. The paused activity does not receive user input and cannot execute any code. 
+In this state, the activity is partially obscured by another activity—the other activity that’s in the foreground is semi-transparent or doesn’t cover the entire screen. The paused activity does not receive user input and cannot execute any code. 
 Stopped
 In this state, the activity is completely hidden and not visible to the user; it is considered to be in the background. While stopped, the activity instance and all its state information such as member variables is retained, but it cannot execute any code.">
   
@@ -23,14 +23,14 @@ In this state, the activity is completely hidden and not visible to the user; it
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="Android初学笔记"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -39,8 +39,8 @@ In this state, the activity is completely hidden and not visible to the user; it
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -55,6 +55,18 @@ In this state, the activity is completely hidden and not visible to the user; it
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -79,39 +91,36 @@ In this state, the activity is completely hidden and not visible to the user; it
 <p>Resumed</p>
 <p>In this state, the activity is in the foreground and the user can interact with it. (Also sometimes referred to as the “running” state.)</p>
 <p>Paused</p>
-<p>In this state, the activity is partially obscured by another activity—the other activity that‘s in the foreground is semi-transparent or doesn’t cover the entire screen. The paused activity does not receive user input and cannot execute any code. </p>
+<p>In this state, the activity is partially obscured by another activity—the other activity that’s in the foreground is semi-transparent or doesn’t cover the entire screen. The paused activity does not receive user input and cannot execute any code. </p>
 <p>Stopped</p>
 <p>In this state, the activity is completely hidden and not visible to the user; it is considered to be in the background. While stopped, the activity instance and all its state information such as member variables is retained, but it cannot execute any code.</p>
 <a id="more"></a>
 
 <hr>
 <p>//保证当前的版本可以执行某段代码</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
+<h2 id="0"><figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre><span class="keyword">if</span> ( <span class="transposed_variable">Build.</span><span class="transposed_variable">VERSION.</span>SDK_INT &gt;=<span class="transposed_variable">Build.</span><span class="transposed_variable">VERSION_CODES.</span>HONEYCOMB ) <span class="cell">{   
+</pre></td><td class="code"><pre>if ( Build<span class="preprocessor">.VERSION</span><span class="preprocessor">.SDK</span>_INT &gt;=Build<span class="preprocessor">.VERSION</span>_CODES<span class="preprocessor">.HONEYCOMB</span> ) {   
 
-}</span>
-</pre></td></tr></table></figure>
-
-<hr>
+}
+</pre></td></tr></table></figure></h2>
 <p>onCreate&lt;—&gt;onDestroy，执行一次；</p>
 <p>onStart&lt;—&gt;onStop，循环；</p>
 <p>onResume&lt;—&gt;onPause，循环；</p>
 <hr>
 <p>In order for the Android system to restore the state of the views in your activity, each view must have a unique ID, supplied by the android:id attribute.</p>
 <hr>
-<p>As the system begins to stop your activity, it calls onSaveInstanceState() (1) so you can specify additional state data you&#39;d like to save in case the Activity instance must be recreated. If the activity is destroyed and the same instance must be recreated, the system passes the state data defined at (1) to both the onCreate() method (2) and the onRestoreInstanceState() method (3).</p>
+<p>As the system begins to stop your activity, it calls onSaveInstanceState() (1) so you can specify additional state data you’d like to save in case the Activity instance must be recreated. If the activity is destroyed and the same instance must be recreated, the system passes the state data defined at (1) to both the onCreate() method (2) and the onRestoreInstanceState() method (3).</p>
 <p>When your activity is recreated after it was previously destroyed, you can recover your saved state from the Bundle that the system passes your activity. Both the onCreate() and onRestoreInstanceState() callback methods receive the same Bundle that containes the instance state information.</p>
 <p>Because the onCreate() method is called whether the system is creating a new instance of your activity or recreating a previous one, you must check whether the state Bundle is null before you attempt to read it. If it is null, then the system is creating a new instance of the activity, instead of restoring a previous one that was destroyed.</p>
 <p>Instead of restoring the state during onCreate() you may choose to implement onRestoreInstanceState(), which the system calls after the onStart() method. The system calls onRestoreInstanceState() only if there is a saved state to restore, so you do not need to check whether the Bundle is null.</p>
 <hr>
 <p>从.java中和从.xml中load resource</p>
-<p>// Get a string resource from your app&#39;s Resources</p>
+<p>// Get a string resource from your app’s Resources</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>String hello =getResources()<span class="preprocessor">.getString</span>(R<span class="preprocessor">.string</span><span class="preprocessor">.hello</span>_world)<span class="comment">;</span>
 </pre></td></tr></table></figure>
-
 
 <p>// Or supply a string resource to a method that requires a string</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -138,13 +147,12 @@ textView<span class="preprocessor">.setText</span>(R<span class="preprocessor">.
     <span class="attribute">android:text</span>=<span class="value">"@string/hello_world"</span> /&gt;</span>
 </pre></td></tr></table></figure>
 
-
 <hr>
 <p>【Supporting different screens】</p>
 <p>There are four generalized sizes: small, normal, large, xlarge</p>
 <p>And four generalized densities: low (ldpi), medium (mdpi), high (hdpi), extra high (xhdpi)</p>
 <p>Also be aware that the screens orientation (landscape or portrait) is considered a variation of screen size, so many apps should revise the layout to optimize the user experience in each orientation</p>
-<p>Android automatically scales your layout in order to properly fit the screen. Thus, your layouts for different screen sizes don&#39;t need to worry about the absolute size of UI elements but instead focus on the layout structure that affects the user experience (such as the size or position of important views relative to sibling views).</p>
+<p>Android automatically scales your layout in order to properly fit the screen. Thus, your layouts for different screen sizes don’t need to worry about the absolute size of UI elements but instead focus on the layout structure that affects the user experience (such as the size or position of important views relative to sibling views).</p>
 <p>By default, the layout/main.xml file is used for portrait orientation.</p>
 <p>If you want a provide a special layout for landscape, including while on large screens, then you need to use both the large and land qualifier:</p>
 <p>MyProject/ </p>
@@ -156,8 +164,8 @@ textView<span class="preprocessor">.setText</span>(R<span class="preprocessor">.
 
             <span class="keyword">layout</span>-large/main.xml            <span class="preprocessor"># large (portrait) </span>
 
-            <span class="keyword">layout</span>-large-land/main.xml       <span class="preprocessor"># large landscape</span></code></pre>
-<p>xhdpi: 2.0</p>
+            <span class="keyword">layout</span>-large-land/main.xml       <span class="preprocessor"># large landscape</span>
+</code></pre><p>xhdpi: 2.0</p>
 <p>hdpi: 1.5</p>
 <p>mdpi: 1.0 (baseline)</p>
 <p>ldpi: 0.75</p>
@@ -165,13 +173,13 @@ textView<span class="preprocessor">.setText</span>(R<span class="preprocessor">.
 <hr>
 <p>如果用Android SDK Manager下载了Support lib，则无论创建mini SDK version为多高的project，android-support-v4.jar都会被自动拷贝到lib下，并且关联起来。</p>
 <p>The Android Support Library provides a JAR file with an API library that allow you to use some of the more recent Android APIs in your app while running on earlier versions of Android.</p>
-<p>If you decide for other reasons that the minimum API level your app requires is 11 or higher, you don‘t need to use the Support Library and can instead use the framework’s built in Fragment class and related APIs. </p>
+<p>If you decide for other reasons that the minimum API level your app requires is 11 or higher, you don’t need to use the Support Library and can instead use the framework’s built in Fragment class and related APIs. </p>
 <hr>
 <p>activity与其对应的layout/*.xml并不需要名字对应</p>
 <p>而是，得在<em>.xml中添加的元素中至少有一个@+id，这样才会让R注册这个</em>.xml作为一个layout.</p>
 <hr>
-<p>Your app‘s internal storage directory is specified by your app’s package name in a special location of the Android file system.</p>
-<p>Tip: Although apps are installed onto the internal storage by default, you can specify the android:installLocation attribute in your manifest so your app may be installed on external storage. Users appreciate this option when the APK size is very large and they have an external storage space that&#39;s larger than the internal storage. For more information</p>
+<p>Your app’s internal storage directory is specified by your app’s package name in a special location of the Android file system.</p>
+<p>Tip: Although apps are installed onto the internal storage by default, you can specify the android:installLocation attribute in your manifest so your app may be installed on external storage. Users appreciate this option when the APK size is very large and they have an external storage space that’s larger than the internal storage. For more information</p>
 <p>Caution: Currently, all apps have the ability to read the external storage without a special permission. However, this will change in a future release. If your app needs to read the external storage (but not write to it), then you will need to declare the READ_EXTERNAL_STORAGE permission. To ensure that your app continues to work as expected, you should declare this permission now, before the change takes effect.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -189,17 +197,16 @@ textView<span class="preprocessor">.setText</span>(R<span class="preprocessor">.
 &lt;/manifest&gt;
 </pre></td></tr></table></figure>
 
-
 <p>However, if your app uses the WRITE_EXTERNAL_STORAGE permission, then it implicitly has permission to read the external storage as well.</p>
 <p>You don’t need any permissions to save files on the internal storage. Your application always has permission to read and write files in its internal storage directory.</p>
 <hr>
-<p>Remember that getExternalFilesDir()creates a directory inside a directory that is deleted when the user uninstalls your app. If the files you&#39;re saving should remain available after the user uninstalls your app—such as when your app is a camera and the user will want to keep the photos—you should instead use getExternalStoragePublicDirectory().</p>
+<p>Remember that getExternalFilesDir()creates a directory inside a directory that is deleted when the user uninstalls your app. If the files you’re saving should remain available after the user uninstalls your app—such as when your app is a camera and the user will want to keep the photos—you should instead use getExternalStoragePublicDirectory().</p>
 <p>Note: When the user uninstalls your app, the Android system deletes the following:</p>
 <p> •All files you saved on internal storage</p>
 <p> •All files you saved on external storage using getExternalFilesDir().</p>
 <p>However, you should manually delete all cached files created with getCacheDir() on a regular basis and also regularly delete other files you no longer need.</p>
 <hr>
-<p>Just like files that you save on the device‘s internal storage, Android stores your database in private disk space that’s associated application. Your data is secure, because by default this area is not accessible to other applications.</p>
+<p>Just like files that you save on the device’s internal storage, Android stores your database in private disk space that’s associated application. Your data is secure, because by default this area is not accessible to other applications.</p>
 <hr>
 <p>Eclispe 【Git】 plug-in:</p>
 <p><a href="http://download.eclipse.org/egit/updates" target="_blank">http://download.eclipse.org/egit/updates</a></p>
@@ -225,7 +232,7 @@ textView<span class="preprocessor">.setText</span>(R<span class="preprocessor">.
 <hr>
 <p>【探测键盘是否呼出的一种不靠谱方法】</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="title">android</span>:windowSoftInputMode=<span class="string">"adjustResize"</span>
+</pre></td><td class="code"><pre><span class="label">android:</span>windowSoftInputMode=<span class="string">"adjustResize"</span>
 </pre></td></tr></table></figure>
 
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -285,7 +292,6 @@ System<span class="preprocessor">.out</span><span class="preprocessor">.println<
 }
 })<span class="comment">;</span>
 </pre></td></tr></table></figure>
-
       
     </div>
     <footer>
@@ -355,10 +361,10 @@ System<span class="preprocessor">.out</span><span class="preprocessor">.println<
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

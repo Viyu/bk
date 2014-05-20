@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>设计模式 | Viyu</title>
+  <title>设计模式 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="单例模式的并发问题和延迟加载
@@ -50,7 +50,6 @@ public class Singleton {
 } 
 
 
-
 多线程下，上面的instance == null 与 instance = new Singleton()的操作不是原子的，所以会导致instance == null的判断不正确，从而导致出现多个实例；
 synchronized能保证上述的原子性：
 1
@@ -95,21 +94,20 @@ public class Singleton {
 } 
 
 
-
 synchronized解决了原子性问题，但是，当第一次Singleton实例构造之后，这个instance对所有线程都可见了，所有线程都能正确判断instance == null为false了，此时再synchronized就没必要了，造成性能开销；">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="设计模式"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -118,8 +116,8 @@ synchronized解决了原子性问题，但是，当第一次Singleton实例构�
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -134,6 +132,18 @@ synchronized解决了原子性问题，但是，当第一次Singleton实例构�
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -171,15 +181,15 @@ synchronized解决了原子性问题，但是，当第一次Singleton实例构�
 18
 19
 20
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span>  
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">class</span> Singleton {  
 
     <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>; 
 
-    <span class="keyword">private</span> Singleton() { 
+    <span class="keyword">private</span> <span class="title">Singleton</span>() { 
 
     } 
 
-    <span class="keyword">public</span> <span class="keyword">static</span> Singleton getInstance() { 
+    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span>() { 
 
         <span class="keyword">if</span> (instance == <span class="keyword">null</span>) {     
 
@@ -192,7 +202,6 @@ synchronized解决了原子性问题，但是，当第一次Singleton实例构�
     } 
 } 
 </pre></td></tr></table></figure>
-
 
 <p>多线程下，上面的instance == null 与 instance = new Singleton()的操作不是原子的，所以会导致instance == null的判断不正确，从而导致出现多个实例；</p>
 <p>synchronized能保证上述的原子性：</p>
@@ -216,15 +225,15 @@ synchronized解决了原子性问题，但是，当第一次Singleton实例构�
 18
 19
 20
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span>  
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">class</span> Singleton {  
 
     <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>; 
 
-    <span class="keyword">private</span> Singleton () { 
+    <span class="keyword">private</span> <span class="title">Singleton</span> () { 
 
     } 
 
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton getInstance() { 
+    <span class="keyword">public</span> <span class="keyword">static</span> synchronized Singleton <span class="title">getInstance</span>() { 
 
         <span class="keyword">if</span> (instance == <span class="keyword">null</span>) { 
 
@@ -237,7 +246,6 @@ synchronized解决了原子性问题，但是，当第一次Singleton实例构�
      } 
 } 
 </pre></td></tr></table></figure>
-
 
 <p>synchronized解决了原子性问题，但是，当第一次Singleton实例构造之后，这个instance对所有线程都可见了，所有线程都能正确判断instance == null为false了，此时再synchronized就没必要了，造成性能开销；</p>
 <a id="more"></a>
@@ -257,22 +265,21 @@ synchronized解决了原子性问题，但是，当第一次Singleton实例构�
 12
 13
 14
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span> 
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">class</span> Singleton { 
 
     <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton (); 
 
-    <span class="keyword">private</span> Singleton () { 
+    <span class="keyword">private</span> <span class="title">Singleton</span> () { 
 
     } 
 
-    <span class="keyword">public</span> <span class="keyword">static</span> Singleton getInstance() { 
+    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span>() { 
 
          <span class="keyword">return</span> instance; 
 
      } 
  } 
 </pre></td></tr></table></figure>
-
 
 <p>这样，在类加载的时候，实例就已经被new出来了；虽然解决了并发问题，但是，实例化太早，如果没有代码要用这个单例对象，这个加载就是没必要的；</p>
 <p>但是，假如这个单例类本身没其他的方法和角色，那么它也不会被JVM加载，除非真需要一个单例实例的时候；</p>
@@ -296,25 +303,24 @@ synchronized解决了原子性问题，但是，当第一次Singleton实例构�
 15
 16
 17
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span> 
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">class</span> Singleton { 
 
-    <span class="keyword">private</span> Singleton () { 
+    <span class="keyword">private</span> <span class="title">Singleton</span> () { 
 
     } 
 
-    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> {</span>
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> SingletonHolder {
 
             <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton (); 
 
     }
 
-    <span class="keyword">public</span> <span class="keyword">static</span> Singleton getInstance() { 
+    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span>() { 
 
          <span class="keyword">return</span> SingletonHolder.instance; 
      } 
  } 
 </pre></td></tr></table></figure>
-
 
 <p>当Singleton被加载时，其内部类SingletonHolder并不会被初始化，解决了过早加载；</p>
 <p>而new是在类加载时完成的，天生就不存在多线程的问题；</p>
@@ -458,7 +464,6 @@ synchronized解决了原子性问题，但是，当第一次Singleton实例构�
 }
 </pre></td></tr></table></figure>
 
-
 <p>动态代理：</p>
 <p>代理模式中描述的代理类，</p>
 <p>如果是源码编写，在编译时就生成了其字节码，那就是静态代理；</p>
@@ -474,9 +479,8 @@ synchronized解决了原子性问题，但是，当第一次Singleton实例构�
 3
 </pre></td><td class="code"><pre>InvocationHandler handler = <span class="keyword">new</span> InvocationHandlerImpl(..); 
 
-<span class="keyword">Interface</span> proxy = (<span class="keyword">Interface</span>)Proxy.newProxyInstance( classLoader, <span class="keyword">new</span> Class[] { <span class="keyword">Interface</span>.<span class="class"><span class="keyword">class</span> },  <span class="title">handler</span> ); 
+<span class="keyword">Interface</span> proxy = (<span class="keyword">Interface</span>)Proxy.newProxyInstance( classLoader, <span class="keyword">new</span> <span class="keyword">Class</span>[] <span class="comment">{ Interface.class }</span>,  handler ); 
 </pre></td></tr></table></figure>
-
 
 <p>实际上，InvocationHandler的内部实现，就是一个静态代理类中的代理类的实现，所以延迟加载、额外处理、访问控制也都是在InvocationHandler中做的；只不过InvocationHandler不用实现委托类的接口；</p>
 <p>衡量一个动态代理实现的性能：</p>
@@ -570,10 +574,10 @@ synchronized解决了原子性问题，但是，当第一次Singleton实例构�
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

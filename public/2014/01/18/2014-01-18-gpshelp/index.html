@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>2 GPS utility methods | Viyu</title>
+  <title>2 GPS utility methods | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="Methond 1 is to check whether the GPS is on:
@@ -17,7 +17,6 @@ public boolean isGPSIsOn() {
 			.getSystemService(Context.LOCATION_SERVICE);
 	return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 }
-
 
 
 Method 2 is to open GPS setting page in Android device:
@@ -44,14 +43,14 @@ public void openGPSSettingPage() {
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="2 GPS utility methods"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -60,8 +59,8 @@ public void openGPSSettingPage() {
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -76,6 +75,18 @@ public void openGPSSettingPage() {
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -97,13 +108,12 @@ public void openGPSSettingPage() {
 3
 4
 5
-</pre></td><td class="code"><pre><span class="keyword">public</span> boolean isGPSIsOn() {
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isGPSIsOn</span>() {
 	LocationManager locationManager = (LocationManager) mContext
-			<span class="variable">.getSystemService</span>(Context<span class="variable">.LOCATION_SERVICE</span>);
-	<span class="keyword">return</span> locationManager<span class="variable">.isProviderEnabled</span>(LocationManager<span class="variable">.GPS_PROVIDER</span>);
+			.getSystemService(Context.LOCATION_SERVICE);
+	<span class="keyword">return</span> locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 }
 </pre></td></tr></table></figure>
-
 
 <p>Method 2 is to open GPS setting page in Android device:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -115,22 +125,25 @@ public void openGPSSettingPage() {
 7
 8
 9
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">void</span> openGPSSettingPage() {
-	Intent intent = new Intent();
-	intent<span class="variable">.setAction</span>(Settings<span class="variable">.ACTION_LOCATION_SOURCE_SETTINGS</span>);
-	intent<span class="variable">.setFlags</span>(Intent<span class="variable">.FLAG_ACTIVITY_NEW_TASK</span>);
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">openGPSSettingPage</span>() {
+	Intent intent = <span class="keyword">new</span> Intent();
+	intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	<span class="keyword">try</span> {
-		context<span class="variable">.startActivity</span>(intent);
+		context.startActivity(intent);
 	} <span class="keyword">catch</span> (ActivityNotFoundException ex) {
 	}
 }
 </pre></td></tr></table></figure>
 
-
  <a id="more"></a>
 
 <p> Codes:</p>
  <script src="https://gist.github.com/Viyu/9406327.js"></script>
+
+
+
+
       
     </div>
     <footer>
@@ -200,10 +213,10 @@ public void openGPSSettingPage() {
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

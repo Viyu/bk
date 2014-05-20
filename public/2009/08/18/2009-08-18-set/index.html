@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>集合 | Viyu</title>
+  <title>集合 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="【ArrayList LinkedList Vector】
 Vector对于ArrayList，因为同步而引起的性能差别并不明显；
 LinkedList是循环双向链表，无论是否为空，总包含一个header表项：
-|——————————————————————&gt;
-header ——&gt; ele1 ——-&gt; ele2 ——&gt;  ele3
-          &lt;-----       &lt;-----         &lt;----        
-&lt;—————————————————————-|
+|——————————————————————&amp;gt;
+header ——&amp;gt; ele1 ——-&amp;gt; ele2 ——&amp;gt;  ele3
+          &amp;lt;-----       &amp;lt;-----         &amp;lt;----        
+&amp;lt;—————————————————————-|
 增加元素到表尾，ArrayList 优于 LinkedList：
 ArrayList的扩容最终调用System.arraycopy()方法；
 数组是连续的，ArrayList只有在扩容时才会低效一些；
@@ -26,14 +26,14 @@ LinkedList在任意位置插入和尾部插入是一样的；
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="集合"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -42,8 +42,8 @@ LinkedList在任意位置插入和尾部插入是一样的；
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -58,6 +58,18 @@ LinkedList在任意位置插入和尾部插入是一样的；
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -78,8 +90,8 @@ LinkedList在任意位置插入和尾部插入是一样的；
 <p>LinkedList是循环双向链表，无论是否为空，总包含一个header表项：</p>
 <p>|——————————————————————&gt;</p>
 <p>header ——&gt; ele1 ——-&gt; ele2 ——&gt;  ele3</p>
-<pre><code>          &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>       &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>         &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>        </code></pre>
-<p>&lt;—————————————————————-|</p>
+<pre><code>          &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>       &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>         &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>        
+</code></pre><p>&lt;—————————————————————-|</p>
 <p>增加元素到表尾，ArrayList 优于 LinkedList：</p>
 <p>ArrayList的扩容最终调用System.arraycopy()方法；</p>
 <p>数组是连续的，ArrayList只有在扩容时才会低效一些；</p>
@@ -131,8 +143,8 @@ LinkedList在任意位置插入和尾部插入是一样的；
 <p>m.put(“3”, “cc”);</p>
 <p>Iterator<String> iter = m.keySet().iterator();</p>
 <p>while(iter.hasNext()) {</p>
-<pre><code>System<span class="preprocessor">.out</span><span class="preprocessor">.println</span>(m<span class="preprocessor">.get</span>(iter<span class="preprocessor">.next</span>()))<span class="comment">;</span></code></pre>
-<p>}</p>
+<pre><code>System<span class="preprocessor">.out</span><span class="preprocessor">.println</span>(m<span class="preprocessor">.get</span>(iter<span class="preprocessor">.next</span>()))<span class="comment">;</span>
+</code></pre><p>}</p>
 <p>【ConcurrentModificationException】 不能在迭代器模式中修改被迭代的集合，包括add(), remove(),和LinkedHashMap.get();</p>
 <hr>
 <p>【TreeMap】 自动排序、按key范围筛选的SortedMap</p>
@@ -145,23 +157,23 @@ LinkedList在任意位置插入和尾部插入是一样的；
 <p>TreeMap基于红黑树实现，查找、插入、删除的复杂度是logN；</p>
 <p>TreeMap不止自动排序这么简单，还能做范围筛选：</p>
 <p>SortedMap<K,V>    subMap(K fromKey, K toKey) </p>
-<pre><code>      返回此映射的部分视图，其键值从 fromKey（包括）到 toKey（不包括）。</code></pre>
-<p>SortedMap<K,V>    headMap(K toKey) </p>
-<pre><code>      返回此映射的部分视图，其键严格小于 toKey。</code></pre>
-<p>SortedMap<K,V>    tailMap(K fromKey) </p>
-<pre><code>      返回映射的部分视图，其键大于或等于 fromKey。</code></pre>
-<hr>
+<pre><code>      返回此映射的部分视图，其键值从 fromKey（包括）到 toKey（不包括）。
+</code></pre><p>SortedMap<K,V>    headMap(K toKey) </p>
+<pre><code>      返回此映射的部分视图，其键严格小于 toKey。
+</code></pre><p>SortedMap<K,V>    tailMap(K fromKey) </p>
+<pre><code>      返回映射的部分视图，其键大于或等于 fromKey。
+</code></pre><hr>
 <p>【WeakHashMap】 缓存是可有也可无的</p>
 <p>类结构：</p>
 <p>Object —-&gt; Reference </p>
-<pre><code>                            <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">FinalReference</span>    <span class="comment">default</span>
-
-                            <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">SoftReference</span>    <span class="comment">public</span>                                
-
-                            <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">WeakReference</span>  <span class="comment">public</span>                                
-
-                            <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">PhantomReference</span>  <span class="comment">public</span>       </code></pre>
-<p>局部变量是分配在栈上的，但局部变量指向的对象是分配在堆上的；</p>
+<pre><code>                            -<span class="ruby">--&gt; <span class="constant">FinalReference</span>    default
+</span>
+                            -<span class="ruby">--&gt; <span class="constant">SoftReference</span>    public                                
+</span>
+                            -<span class="ruby">--&gt; <span class="constant">WeakReference</span>  public                                
+</span>
+                            -<span class="ruby">--&gt; <span class="constant">PhantomReference</span>  public       </span>
+</code></pre><p>局部变量是分配在栈上的，但局部变量指向的对象是分配在堆上的；</p>
 <p>强引用的特点：</p>
 <p>1， 可以直接访问目标对象；</p>
 <p>2， 强引用所指向的对象一直都不会被GC，会导致OOM；(引用可达GC root的情况下)</p>
@@ -189,16 +201,16 @@ LinkedList在任意位置插入和尾部插入是一样的；
 <p>3， 减少方法的调用：直接访问属性，而不是调用方法；</p>
 <p>4， 判断是否继承了【RandomAccess】而区分使用遍历方法：</p>
 <p>if(list instanceOf RandomAccess) </p>
-<pre><code>    o = list<span class="preprocessor">.get</span>(i)<span class="comment">;</span></code></pre>
-<p>else</p>
-<pre><code>    o = iter<span class="preprocessor">.next</span>()<span class="comment">;</span></code></pre>
-<p>ArrayList, Vector都是继承了RandomAccess的；</p>
+<pre><code>    o = <span class="type">list</span>.<span class="keyword">get</span>(i);
+</code></pre><p>else</p>
+<pre><code><span class="attribute">    o </span>=<span class="string"> iter.next();</span>
+</code></pre><p>ArrayList, Vector都是继承了RandomAccess的；</p>
 <p>RandomAccess只是个标志接口，不要让链表实现的集合实现RandomAccess，会误导客户代码；</p>
 <hr>
 <p>【Iterable】<T>: 实现这个接口允许对象成为 “foreach” 语句的目标</p>
 <p>此接口定义的一个方法：</p>
-<pre><code>    Iterator<span class="tag">&lt;<span class="title">T</span>&gt;</span> iterator()</code></pre>
-<p>返回一个在一组 T 类型的元素上进行迭代的迭代器。</p>
+<pre><code>    <span class="keyword">Iterator</span>&lt;T&gt; <span class="keyword">iterator</span>()
+</code></pre><p>返回一个在一组 T 类型的元素上进行迭代的迭代器。</p>
 <p>所以说，几乎所有的集合类都得实现这个接口；</p>
 <p>如果是自定义的Stack、Queue，最好都实现这个接口，因为抛开队列和堆栈本身的应用场景，这些数据结构本质都是集合，很多场景下，只要求按某种方式处理集合中的每个元素，就要求这种迭代式访问了。</p>
 <p>foreach语句被编译成字节码之后，其实就是被转换成了一个迭代器的循环代码；</p>
@@ -273,10 +285,10 @@ LinkedList在任意位置插入和尾部插入是一样的；
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Java VM学习笔记 | Viyu</title>
+  <title>Java VM学习笔记 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="局部变量表（虚拟机栈中的一部分）在编译期完成分配，运行期不会再改变大小；
@@ -24,14 +24,14 @@ Java虚拟机栈、本地方法栈、堆都等，除了程序计数器，其他�
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="Java VM学习笔记"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -40,8 +40,8 @@ Java虚拟机栈、本地方法栈、堆都等，除了程序计数器，其他�
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -56,6 +56,18 @@ Java虚拟机栈、本地方法栈、堆都等，除了程序计数器，其他�
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -126,7 +138,7 @@ Java虚拟机栈、本地方法栈、堆都等，除了程序计数器，其他�
 <p>语言无关性：虚拟机不再关心ByteCode是由何种语言编译而来，只要符合其规范；</p>
 <hr>
 <p>运行的时候NoIntitialization与ConstClass已经没有关系</p>
-<p>编译阶段会将常量“Hello World!&quot;存储到NoIntitialization的常量池中：</p>
+<p>编译阶段会将常量“Hello World!”存储到NoIntitialization的常量池中：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -138,19 +150,18 @@ Java虚拟机栈、本地方法栈、堆都等，除了程序计数器，其他�
 9
 10
 11
-</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="id">ConstClass</span> {</span>
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="title">ConstClass</span> {</span>
 
 <span class="keyword">static</span> {
 
-System<span class="variable">.out</span><span class="variable">.println</span>(<span class="string">"Constant init!"</span>);
+System.out.println(<span class="string">"Constant init!"</span>);
 
 }
 
-<span class="keyword">public</span> <span class="keyword">static</span> final String HELLOWORLD = <span class="string">"Hello World!"</span>;
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String HELLOWORLD = <span class="string">"Hello World!"</span>;
 
 }
 </pre></td></tr></table></figure>
-
 
 <hr>
 <p>Java虚拟机内存模型；</p>
@@ -227,7 +238,6 @@ System<span class="variable">.out</span><span class="variable">.println</span>(<
 }
 </pre></td></tr></table></figure>
 
-
 <p>以上代码，JVM加上-verbose.gc查看，system.gc后并没有回收掉placeholder；</p>
 <p>初步怀疑是因为gc的时候placeholder还在作用域，就是说这个局部变量表中的slot还有用；</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -253,7 +263,6 @@ System<span class="variable">.out</span><span class="variable">.println</span>(<
 
 }
 </pre></td></tr></table></figure>
-
 
 <p>但以上代码仍然没有及时回收placeholder；</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -284,7 +293,6 @@ System<span class="variable">.out</span><span class="variable">.println</span>(<
 }
 </pre></td></tr></table></figure>
 
-
 <p>而这段代码则及时回收了placeholder，why？</p>
 <p>这三段代码依次是：</p>
 <ol>
@@ -303,13 +311,12 @@ System<span class="variable">.out</span><span class="variable">.println</span>(<
 7
 </pre></td><td class="code"><pre>{
 
-int a<span class="comment">;</span>
+<span class="keyword">int</span> a;
 
-System<span class="preprocessor">.out</span><span class="preprocessor">.println</span>(a)<span class="comment">;</span>
+System.<span class="keyword">out</span>.println(a);
 
 }
 </pre></td></tr></table></figure>
-
 
 <hr>
 <p>形象地理解栈帧：每一个方法从调用开始到执行完成的过程，就对应着一个栈帧在虚拟机栈里面从入栈到出栈的过程；</p>
@@ -405,51 +412,51 @@ System<span class="preprocessor">.out</span><span class="preprocessor">.println<
 72
 73
 74
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="id">FinalizeEscapeGC</span> {</span>
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">class</span> FinalizeEscapeGC {
 
-<span class="keyword">public</span> <span class="keyword">static</span> FinalizeEscapeGC SAVE_HOOK = null;
+<span class="keyword">public</span> <span class="keyword">static</span> FinalizeEscapeGC SAVE_HOOK = <span class="keyword">null</span>;
 
-<span class="keyword">public</span> <span class="keyword">void</span> isAlive() {
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">isAlive</span>() {
 
-System<span class="variable">.out</span><span class="variable">.println</span>(<span class="string">"alive..."</span>);
+System.<span class="keyword">out</span>.println(<span class="string">"alive..."</span>);
 
 }
 
 @Override
 
-<span class="keyword">protected</span> <span class="keyword">void</span> finalize() throws Throwable{ 
+<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span>() throws Throwable{ 
 
-<span class="keyword">super</span><span class="variable">.finalize</span>();
+super.finalize();
 
-System<span class="variable">.out</span><span class="variable">.println</span>(<span class="string">"finalize()..."</span>);
+System.<span class="keyword">out</span>.println(<span class="string">"finalize()..."</span>);
 
 SAVE_HOOK = <span class="keyword">this</span>;
 
 }
 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) throws Throwable {
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) throws Throwable {
 
-SAVE_HOOK = new FinalizeEscapeGC();
+SAVE_HOOK = <span class="keyword">new</span> FinalizeEscapeGC();
 
 <span class="comment">//Save object first time</span>
 
 {
 
-SAVE_HOOK = null;
+SAVE_HOOK = <span class="keyword">null</span>;
 
-System<span class="variable">.gc</span>();
+System.gc();
 
 <span class="comment">//the priority of finalize() is low, so pause 0.5 second to wait it</span>
 
-Thread<span class="variable">.sleep</span>(<span class="number">500</span>);
+Thread.sleep(<span class="number">500</span>);
 
-<span class="keyword">if</span>(SAVE_HOOK != null) {
+<span class="keyword">if</span>(SAVE_HOOK != <span class="keyword">null</span>) {
 
-SAVE_HOOK<span class="variable">.isAlive</span>();
+SAVE_HOOK.isAlive();
 
 } <span class="keyword">else</span> {
 
-System<span class="variable">.out</span><span class="variable">.println</span>(<span class="string">"dead..."</span>);
+System.<span class="keyword">out</span>.println(<span class="string">"dead..."</span>);
 
 }
 
@@ -459,28 +466,27 @@ System<span class="variable">.out</span><span class="variable">.println</span>(<
 
 {
 
-SAVE_HOOK = null;
+SAVE_HOOK = <span class="keyword">null</span>;
 
-System<span class="variable">.gc</span>();
+System.gc();
 
 <span class="comment">//the priority of finalize() is low, so pause 0.5 second to wait it</span>
 
-Thread<span class="variable">.sleep</span>(<span class="number">500</span>);
+Thread.sleep(<span class="number">500</span>);
 
-<span class="keyword">if</span>(SAVE_HOOK != null) {
+<span class="keyword">if</span>(SAVE_HOOK != <span class="keyword">null</span>) {
 
-SAVE_HOOK<span class="variable">.isAlive</span>();
+SAVE_HOOK.isAlive();
 
 } <span class="keyword">else</span> {
 
-System<span class="variable">.out</span><span class="variable">.println</span>(<span class="string">"dead..."</span>);
+System.<span class="keyword">out</span>.println(<span class="string">"dead..."</span>);
 
 }
 }
 }
 }
 </pre></td></tr></table></figure>
-
 
 <hr>
 <p>垃圾回收算法</p>
@@ -506,8 +512,8 @@ System<span class="variable">.out</span><span class="variable">.println</span>(<
 
 v.add(o);
 
-o=<span class="literal">null</span>;</code></pre>
-<p>}</p>
+o=<span class="literal">null</span>;
+</code></pre><p>}</p>
 <p>//原文是说，o 被置为null了，但仍然被v引用所以无法释放；</p>
 <p>//但此时v.get(i)还是可用的，从逻辑上讲o还有存在意义，也不该被释放；</p>
 <p>//当v被null之后，o应该会被回收了吧？ </p>
@@ -566,7 +572,6 @@ list.add(<span class="keyword">new</span> <span class="built_in">Object</span>()
 
 }
 </pre></td></tr></table></figure>
-
 
 <hr>
 <p>制造VM Stack SOF和OOM</p>
@@ -637,11 +642,11 @@ list.add(<span class="keyword">new</span> <span class="built_in">Object</span>()
 64
 65
 66
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="id">VMStackOOM</span> {</span>
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">class</span> VMStackOOM {
 
 <span class="keyword">private</span> <span class="keyword">int</span> stackLen = -<span class="number">1</span>;
 
-<span class="keyword">public</span> <span class="keyword">void</span> stackLeak() {
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stackLeak</span>() {
 
 <span class="comment">/*if(stackLen &gt; 1000)
 
@@ -653,19 +658,19 @@ stackLeak();
 
 }
 
-<span class="keyword">private</span> <span class="keyword">void</span> donotStop() {
+<span class="keyword">private</span> <span class="keyword">void</span> <span class="title">donotStop</span>() {
 
 }
 
-<span class="keyword">public</span> <span class="keyword">void</span> stackLeakByThread() {
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stackLeakByThread</span>() {
 
-<span class="keyword">while</span>(<span class="literal">true</span>) {
+<span class="keyword">while</span>(<span class="keyword">true</span>) {
 
-Thread thread = new Thread(new Runnable() {
+Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {
 
 @Override
 
-<span class="keyword">public</span> <span class="keyword">void</span> run() {
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
 
 donotStop();
 
@@ -673,25 +678,25 @@ donotStop();
 
 });
 
-thread<span class="variable">.start</span>();
+thread.start();
 
 }
 
 }
 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) throws Throwable {
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) throws Throwable {
 
 <span class="comment">//one thread</span>
 
-VMStackOOM oom = new VMStackOOM();
+VMStackOOM oom = <span class="keyword">new</span> VMStackOOM();
 
 <span class="keyword">try</span> {
 
-oom<span class="variable">.stackLeak</span>();
+oom.stackLeak();
 
 } <span class="keyword">catch</span>(Throwable e) {
 
-System<span class="variable">.out</span><span class="variable">.println</span>(<span class="string">"stack length is: "</span> + oom<span class="variable">.stackLen</span>);
+System.<span class="keyword">out</span>.println(<span class="string">"stack length is: "</span> + oom.stackLen);
 
 <span class="keyword">throw</span> e;
 
@@ -699,12 +704,11 @@ System<span class="variable">.out</span><span class="variable">.println</span>(<
 
 <span class="comment">//multi thread</span>
 
-oom<span class="variable">.stackLeakByThread</span>();
+oom.stackLeakByThread();
 
 }
 }
 </pre></td></tr></table></figure>
-
 
 <hr>
 <p>制造runtime constant OOM</p>
@@ -724,11 +728,11 @@ oom<span class="variable">.stackLeakByThread</span>();
 13
 14
 15
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuntimeConstantOOM</span> {</span>
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">class</span> RuntimeConstantOOM {
 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
 
-List&lt;<span class="built_in">Object</span>&gt; list = <span class="keyword">new</span> ArrayList&lt;<span class="built_in">Object</span>&gt;();
+List&lt;Object&gt; list = <span class="keyword">new</span> ArrayList&lt;Object&gt;();
 
 <span class="keyword">int</span> i = <span class="number">1000000</span>;
 
@@ -741,7 +745,6 @@ list.add(String.valueOf(i).intern());
 }
 </pre></td></tr></table></figure>
 
-
 <hr>
 <p><b>JVM内存模型</b></p>
 <p>【程序计数器】</p>
@@ -752,10 +755,10 @@ list.add(String.valueOf(i).intern());
 <p>-Xss    栈的大小，决定了可被调用的函数的深度； </p>
 <p>private int count = 0;</p>
 <p>public void recursion() {</p>
-<pre><code>count++;
+<pre><code><span class="comment">count</span><span class="literal">+</span><span class="literal">+</span><span class="comment">;</span>
 
-<span class="function"><span class="title">recursion</span><span class="params">()</span>;</code></pre>
-<p>}</p>
+<span class="comment">recursion();</span>
+</code></pre><p>}</p>
 <p>E:\JVM&gt;java -Xss1m TestStack</p>
 <p>deep of stack is 39828</p>
 <p>E:\JVM&gt;java -Xss2m TestStack</p>
@@ -767,12 +770,12 @@ list.add(String.valueOf(i).intern());
 <p>栈的-Xss一定的情况下，栈帧越大，可被调用的函数深度越小；</p>
 <p>private int count = 0;</p>
 <p>public void recursion(long a, long b, long c) throws InterruptedException {</p>
-<pre><code>long d = <span class="number">0</span>, e = <span class="number">0</span>, f = <span class="number">0</span>;
+<pre><code><span class="keyword">long</span> d = <span class="number">0</span>, e = <span class="number">0</span>, f = <span class="number">0</span>;
 
-count++;
+<span class="keyword">count</span>++;
 
-<span class="function"><span class="title">recursion</span><span class="params">(a, b, c)</span>;</code></pre>
-<p>}</p>
+recursion(a, b, c);
+</code></pre><p>}</p>
 <p>E:\JVM&gt;java -Xss1m TestStack2</p>
 <p>deep of stack is 21942</p>
 <p>E:\JVM&gt;java -Xss2m TestStack2</p>
@@ -788,13 +791,13 @@ count++;
 
 }
 
-<span class="keyword">long</span> b = <span class="number">0</span>;</code></pre>
-<p>}</p>
+<span class="keyword">long</span> b = <span class="number">0</span>;
+</code></pre><p>}</p>
 <p>public void test2() {</p>
-<pre><code><span class="title">long</span> a = <span class="number">0</span>;
+<pre><code><span class="keyword">long</span> a = <span class="number">0</span>;
 
-<span class="title">long</span> b = <span class="number">0</span>;</code></pre>
-<p>}</p>
+<span class="keyword">long</span> b = <span class="number">0</span>;
+</code></pre><p>}</p>
 <p>用jclasslib查看class结构：</p>
 <p>test1():</p>
 <p>Maximum local variables: 3    long占两个slot，b复用a，加上this占1个，一共3个；</p>
@@ -805,15 +808,15 @@ count++;
 <p> -XX:+PrintGCDetails  查看GC详情            -XX:+PrintGC 查看简要GC情况</p>
 <p>test1():</p>
 <p>{</p>
-<pre><code><span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">6</span> * <span class="number">1024</span> * <span class="number">1024</span>];</code></pre>
-<p>}</p>
+<pre><code><span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">6</span> * <span class="number">1024</span> * <span class="number">1024</span>];
+</code></pre><p>}</p>
 <p>System.gc();</p>
 <p>test2():</p>
 <p>{</p>
 <pre><code><span class="keyword">byte</span>[]  b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">6</span> * <span class="number">1024</span> * <span class="number">1024</span>];
 
-b = <span class="keyword">null</span>;</code></pre>
-<p>}</p>
+b = <span class="keyword">null</span>;
+</code></pre><p>}</p>
 <p>System.gc();</p>
 <p>E:\JVM&gt;java -XX:+PrintGCDetails TestLocalGC</p>
 <p>[Full GC (System) [Tenured: 6144K-&gt;6294K(10944K), 0.0040662 secs] 6457K-&gt;6294K(15872K), [Perm : 2131K-&gt;2131K(12288K)], 0.0047115 secs] [Times: user=0.00 sys=0.00, real=0.01 secs]</p>
@@ -821,7 +824,7 @@ b = <span class="keyword">null</span>;</code></pre>
 <p>[Full GC (System) [Tenured: 6144K-&gt;150K(10944K), 0.0040463 secs] 6457K-&gt;150K(15872K), [Perm : 2131K-&gt;2131K(12288K)], 0.0045470 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]</p>
 <p>为啥上面6MB的空间就会被Full GC？是新生代太小么？不是，是调用System.gc()就是进行Full GC；</p>
 <p>【Java堆】</p>
-<p>eden[&#39;i:dən],   s0  survivor space0, from space,   s1   survivor space1, to space</p>
+<p>eden[‘i:dən],   s0  survivor space0, from space,   s1   survivor space1, to space</p>
 <p>tenured [tɛnjɚd]</p>
 <p>s0和s1中的对象达到一定幸存次数，再进入tenured区；</p>
 <p>byte[] b1 = new byte[1024 * 1024 / 2];</p>
@@ -836,7 +839,7 @@ b = <span class="keyword">null</span>;</code></pre>
 <p>E:\JVM&gt;java -XX:+PrintGC -XX:SurvivorRatio=8 -XX:MaxTenuringThreshold=15 -Xms40M -Xmx40M -Xmn20M TestHeapGC</p>
 <p>[GC 9031K-&gt;662K(38912K), 0.0168696 secs]</p>
 <p>[Full GC 8854K-&gt;8854K(38912K), 0.0126251 secs]</p>
-<p>【方法区(Permanent, [&#39;pɜːm(ə)nənt]】</p>
+<p>【方法区(Permanent, [‘pɜːm(ə)nənt]】</p>
 <p>类信息，常量池，域信息，方法信息等；</p>
 <p>1, 对常量池的GC：</p>
 <p>int i = 0;</p>
@@ -921,10 +924,10 @@ b = <span class="keyword">null</span>;</code></pre>
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

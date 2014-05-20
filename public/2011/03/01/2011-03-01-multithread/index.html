@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>并发和多线程 | Viyu</title>
+  <title>并发和多线程 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="某个线程获得对象的锁之后，只能阻止其他线程获得同一个锁，并不能阻止其他线程通过另外的锁来访问对象的变量
@@ -23,14 +23,14 @@ Sleep和Yield都是让cpu不让锁，跟锁没关系；Wait是让锁。
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="并发和多线程"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -39,8 +39,8 @@ Sleep和Yield都是让cpu不让锁，跟锁没关系；Wait是让锁。
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -55,6 +55,18 @@ Sleep和Yield都是让cpu不让锁，跟锁没关系；Wait是让锁。
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -106,14 +118,14 @@ Sleep和Yield都是让cpu不让锁，跟锁没关系；Wait是让锁。
 17
 </pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Widget</span> {</span>
 
-<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> dosth() {
+<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">dosth</span>() {
 }
 
 }
 
 <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Loggingwidget</span> <span class="keyword">extends</span> <span class="title">Widget</span> {</span>
 
-<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> dosth() {
+<span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">dosth</span>() {
 
 System.out.println(<span class="string">"do sth"</span>);
 
@@ -122,7 +134,6 @@ System.out.println(<span class="string">"do sth"</span>);
 }
 }
 </pre></td></tr></table></figure>
-
 
 <hr>
 <p><b>volatile是比synchronized更轻量级的同步</b></p>
@@ -139,12 +150,11 @@ System.out.println(<span class="string">"do sth"</span>);
 6
 </pre></td><td class="code"><pre><span class="keyword">private</span> String[] strs = {<span class="string">"Hello"</span>, <span class="string">"World"</span>};
 
-<span class="keyword">public</span> String getStrs() {
+<span class="keyword">public</span> String <span class="title">getStrs</span>() {
 
-<span class="keyword">return</span> <span class="keyword">this</span><span class="variable">.strs</span>;
+<span class="keyword">return</span> <span class="keyword">this</span>.strs;
 }
 </pre></td></tr></table></figure>
-
 
 <p>strs是被设计为private的，但是通过getStrs方法，外部类可以修改strs的内容，这就是逸出。</p>
 <p>不要再构造过程中使thisy引用逸出:</p>
@@ -158,18 +168,17 @@ System.out.println(<span class="string">"do sth"</span>);
 8
 9
 10
-</pre></td><td class="code"><pre>public class ThisEscape {
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">class</span> ThisEscape {
 
-public ThisEscape(EventSource <span class="keyword">source</span>) {
+<span class="keyword">public</span> <span class="title">ThisEscape</span>(EventSource source) {
 
-    source.registerListener() { new EventListener() {
+    source.registerListener() { <span class="keyword">new</span> EventListener() {
 
-        public void onEvent(Event e) {
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEvent</span>(Event e) {
 
         }
-<span class="keyword">...</span>
+...
 </pre></td></tr></table></figure>
-
 
 <p>上面的内部类把尚未构造完成的this给逸出了；</p>
 <p>在构造方法中使用内部类，会逸出this;</p>
@@ -206,8 +215,8 @@ public ThisEscape(EventSource <span class="keyword">source</span>) {
 <hr>
 <p>Amdahl定律：CPU数量和串行比例对并发优化的影响</p>
 <p>加速比 = 优化前系统耗时 / 优化后系统耗时 </p>
-<pre><code>      <span class="tag">&lt;<span class="title">=</span> <span class="attribute">1</span> / (<span class="attribute">F</span> + (<span class="attribute">1</span> <span class="attribute">-</span> <span class="attribute">F</span>) / <span class="attribute">N</span>)； 其中<span class="attribute">F</span>是系统内必须保持串行化执行的代码比重，<span class="attribute">N</span>是<span class="attribute">CPU</span>核数；</code></pre>
-<p>A: 100s -&gt; B: 100s -&gt; C: 100s -&gt; D: 100s -&gt; E: 100s</p>
+<pre><code>      &lt;= <span class="number">1</span> / (<span class="literal">F</span> + (<span class="number">1</span> - <span class="literal">F</span>) / N)； 其中<span class="literal">F</span>是系统内必须保持串行化执行的代码比重，N是CPU核数；
+</code></pre><p>A: 100s -&gt; B: 100s -&gt; C: 100s -&gt; D: 100s -&gt; E: 100s</p>
 <p>串行执行，上述系统总耗时：500s；</p>
 <p>假如B和E两个步骤是可以并发的，这里是说，B和E分别可以被多个CPU执行，而不是说B和E两个并发执行；</p>
 <p>那么，假如有1个CPU，耗时仍然是500s;</p>
@@ -445,55 +454,55 @@ public ThisEscape(EventSource <span class="keyword">source</span>) {
 220
 221
 222
-</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="id">ReusableThread</span> <span class="id">extends</span> <span class="id">Thread</span> {</span>
+</pre></td><td class="code"><pre>class ReusableThread extends Thread {
 
-    <span class="keyword">private</span> ThreadPool pool = null;
+    <span class="keyword">private</span> ThreadPool pool = <span class="keyword">null</span>;
 
-    <span class="keyword">private</span> Runnable target = null;
+    <span class="keyword">private</span> Runnable target = <span class="keyword">null</span>;
 
-    <span class="keyword">private</span> boolean isShutdown = <span class="literal">false</span>;
+    <span class="keyword">private</span> <span class="keyword">boolean</span> isShutdown = <span class="keyword">false</span>;
 
-    <span class="keyword">private</span> boolean isIdle = <span class="literal">false</span>;
+    <span class="keyword">private</span> <span class="keyword">boolean</span> isIdle = <span class="keyword">false</span>;
 
-    <span class="keyword">public</span> ReusableThread(Runnable target, String name, ThreadPool pool) {
+    <span class="keyword">public</span> <span class="title">ReusableThread</span>(Runnable target, String name, ThreadPool pool) {
 
         <span class="keyword">super</span>(name);
 
-        <span class="keyword">this</span><span class="variable">.pool</span> = pool;
+        <span class="keyword">this</span>.pool = pool;
 
-        <span class="keyword">this</span><span class="variable">.target</span> = target;
+        <span class="keyword">this</span>.target = target;
 
     }
 
-    <span class="keyword">public</span> Runnable getTarget() {
+    <span class="keyword">public</span> Runnable <span class="title">getTarget</span>() {
 
         <span class="keyword">return</span> target;
 
     }
 
-    <span class="keyword">public</span> boolean isIdle() {
+    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isIdle</span>() {
 
         <span class="keyword">return</span> isIdle;
 
     }
 
-    <span class="keyword">public</span> <span class="keyword">void</span> run() {
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
 
         <span class="keyword">while</span>(!isShutdown) {
 
-            isIdle = <span class="literal">false</span>;
+            isIdle = <span class="keyword">false</span>;
 
-            <span class="keyword">if</span>(target != null) {
+            <span class="keyword">if</span>(target != <span class="keyword">null</span>) {
 
-                target<span class="variable">.run</span>();
+                target.run();
 
             }
 
-            isIdle = <span class="literal">true</span>;
+            isIdle = <span class="keyword">true</span>;
 
             <span class="keyword">try</span> {
 
-                pool<span class="variable">.repool</span>(<span class="keyword">this</span>);
+                pool.repool(<span class="keyword">this</span>);
 
                 <span class="keyword">synchronized</span>(<span class="keyword">this</span>) {
 
@@ -505,21 +514,21 @@ public ThisEscape(EventSource <span class="keyword">source</span>) {
 
         }
 
-        isIdle = <span class="literal">false</span>;
+        isIdle = <span class="keyword">false</span>;
 
     }
 
-    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> setTarget(Runnable target) {
+    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">setTarget</span>(Runnable target) {
 
-        <span class="keyword">this</span><span class="variable">.target</span> = target;
+        <span class="keyword">this</span>.target = target;
 
         notifyAll();
 
     }
 
-    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> shutdown() {
+    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">shutdown</span>() {
 
-        isShutdown = <span class="literal">true</span>;
+        isShutdown = <span class="keyword">true</span>;
 
         notifyAll();
 
@@ -527,103 +536,103 @@ public ThisEscape(EventSource <span class="keyword">source</span>) {
 
 }
 
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="id">ThreadPool</span> {</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPool</span> {</span>
 
     <span class="keyword">private</span> List&lt;ReusableThread&gt; threads;
 
     <span class="keyword">private</span> <span class="keyword">int</span> count;
 
-    <span class="keyword">private</span> boolean isShutdown = <span class="literal">false</span>;
+    <span class="keyword">private</span> <span class="keyword">boolean</span> isShutdown = <span class="keyword">false</span>;
 
-    <span class="keyword">private</span> ThreadPool() {
+    <span class="keyword">private</span> <span class="title">ThreadPool</span>() {
 
-        <span class="keyword">this</span><span class="variable">.threads</span> = new Vector&lt;ReusableThread&gt;();
+        <span class="keyword">this</span>.threads = <span class="keyword">new</span> Vector&lt;ReusableThread&gt;();
 
         count = <span class="number">0</span>;
 
     }
 
-    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="id">SingletonHolder</span> {</span>
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> {</span>
 
-        <span class="keyword">private</span> <span class="keyword">static</span> ThreadPool instance = new ThreadPool();
-
-    }
-
-    <span class="keyword">public</span> <span class="keyword">static</span> ThreadPool getInstance() {
-
-        <span class="keyword">return</span> SingletonHolder<span class="variable">.instance</span>;
+        <span class="keyword">private</span> <span class="keyword">static</span> ThreadPool instance = <span class="keyword">new</span> ThreadPool();
 
     }
 
-    <span class="keyword">public</span> <span class="keyword">int</span> getCount() {
+    <span class="keyword">public</span> <span class="keyword">static</span> ThreadPool <span class="title">getInstance</span>() {
+
+        <span class="keyword">return</span> SingletonHolder.instance;
+
+    }
+
+    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span>() {
 
         <span class="keyword">return</span> count;
 
     }
 
-    <span class="keyword">protected</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> repool(ReusableThread thread) {
+    <span class="keyword">protected</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">repool</span>(ReusableThread thread) {
 
         <span class="keyword">if</span>(!isShutdown) {
 
-            threads<span class="variable">.add</span>(thread);
+            threads.add(thread);
 
         } <span class="keyword">else</span> {
 
-            thread<span class="variable">.shutdown</span>();
+            thread.shutdown();
 
         }
 
     }
 
-    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> shutdown() {
+    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">shutdown</span>() {
 
-        isShutdown = <span class="literal">true</span>;
+        isShutdown = <span class="keyword">true</span>;
 
         <span class="keyword">for</span>(ReusableThread t : threads) {
 
-            t<span class="variable">.shutdown</span>();
+            t.shutdown();
 
         }
 
     }
 
-    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> start(Runnable target) {
+    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">start</span>(Runnable target) {
 
-        ReusableThread thread = null;
+        ReusableThread thread = <span class="keyword">null</span>;
 
-        <span class="keyword">if</span>(threads<span class="variable">.size</span>() &gt; <span class="number">0</span>) {
+        <span class="keyword">if</span>(threads.size() &gt; <span class="number">0</span>) {
 
-            thread = threads<span class="variable">.remove</span>(threads<span class="variable">.size</span>() - <span class="number">1</span>);
+            thread = threads.remove(threads.size() - <span class="number">1</span>);
 
-            thread<span class="variable">.setTarget</span>(target);
+            thread.setTarget(target);
 
         } <span class="keyword">else</span> {
 
         count++;
 
-        thread = new ReusableThread(target, <span class="string">"Reusable Thread # "</span> + count, <span class="keyword">this</span>);
+        thread = <span class="keyword">new</span> ReusableThread(target, <span class="string">"Reusable Thread # "</span> + count, <span class="keyword">this</span>);
 
-        thread<span class="variable">.start</span>();
+        thread.start();
 
     }
 
 }
 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
 
     {
 
-        <span class="keyword">long</span> old = System<span class="variable">.currentTimeMillis</span>();
+        <span class="keyword">long</span> old = System.currentTimeMillis();
 
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i ++) {
 
-            ThreadPool<span class="variable">.getInstance</span>()<span class="variable">.start</span>(new Runnable() {
+            ThreadPool.getInstance().start(<span class="keyword">new</span> Runnable() {
 
-                <span class="keyword">public</span> <span class="keyword">void</span> run() {
+                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
 
                     <span class="keyword">try</span> {    
 
-                        Thread<span class="variable">.sleep</span>(<span class="number">1000</span>);
+                        Thread.sleep(<span class="number">1000</span>);
 
                     } <span class="keyword">catch</span> (InterruptedException e) {}
 
@@ -633,42 +642,41 @@ public ThisEscape(EventSource <span class="keyword">source</span>) {
 
         }
 
-        System<span class="variable">.out</span><span class="variable">.println</span>(System<span class="variable">.currentTimeMillis</span>() - old);
+        System.out.println(System.currentTimeMillis() - old);
 
-        ThreadPool<span class="variable">.getInstance</span>()<span class="variable">.shutdown</span>();
+        ThreadPool.getInstance().shutdown();
 
     }
 
     {
 
-        <span class="keyword">long</span> old = System<span class="variable">.currentTimeMillis</span>();
+        <span class="keyword">long</span> old = System.currentTimeMillis();
 
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i ++) {
 
-            (new Thread(new Runnable() {
+            (<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {
 
-                <span class="keyword">public</span> <span class="keyword">void</span> run() {
+                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>() {
 
                     <span class="keyword">try</span> {
 
-                        Thread<span class="variable">.sleep</span>(<span class="number">1000</span>);
+                        Thread.sleep(<span class="number">1000</span>);
 
                     } <span class="keyword">catch</span> (InterruptedException e) {}
 
                 }
 
-            }))<span class="variable">.start</span>();
+            })).start();
 
         }
 
-        System<span class="variable">.out</span><span class="variable">.println</span>(System<span class="variable">.currentTimeMillis</span>() - old);
+        System.out.println(System.currentTimeMillis() - old);
 
         }
 
     }
 }
 </pre></td></tr></table></figure>
-
 
 <p>JDK内置了线程池，java.util.concurrent.ExecutorService；</p>
 <hr>
@@ -773,7 +781,7 @@ public ThisEscape(EventSource <span class="keyword">source</span>) {
 
     }
 
-<span class="class"><span class="keyword">class</span> <span class="title">ProducerThread</span> <span class="inheritance"><span class="keyword">implements</span> </span><span class="title">Runnable</span> {</span>
+<span class="class"><span class="keyword">class</span> <span class="title">ProducerThread</span> <span class="inheritance"><span class="keyword">implements</span></span> <span class="title">Runnable</span> {</span>
 
     <span class="keyword">public</span> <span class="keyword">void</span> run() {
 
@@ -785,7 +793,7 @@ public ThisEscape(EventSource <span class="keyword">source</span>) {
 
 }
 
-<span class="class"><span class="keyword">class</span> <span class="title">ConsumerThread</span> <span class="inheritance"><span class="keyword">implements</span> </span><span class="title">Runnable</span> {</span>
+<span class="class"><span class="keyword">class</span> <span class="title">ConsumerThread</span> <span class="inheritance"><span class="keyword">implements</span></span> <span class="title">Runnable</span> {</span>
 
     <span class="keyword">public</span> <span class="keyword">void</span> run() {
 
@@ -805,7 +813,6 @@ public ThisEscape(EventSource <span class="keyword">source</span>) {
 
 ...
 </pre></td></tr></table></figure>
-
 
 <hr>
 
@@ -878,10 +885,10 @@ public ThisEscape(EventSource <span class="keyword">source</span>) {
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

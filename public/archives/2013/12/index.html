@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2013/12 | Viyu</title>
+  <title>Archives: 2013/12 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -26,8 +26,8 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -47,6 +47,18 @@
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -69,10 +81,9 @@
 <p><b>1，开始拖拽：</b><br>开始拖拽要解决三个问题：<br>1， 什么时候开始？如何开始？<br>一般是在用户长按一个组件的时候，我们开始拖拽，所以给要被拖拽的View定义它的OnLongClickListener，在其中调用View.startDrag()方法就可以了。<br>startDrag()方法的定义：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre>boolean android<span class="variable">.view</span><span class="variable">.View</span><span class="variable">.startDrag</span>(
-		ClipData data, DragShadowBuilder shadowBuilder, Object myLocalState, <span class="keyword">int</span> flags)
+</pre></td><td class="code"><pre>boolean android<span class="preprocessor">.view</span><span class="preprocessor">.View</span><span class="preprocessor">.startDrag</span>(
+		ClipData data, DragShadowBuilder shadowBuilder, Object myLocalState, int flags)
 </pre></td></tr></table></figure>
-
 
 <p>第一个参数ClipData data是拖拽的对象，下面第2条来讲解；第二个参数DragShadowBuilder shadowBuilder是拖拽时的样子，下面的第3条来讲解。</p>
 
@@ -95,6 +106,18 @@
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -129,10 +152,9 @@ notification<span class="preprocessor">.ledOnMS</span> = <span class="number">50
 notificationManager<span class="preprocessor">.notify</span>(<span class="number">0</span>, notification)<span class="comment">;  </span>
 </pre></td></tr></table></figure>
 
-
 <p>ledARGB: The color of the led. The hardware will do its best approximation.</p>
-<p>ledOffMS: The number of milliseconds for the LED to be off while it&#39;s flashing. The hardware will do its best approximation.</p>
-<p>ledOnMS: The number of milliseconds for the LED to be on while it&#39;s flashing. The hardware will do its best approximation.</p>
+<p>ledOffMS: The number of milliseconds for the LED to be off while it’s flashing. The hardware will do its best approximation.</p>
+<p>ledOnMS: The number of milliseconds for the LED to be on while it’s flashing. The hardware will do its best approximation.</p>
 
       
     </div>
@@ -153,6 +175,18 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -182,10 +216,9 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
       <span class="attribute">android:tileMode</span>=<span class="value">”repeat”</span> /&gt;</span>  
 </pre></td></tr></table></figure>
 
-
 <p>Second, use it as the background,</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="symbol">android:</span>background=”<span class="variable">@drawable</span>/bg_texture_image”  
+</pre></td><td class="code"><pre><span class="attribute">android:background</span>=<span class="string">”@drawable/bg_texture_image”  </span>
 </pre></td></tr></table></figure>
 
       
@@ -222,10 +255,10 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

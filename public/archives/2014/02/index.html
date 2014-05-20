@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014/2 | Viyu</title>
+  <title>Archives: 2014/2 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -26,8 +26,8 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -47,6 +47,18 @@
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -69,14 +81,10 @@
 <p>此方案仍然不行，ListView的scrollTo没效果。</p>
 <p>终极方案：<br>退出页面的时候：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="title">Parcelable</span> listState = listView.<span class="built_in">on</span>SaveInstanceState();
-</pre></td></tr></table></figure>
-
-<p>记住listState对象；<br>再次进入页面的时候：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="attribute">Parcelable listState </span>=<span class="string"> listView.onSaveInstanceState();</span>
+</pre></td></tr></table></figure><br>记住listState对象；<br>再次进入页面的时候：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>listView<span class="preprocessor">.onRestoreInstanceState</span>(listState)<span class="comment">;</span>
 </pre></td></tr></table></figure>
-
 
 <p>记忆的位置分毫不差。</p>
 <p>要注意：listView的状态记忆后，还要保证其数据在两次进入页面时的一致性；<br>另：ListView的header会影响其状态对象，不过这个是小问题。</p>
@@ -115,10 +123,10 @@
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

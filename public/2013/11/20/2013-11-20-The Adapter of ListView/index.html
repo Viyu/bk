@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>The Adapter of ListView: Just adapt data to view, don’t do anything else | Viyu</title>
+  <title>The Adapter of ListView: Just adapt data to view, don’t do anything else | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="The design of SimpleAdapter is not good in my opinion.
@@ -12,8 +12,7 @@ The solution is a ItemViewHolder class, which inflate and hold the layout view a
 See below code snippets.
 In Adapter, passed in a List as data list.
 1
-List&lt;Data&gt; dataList;  
-
+List&amp;lt;Data&amp;gt; dataList;  
 
 
 and override getView() like this:">
@@ -22,14 +21,14 @@ and override getView() like this:">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="The Adapter of ListView: Just adapt data to view, don’t do anything else"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -38,8 +37,8 @@ and override getView() like this:">
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -54,6 +53,18 @@ and override getView() like this:">
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -75,9 +86,8 @@ and override getView() like this:">
 <p>See below code snippets.</p>
 <p>In Adapter, passed in a List as data list.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>List<span class="tag">&lt;<span class="title">Data</span>&gt;</span> dataList;  
+</pre></td><td class="code"><pre><span class="built_in">List</span><span class="subst">&lt;</span><span class="built_in">Data</span><span class="subst">&gt;</span> dataList;  
 </pre></td></tr></table></figure>
-
 
 <p>and override getView() like this:</p>
 <a id="more"></a>
@@ -99,21 +109,20 @@ and override getView() like this:">
 15
 </pre></td><td class="code"><pre>@Override  
 public View getView(int position, View convertView, ViewGroup parent) {  
-    ItemViewHolder item = null<span class="comment">;  </span>
+    ItemViewHolder <span class="keyword">item</span> = <span class="constant">null</span>;  
   
-    if(convertView == null) {  
-        item = new ItemViewHolder(context)<span class="comment">;  </span>
-        convertView = item<span class="preprocessor">.getLayoutView</span>()<span class="comment">;  </span>
-    } else {  
-        item = (ItemViewHolder)convertView<span class="preprocessor">.getTag</span>()<span class="comment">;  </span>
+    <span class="keyword">if</span>(convertView == <span class="constant">null</span>) {  
+        <span class="keyword">item</span> = <span class="built_in">new</span> ItemViewHolder(context);  
+        convertView = <span class="keyword">item</span>.getLayoutView();  
+    } <span class="keyword">else</span> {  
+        <span class="keyword">item</span> = (ItemViewHolder)convertView.getTag();  
     }  
   
-    item<span class="preprocessor">.setItemData</span>(dataList<span class="preprocessor">.get</span>(position))<span class="comment">;  </span>
+    <span class="keyword">item</span>.setItemData(dataList.<span class="built_in">get</span>(position));  
   
-    return convertView<span class="comment">;  </span>
+    <span class="constant">return</span> convertView;  
 }  
 </pre></td></tr></table></figure>
-
 
 <p>ItemViewHolder is the views holder of the convertView.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -151,39 +160,39 @@ public View getView(int position, View convertView, ViewGroup parent) {
 33
 34
 35
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="id">ItemViewHolder</span> {</span>  
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">class</span> ItemViewHolder {  
   
     <span class="comment">//The layout View of the item of the ListView.  </span>
-    <span class="keyword">private</span> View layoutView = null;  
+    <span class="keyword">private</span> View layoutView = <span class="keyword">null</span>;  
     <span class="comment">//The member Views to display data.  </span>
-    <span class="keyword">private</span> TextView textView = null;  
-    <span class="keyword">private</span> ImageView imageView = null;  
+    <span class="keyword">private</span> TextView textView = <span class="keyword">null</span>;  
+    <span class="keyword">private</span> ImageView imageView = <span class="keyword">null</span>;  
     … …  
   
-    <span class="keyword">public</span> ItemViewHolder (Context context) {  
-        <span class="keyword">super</span>(context);  
+    <span class="keyword">public</span> <span class="title">ItemViewHolder</span> (Context context) {  
+        super(context);  
   
          initUI();  
     }  
   
-    <span class="keyword">public</span> View getLayoutView() {  
+    <span class="keyword">public</span> View <span class="title">getLayoutView</span>() {  
         <span class="keyword">return</span> layoutView;  
     }  
   
-    <span class="keyword">public</span> <span class="keyword">void</span> setItemData(Data data) {  
-        textView<span class="variable">.setText</span>(data<span class="variable">.getText</span>());  
-        imageView<span class="variable">.setImage</span>(data<span class="variable">.getImage</span>());  
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setItemData</span>(Data data) {  
+        textView.setText(data.getText());  
+        imageView.setImage(data.getImage());  
         … …  
     }  
   
-    <span class="keyword">private</span> <span class="keyword">void</span> initUI() {  
-         LayoutInflater inflater = LayoutInflater<span class="variable">.from</span>(mContext);  
-         layoutView = inflater<span class="variable">.inflate</span>(R<span class="variable">.layout</span><span class="variable">.item_view_layout</span>, null);  
+    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initUI</span>() {  
+         LayoutInflater inflater = LayoutInflater.<span class="keyword">from</span>(mContext);  
+         layoutView = inflater.inflate(R.layout.item_view_layout, <span class="keyword">null</span>);  
         <span class="comment">//  </span>
-        textView = (TextView) layoutView<span class="variable">.findViewById</span>(R<span class="variable">.id</span><span class="variable">.textview</span>);  
-        imageView = (ImageView)layoutView<span class="variable">.findViewById</span>(R<span class="variable">.id</span><span class="variable">.imageview</span>);  
+        textView = (TextView) layoutView.findViewById(R.id.textview);  
+        imageView = (ImageView)layoutView.findViewById(R.id.imageview);  
        <span class="comment">//This is the most important code.  </span>
-       layoutView<span class="variable">.setTag</span>(<span class="keyword">this</span>);  
+       layoutView.setTag(<span class="keyword">this</span>);  
     }  
 }  
 </pre></td></tr></table></figure>
@@ -257,10 +266,10 @@ public View getView(int position, View convertView, ViewGroup parent) {
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

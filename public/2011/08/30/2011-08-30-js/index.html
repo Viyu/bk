@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>js笔记 | Viyu</title>
+  <title>js笔记 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="定义描述类名或者方法名的注解：ClassOrMethodFullName.java
@@ -16,12 +16,10 @@ function alertdemo() {
 };  
 
 
-
 function + 方法名 + 括号 + 代码块
 【调用这个js方法得加括号】
 1
-&lt;button type=&quot;button&quot; onclick=&quot;alertdemo()&quot;&gt;点击这里&lt;/button&gt;
-
+&amp;lt;button type=&quot;button&quot; onclick=&quot;alertdemo()&quot;&amp;gt;点击这里&amp;lt;/button&amp;gt;
 
 
 【带参数的函数，参数是不需要声明类型部分的】
@@ -37,7 +35,6 @@ alert(msg);
 }
 
 
-
 【带返回值的函数，很好理解】
 1
 2
@@ -49,7 +46,6 @@ function getAResult() {
 return &quot;返回的结果&quot;;
 
 }
-
 
 
 返回值是可选的，means，你想在哪个分支返回就返回，在另一个分支不返回就不返回，返回啥都没人管，因为function根本不会申明返回类型，真是随便的语言啊。
@@ -69,14 +65,14 @@ x.style.color=&quot;#ff0000&quot;;    //改变样式">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="js笔记"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -85,8 +81,8 @@ x.style.color=&quot;#ff0000&quot;;    //改变样式">
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -101,6 +97,18 @@ x.style.color=&quot;#ff0000&quot;;    //改变样式">
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -126,13 +134,11 @@ x.style.color=&quot;#ff0000&quot;;    //改变样式">
 };  
 </pre></td></tr></table></figure>
 
-
 <p>function + 方法名 + 括号 + 代码块</p>
 <p>【调用这个js方法得加括号】</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">button</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">onclick</span>=<span class="value">"alertdemo()"</span>&gt;</span>点击这里<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
 </pre></td></tr></table></figure>
-
 
 <p>【带参数的函数，参数是不需要声明类型部分的】</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -147,7 +153,6 @@ alert(msg);
 }
 </pre></td></tr></table></figure>
 
-
 <p>【带返回值的函数，很好理解】</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -161,7 +166,6 @@ alert(msg);
 }
 </pre></td></tr></table></figure>
 
-
 <p>返回值是可选的，means，你想在哪个分支返回就返回，在另一个分支不返回就不返回，返回啥都没人管，因为function根本不会申明返回类型，真是随便的语言啊。</p>
 <p>【修改html元素内容】</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -169,13 +173,12 @@ alert(msg);
 3
 4
 5
-</pre></td><td class="code"><pre>x=document<span class="variable">.getElementById</span>(<span class="string">"demo"</span>) <span class="comment">//查找元素</span>
+</pre></td><td class="code"><pre>x=document.getElementById(<span class="string">"demo"</span>) <span class="comment">//查找元素</span>
 
-x<span class="variable">.innerHTML</span>=<span class="string">"Hello JavaScript"</span>; <span class="comment">//改变内容</span>
+x.innerHTML=<span class="string">"Hello JavaScript"</span>; <span class="comment">//改变内容</span>
 
-x<span class="variable">.style</span><span class="variable">.color</span>=<span class="string">"#ff0000"</span>;    <span class="comment">//改变样式</span>
+x.style.<span class="keyword">color</span>=<span class="string">"#ff0000"</span>;    <span class="comment">//改变样式</span>
 </pre></td></tr></table></figure>
-
 
 <a id="more"></a>
 
@@ -185,7 +188,6 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span> <span class="attribute">src</span>=<span class="value">"../js/scho/actions/demo.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
 </pre></td></tr></table></figure>
-
 
 <p>demo.js的编码需要是utf-8的；</p>
 <p>【JavaScript 是脚本语言。浏览器会在读取代码时，逐行地执行脚本代码。而对于传统编程来说，会在执行前对所有代码进行编译。】</p>
@@ -199,17 +201,16 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
 7
 8
 9
-</pre></td><td class="code"><pre><span class="title">var</span> person={ 
+</pre></td><td class="code"><pre><span class="keyword">var</span> person={ 
 
-<span class="title">firstname</span> : <span class="string">"Bill"</span>, 
+firstname : <span class="string">"Bill"</span>, 
 
-<span class="title">lastname</span>  : <span class="string">"Gates"</span>, 
+lastname  : <span class="string">"Gates"</span>, 
 
-<span class="title">id</span>        :  <span class="number">5566</span>
+id        :  <span class="number">5566</span>
 
 };
 </pre></td></tr></table></figure>
-
 
 <p>对象属性有两种寻址方式：</p>
 <p>实例name=person.lastname; </p>
@@ -234,7 +235,6 @@ person<span class="preprocessor">.age</span>=<span class="number">56</span><span
 
 person<span class="preprocessor">.eyecolor</span>=<span class="string">"blue"</span><span class="comment">;</span>
 </pre></td></tr></table></figure>
-
 
 <p>【全局变量】</p>
 <p>在函数外声明的变量是全局变量，网页上的所有脚本和函数都能访问它。</p>
@@ -263,7 +263,7 @@ person<span class="preprocessor">.eyecolor</span>=<span class="string">"blue"</s
 19
 </pre></td><td class="code"><pre><span class="keyword">try</span>  { 
 
-       var x=document<span class="variable">.getElementById</span>(<span class="string">"demo"</span>)<span class="variable">.value</span>;
+       <span class="reserved">var</span> x=<span class="built_in">document</span>.getElementById(<span class="string">"demo"</span>).value;
 
        <span class="keyword">if</span>(x==<span class="string">""</span>)    <span class="keyword">throw</span> <span class="string">"empty"</span>; 
 
@@ -275,13 +275,12 @@ person<span class="preprocessor">.eyecolor</span>=<span class="string">"blue"</s
 
   }<span class="keyword">catch</span>(err)  { 
 
-       var y=document<span class="variable">.getElementById</span>(<span class="string">"mess"</span>); 
+       <span class="reserved">var</span> y=<span class="built_in">document</span>.getElementById(<span class="string">"mess"</span>); 
 
-       y<span class="variable">.innerHTML</span>=<span class="string">"Error: "</span> + err + <span class="string">"."</span>;
+       y.innerHTML=<span class="string">"Error: "</span> + err + <span class="string">"."</span>;
 
   }
 </pre></td></tr></table></figure>
-
 
 <p>【Javascript为什么能修改html？】</p>
 <p>当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）</p>
@@ -301,21 +300,19 @@ person<span class="preprocessor">.eyecolor</span>=<span class="string">"blue"</s
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">img</span> <span class="attribute">id</span>=<span class="value">"image"</span> <span class="attribute">src</span>=<span class="value">"smiley.gif"</span>&gt;</span> 
+</pre></td><td class="code"><pre>&lt;img id=<span class="string">"image"</span> src=<span class="string">"smiley.gif"</span>&gt; 
 
-document.getElementById("image").src="landscape.jpg";
+document<span class="preprocessor">.getElementById</span>(<span class="string">"image"</span>)<span class="preprocessor">.src</span>=<span class="string">"landscape.jpg"</span><span class="comment">;</span>
 </pre></td></tr></table></figure>
-
 
 <p>【修改html元素的样式就是修改元素的style属性】</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre>document<span class="variable">.getElementById</span>(<span class="keyword">id</span>)<span class="variable">.style</span><span class="variable">.property</span>=new style
+</pre></td><td class="code"><pre>document<span class="preprocessor">.getElementById</span>(id)<span class="preprocessor">.style</span><span class="preprocessor">.property</span>=new style
 
-document<span class="variable">.getElementById</span>(<span class="string">"p2"</span>)<span class="variable">.style</span><span class="variable">.color</span>=<span class="string">"blue"</span>;
+document<span class="preprocessor">.getElementById</span>(<span class="string">"p2"</span>)<span class="preprocessor">.style</span><span class="preprocessor">.color</span>=<span class="string">"blue"</span><span class="comment">;</span>
 </pre></td></tr></table></figure>
-
 
 <p>【HTML DOM 使 JavaScript 有能力对 HTML 事件做出反应，其实就是js修改html元素的事件属性】</p>
 <p>HTML 事件的例子：</p>
@@ -330,7 +327,6 @@ document<span class="variable">.getElementById</span>(<span class="string">"p2"<
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">onclick</span>=<span class="value">"this.innerHTML='谢谢!'"</span>&gt;</span>请点击该文本<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
 </pre></td></tr></table></figure>
 
-
 <p>【js中的this】</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -344,13 +340,11 @@ document<span class="variable">.getElementById</span>(<span class="string">"p2"<
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">onclick</span>=<span class="value">"changetext(this)"</span>&gt;</span>请点击该文本<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
 </pre></td></tr></table></figure>
 
-
 <p>this就是元素自己本身，就是Element；</p>
 <p>或者</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">h1</span> <span class="attribute">onclick</span>=<span class="value">"this.innerHTML='谢谢'"</span>&gt;</span>请点击该文本<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
 </pre></td></tr></table></figure>
-
 
 <p>简直是太随便了。</p>
 <p>【onclick就是元素的一个属性，所以可以后续通过js给赋值】</p>
@@ -365,7 +359,7 @@ document<span class="variable">.getElementById</span>(<span class="string">"p2"<
 9
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"> 
 
-document.getElementById(<span class="string">"myBtn"</span>).onclick=<span class="keyword">function</span>(){
+document.getElementById(<span class="string">"myBtn"</span>).onclick=<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
 
   displayDate()
 
@@ -373,7 +367,6 @@ document.getElementById(<span class="string">"myBtn"</span>).onclick=<span class
 
 </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
 </pre></td></tr></table></figure>
-
 
 <p>【js不光能修改html已有的元素的属性和各种值，还能添加删除html元素】</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -419,7 +412,6 @@ element.appendChild(para);
 
 </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
 </pre></td></tr></table></figure>
-
 
 <p>【javascript看什么都是对象】</p>
 <p>【BOM，DOM】</p>
@@ -499,10 +491,10 @@ element.appendChild(para);
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

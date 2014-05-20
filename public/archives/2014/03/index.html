@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014/3 | Viyu</title>
+  <title>Archives: 2014/3 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -26,8 +26,8 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -48,6 +48,18 @@
   
     <article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -65,16 +77,11 @@
         <p>PopupWindow可以用来实现弹出任意位置的菜单，比Context Menu和Option Menu灵活性更高。<br> Android中弹出一个PopupWindow基本有两个方法：</p>
  <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre>//Display <span class="keyword">the</span> content view <span class="keyword">in</span> a popup window anchored <span class="keyword">to</span> <span class="keyword">the</span> bottom-left corner <span class="keyword">of</span> <span class="keyword">the</span> anchor view.
-public void showAsDropDown(View anchor, int xoff, int yoff);
+</pre></td><td class="code"><pre><span class="comment">//Display the content view in a popup window anchored to the bottom-left corner of the anchor view.</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showAsDropDown</span>(View anchor, <span class="keyword">int</span> xoff, <span class="keyword">int</span> yoff);
+</pre></td></tr></table></figure><br>这个方法是弹出的窗口在anchor view的bottom-left,一般Android应用的菜单都在右上，实现思路就是以app中右上的view作为anchor，然后用屏幕宽度减去popup window的宽度作为xoff.<br><br> 还有一个方法：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showAtLocation</span>(IBinder token, <span class="keyword">int</span> gravity, <span class="keyword">int</span> x, <span class="keyword">int</span> y);
 </pre></td></tr></table></figure>
-
-<p>这个方法是弹出的窗口在anchor view的bottom-left,一般Android应用的菜单都在右上，实现思路就是以app中右上的view作为anchor，然后用屏幕宽度减去popup window的宽度作为xoff.</p>
-<p> 还有一个方法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre> <span class="keyword">public</span> <span class="keyword">void</span> showAtLocation(IBinder token, <span class="keyword">int</span> gravity, <span class="keyword">int</span> x, <span class="keyword">int</span> y);
-</pre></td></tr></table></figure>
-
 
 <p>再来说如何实现一个PopupWindow，步骤基本如下，下面代码时extends了PopupWindow的子类的实现：</p>
 
@@ -97,6 +104,18 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -165,10 +184,10 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

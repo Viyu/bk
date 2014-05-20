@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Java | Viyu</title>
+  <title>Java | Mosthink</title>
   <meta name="author" content="Viyu">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -26,8 +26,8 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -47,6 +47,18 @@
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -85,26 +97,25 @@
 18
 19
 </pre></td><td class="code"><pre>{      
-  Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span> stack = new Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span>();
+  <span class="built_in">Stack</span><span class="subst">&lt;</span>One<span class="subst">&gt;</span> <span class="built_in">stack</span> <span class="subst">=</span> <span class="literal">new</span> <span class="built_in">Stack</span><span class="subst">&lt;</span>One<span class="subst">&gt;</span>();
 
-  stack.pushSingle(new One());
+  <span class="built_in">stack</span><span class="built_in">.</span>pushSingle(<span class="literal">new</span> One());
 
-  stack.pushSingle(new Two());
+  <span class="built_in">stack</span><span class="built_in">.</span>pushSingle(<span class="literal">new</span> Two());
 
-  List<span class="tag">&lt;<span class="title">One</span>&gt;</span> arrayList = new ArrayList<span class="tag">&lt;<span class="title">One</span>&gt;</span>();
+  <span class="built_in">List</span><span class="subst">&lt;</span>One<span class="subst">&gt;</span> arrayList <span class="subst">=</span> <span class="literal">new</span> ArrayList<span class="subst">&lt;</span>One<span class="subst">&gt;</span>();
 
-  stack.push(arrayList);
+  <span class="built_in">stack</span><span class="built_in">.</span>push(arrayList);
 
-  //有限通配符的用法
+  <span class="comment">//有限通配符的用法</span>
 
-  List<span class="tag">&lt;<span class="title">Two</span>&gt;</span> list = new ArrayList<span class="tag">&lt;<span class="title">Two</span>&gt;</span>();
+  <span class="built_in">List</span><span class="subst">&lt;</span>Two<span class="subst">&gt;</span> <span class="built_in">list</span> <span class="subst">=</span> <span class="literal">new</span> ArrayList<span class="subst">&lt;</span>Two<span class="subst">&gt;</span>();
 
-  stack.push(list); //The method push(List<span class="tag">&lt;<span class="title">One</span>&gt;</span>) in the type Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span> is not applicable for the arguments (List<span class="tag">&lt;<span class="title">Two</span>&gt;</span>)
+  <span class="built_in">stack</span><span class="built_in">.</span>push(<span class="built_in">list</span>); <span class="comment">//The method push(List&lt;One&gt;) in the type Stack&lt;One&gt; is not applicable for the arguments (List&lt;Two&gt;)</span>
 
-  stack.push2(list);
+  <span class="built_in">stack</span><span class="built_in">.</span>push2(<span class="built_in">list</span>);
 }
 </pre></td></tr></table></figure>
-
 
 
       
@@ -126,6 +137,18 @@
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -151,10 +174,10 @@
 <p>String str1 = “abc”   ———————&gt;</p>
 <p>String str2 = “abc”   ———————&gt;                                                   abc</p>
 <p>String str3 = new String(“abc”)  —-&gt;      str实例         ———&gt;</p>
-<p>注意：str1 == str3.intern()是true；str2, str2直接指向常量池中的“abc”，不拷贝；</p>
+<p>注意：str1 == str3.intern()是true；str2, str2直接指向常量池中的”abc”，不拷贝；</p>
 <p>3，类的final定义;</p>
 <p>String的两个构造方法：</p>
-<pre><code><span class="keyword">public</span> String(<span class="keyword">char</span> <span class="keyword">value</span>[]) {
+<pre><code><span class="keyword">public</span> <span class="title">String</span>(<span class="keyword">char</span> <span class="keyword">value</span>[]) {
 
     <span class="keyword">this</span>.<span class="keyword">value</span> = Arrays.copyOf(<span class="keyword">value</span>, <span class="keyword">value</span>.length);
 
@@ -164,8 +187,8 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
 
     <span class="keyword">this</span>.<span class="keyword">value</span> = <span class="keyword">value</span>;
 
-}</code></pre>
-<p>第一个构造方法会构造全新的char[]数组；</p>
+}
+</code></pre><p>第一个构造方法会构造全新的char[]数组；</p>
 <p>第二个构造方法共享了原来的char[]数组；</p>
 <p>【内存泄漏】第二个包可见的共享char[]数组的构造方法会导致内存泄露</p>
 <p>这个构造方法是空间换时间的策略（很有可能理解为时间换空间，因为share了空间，但这里大多数情况下是阻止大空间的GC）；</p>
@@ -190,6 +213,18 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
   
     <article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -209,8 +244,8 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
 <p>LinkedList是循环双向链表，无论是否为空，总包含一个header表项：</p>
 <p>|——————————————————————&gt;</p>
 <p>header ——&gt; ele1 ——-&gt; ele2 ——&gt;  ele3</p>
-<pre><code>          &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>       &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>         &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>        </code></pre>
-<p>&lt;—————————————————————-|</p>
+<pre><code>          &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>       &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>         &lt;<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>        
+</code></pre><p>&lt;—————————————————————-|</p>
 <p>增加元素到表尾，ArrayList 优于 LinkedList：</p>
 <p>ArrayList的扩容最终调用System.arraycopy()方法；</p>
 <p>数组是连续的，ArrayList只有在扩容时才会低效一些；</p>
@@ -258,10 +293,10 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Algorithm | Viyu</title>
+  <title>Algorithm | Mosthink</title>
   <meta name="author" content="Viyu">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -26,8 +26,8 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -48,6 +48,18 @@
   
     <article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -66,7 +78,7 @@
 <p>a[i++] —&gt; a[n]，从前往后看、选择最小值、一次交换到位</p>
 <p>1，完整循环找到数组中最小的元素；</p>
 <p>2，把这个最小的元素与a[0]交换；</p>
-<p>3，在a[i]-a[n](i = 1, 2, … n)的子数组中重复1-2步骤；</p>
+<p>3，在a[i]-a<a href="i = 1, 2, ... n">n</a>的子数组中重复1-2步骤；</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -81,22 +93,21 @@
 12
 13
 14
-</pre></td><td class="code"><pre><span class="function"><span class="title">for</span><span class="params">(int i = <span class="number">0</span>; i &lt; n; i++)</span> {
+</pre></td><td class="code"><pre><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {
 
-    <span class="title">int</span> <span class="title">min</span> = <span class="title">i</span>;
+    <span class="keyword">int</span> <span class="built_in">min</span> = i;
 
-    <span class="title">for</span><span class="params">(int j = i + <span class="number">1</span>; j &lt; n; j++)</span> {
+    <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++) {
 
-        <span class="title">if</span><span class="params">(a[j] &lt; min)</span> 
+        <span class="keyword">if</span>(a[j] &lt; <span class="built_in">min</span>) 
 
-            <span class="title">min</span> = <span class="title">j</span>;
+            <span class="built_in">min</span> = j;
 
     }
 
-    <span class="title">swap</span><span class="params">(i, j, a)</span>;
+    swap(i, j, a);
 }
 </pre></td></tr></table></figure>
-
 
 <p>简写：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -110,7 +121,6 @@
     <span class="comment">//将min和本次循环的i两个元素交换；</span>
 }
 </pre></td></tr></table></figure>
-
 
 
       
@@ -133,6 +143,18 @@
   
     <article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -154,13 +176,12 @@
 3
 4
 5
-</pre></td><td class="code"><pre>double max = a<span class="matrix">[<span class="number">0</span>]</span>;
+</pre></td><td class="code"><pre><span class="keyword">double</span> <span class="built_in">max</span> = a[<span class="number">0</span>];
 
-<span class="keyword">for</span>(int <span class="built_in">i</span> = <span class="number">1</span>; <span class="built_in">i</span> &lt; <span class="transposed_variable">a.</span><span class="built_in">length</span>; <span class="built_in">i</span>++)
+<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; a.<span class="built_in">length</span>; i++)
 
-    <span class="keyword">if</span>(a<span class="matrix">[i]</span> &gt; max) max = a<span class="matrix">[i]</span>;
+    <span class="keyword">if</span>(a[i] &gt; <span class="built_in">max</span>) <span class="built_in">max</span> = a[i];
 </pre></td></tr></table></figure>
-
 
 <p>//把最大值马上设定为数组的第一个元素，然后遍历数组，如果有别当前这个最大值更大的元素，则把最大值更新，直到遍历结束；</p>
 <p>2， 计算数组的平均值：</p>
@@ -171,15 +192,14 @@
 5
 6
 7
-</pre></td><td class="code"><pre>double sum = <span class="number">0.0</span>;
+</pre></td><td class="code"><pre><span class="keyword">double</span> <span class="keyword">sum</span> = <span class="number">0.0</span>;
 
-<span class="function"><span class="title">for</span><span class="params">(int i = <span class="number">0</span>; i &lt; a.length; i++)</span>
+<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++)
 
-    <span class="title">sum</span> += <span class="title">a</span>[<span class="title">i</span>];
+    <span class="keyword">sum</span> += a[i];
 
-<span class="title">double</span> <span class="title">average</span> = <span class="title">sum</span> / <span class="title">a</span>.<span class="title">length</span>;
+<span class="keyword">double</span> average = <span class="keyword">sum</span> / a.length;
 </pre></td></tr></table></figure>
-
 
 <p>//算出总值，然后除以数组的元素数；</p>
 <p>3，复制数组：</p>
@@ -198,7 +218,6 @@
 
 <span class="comment">//new 一个和原数组同length同类型的数组，然后遍历赋值每个元素；</span>
 </pre></td></tr></table></figure>
-
 
 <p>4，颠倒数组元素的顺序：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -234,7 +253,6 @@
     a[a.<span class="built_in">length</span> - <span class="number">1</span> - i] = temp;
 }
 </pre></td></tr></table></figure>
-
 
 
       
@@ -275,10 +293,10 @@
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

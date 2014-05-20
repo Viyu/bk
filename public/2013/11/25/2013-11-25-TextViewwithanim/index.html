@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Implement a TextView with an animation in its left side | Viyu</title>
+  <title>Implement a TextView with an animation in its left side | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="In my case, I want to write a TextView with an animation in its left side.
@@ -13,11 +13,10 @@ TextView with drawableLeft would be the best option.
 2
 3
 4
-&lt;TextView  
+&amp;lt;TextView  
      … …  
      android:drawablePadding=”10dip”  
-     android:drawableLeft=”@drawable/loadingicon” /&gt;  
-
+     android:drawableLeft=”@drawable/loadingicon” /&amp;gt;  
 
 
 But above implementation just show a icon in the left of TextView, not an animation.
@@ -27,14 +26,14 @@ How to show an animation instead of a icon?">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="Implement a TextView with an animation in its left side"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -43,8 +42,8 @@ How to show an animation instead of a icon?">
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -59,6 +58,18 @@ How to show an animation instead of a icon?">
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -86,7 +97,6 @@ How to show an animation instead of a icon?">
      <span class="attribute">android:drawablePadding</span>=<span class="value">”10dip”</span>  
      <span class="attribute">android:drawableLeft</span>=<span class="value">”@drawable</span>/<span class="attribute">loadingicon</span>” /&gt;</span>  
 </pre></td></tr></table></figure>
-
 
 <p>But above implementation just show a icon in the left of TextView, not an animation.</p>
 <p>How to show an animation instead of a icon?</p>
@@ -126,7 +136,6 @@ How to show an animation instead of a icon?">
 <span class="tag">&lt;/<span class="title">animation-list</span>&gt;</span>  
 </pre></td></tr></table></figure>
 
-
 <p>“android:oneshot” determines whether or not play the animation just once.<br>“android:duration” determines the duration of pictures switching.</p>
 <p>Then in layout xml, use above animation like this:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -139,7 +148,6 @@ How to show an animation instead of a icon?">
       <span class="attribute">android:drawableLeft</span>=<span class="value">”@anim</span>/<span class="attribute">loading_animation</span>” /&gt;</span>  
 </pre></td></tr></table></figure>
 
-
 <p>Bingo? no, no, no, the animation can not switching yet.</p>
 <p>You need to do more.</p>
 <p>In java/Activity code, you must get the animation drawable and start it.</p>
@@ -148,13 +156,12 @@ How to show an animation instead of a icon?">
 3
 4
 5
-</pre></td><td class="code"><pre><span class="variable">Drawable</span>[] draws = locate<span class="variable">AreaTextView</span>.get<span class="variable">CompoundDrawables</span>();  
-<span class="function"><span class="title">if</span> <span class="params">(draws != null &amp;&amp; draws.length &gt; <span class="number">0</span> &amp;&amp; draws[<span class="number">0</span>] instanceof <span class="variable">AnimationDrawable</span>)</span> {  
-       <span class="title">loadingAnimation</span> = <span class="params">(<span class="variable">AnimationDrawable</span>)</span> <span class="title">draws</span>[0];  
-       <span class="title">loadingAnimation</span>.<span class="title">start</span><span class="params">()</span>;  
+</pre></td><td class="code"><pre>Drawable[] draws = locateAreaTextView.getCompoundDrawables();  
+<span class="keyword">if</span> (draws != <span class="literal">null</span> &amp;&amp; draws.length &gt; <span class="number">0</span> &amp;&amp; draws[<span class="number">0</span>] <span class="keyword">instanceof</span> AnimationDrawable) {  
+       loadingAnimation = (AnimationDrawable) draws[<span class="number">0</span>];  
+       loadingAnimation.start();  
 }  
 </pre></td></tr></table></figure>
-
 
 <p>In above, we get index 0 of the drawable array since drawableLeft is in 0 position of the array.</p>
 <p>Now, the animation works. But there is one more trap.</p>
@@ -230,10 +237,10 @@ How to show an animation instead of a icon?">
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

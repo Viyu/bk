@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>算法和数据结构 | Viyu</title>
+  <title>算法和数据结构 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="几个对数组的算法
@@ -15,10 +15,9 @@
 5
 double max = a[0];
 
-for(int i = 1; i &lt; a.length; i++)
+for(int i = 1; i &amp;lt; a.length; i++)
 
-    if(a[i] &gt; max) max = a[i];
-
+    if(a[i] &amp;gt; max) max = a[i];
 
 
 //把最大值马上设定为数组的第一个元素，然后遍历数组，如果有别当前这个最大值更大的元素，则把最大值更新，直到遍历结束；
@@ -32,12 +31,11 @@ for(int i = 1; i &lt; a.length; i++)
 7
 double sum = 0.0;
 
-for(int i = 0; i &lt; a.length; i++)
+for(int i = 0; i &amp;lt; a.length; i++)
 
     sum += a[i];
 
 double average = sum / a.length;
-
 
 
 //算出总值，然后除以数组的元素数；
@@ -51,12 +49,11 @@ double average = sum / a.length;
 7
 double[] b = new double[a.length];
 
-for(int i = 0; i &lt; a.length; i++) 
+for(int i = 0; i &amp;lt; a.length; i++) 
 
     b[i] = a[i];
 
 //new 一个和原数组同length同类型的数组，然后遍历赋值每个元素；
-
 
 
 4，颠倒数组元素的顺序：
@@ -78,13 +75,13 @@ for(int i = 0; i &lt; a.length; i++)
 16
 double [] b = new double[a.length];
 
-for(int i = a.length - 1, j = 0; i &gt; -1 &amp;&amp; j &lt; b.length ; i--, j++) 
+for(int i = a.length - 1, j = 0; i &amp;gt; -1 &amp;amp;&amp;amp; j &amp;lt; b.length ; i--, j++) 
 
     b[j] = a[i];
 
 //这是个直观低效率算法，时间消耗(a.length)，空间消耗(2 * a.length)，并且有两个循环指数i, j；
 
-for(int i =0; i &lt; a.length / 2; i++) {
+for(int i =0; i &amp;lt; a.length / 2; i++) {
 
     double temp = a[i];
 
@@ -97,14 +94,14 @@ for(int i =0; i &lt; a.length / 2; i++) {
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="算法和数据结构"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -113,8 +110,8 @@ for(int i =0; i &lt; a.length / 2; i++) {
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -129,6 +126,18 @@ for(int i =0; i &lt; a.length / 2; i++) {
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -151,13 +160,12 @@ for(int i =0; i &lt; a.length / 2; i++) {
 3
 4
 5
-</pre></td><td class="code"><pre>double max = a<span class="matrix">[<span class="number">0</span>]</span>;
+</pre></td><td class="code"><pre><span class="keyword">double</span> <span class="built_in">max</span> = a[<span class="number">0</span>];
 
-<span class="keyword">for</span>(int <span class="built_in">i</span> = <span class="number">1</span>; <span class="built_in">i</span> &lt; <span class="transposed_variable">a.</span><span class="built_in">length</span>; <span class="built_in">i</span>++)
+<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; a.<span class="built_in">length</span>; i++)
 
-    <span class="keyword">if</span>(a<span class="matrix">[i]</span> &gt; max) max = a<span class="matrix">[i]</span>;
+    <span class="keyword">if</span>(a[i] &gt; <span class="built_in">max</span>) <span class="built_in">max</span> = a[i];
 </pre></td></tr></table></figure>
-
 
 <p>//把最大值马上设定为数组的第一个元素，然后遍历数组，如果有别当前这个最大值更大的元素，则把最大值更新，直到遍历结束；</p>
 <p>2， 计算数组的平均值：</p>
@@ -168,15 +176,14 @@ for(int i =0; i &lt; a.length / 2; i++) {
 5
 6
 7
-</pre></td><td class="code"><pre>double sum = <span class="number">0.0</span>;
+</pre></td><td class="code"><pre><span class="keyword">double</span> <span class="keyword">sum</span> = <span class="number">0.0</span>;
 
-<span class="function"><span class="title">for</span><span class="params">(int i = <span class="number">0</span>; i &lt; a.length; i++)</span>
+<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++)
 
-    <span class="title">sum</span> += <span class="title">a</span>[<span class="title">i</span>];
+    <span class="keyword">sum</span> += a[i];
 
-<span class="title">double</span> <span class="title">average</span> = <span class="title">sum</span> / <span class="title">a</span>.<span class="title">length</span>;
+<span class="keyword">double</span> average = <span class="keyword">sum</span> / a.length;
 </pre></td></tr></table></figure>
-
 
 <p>//算出总值，然后除以数组的元素数；</p>
 <p>3，复制数组：</p>
@@ -195,7 +202,6 @@ for(int i =0; i &lt; a.length / 2; i++) {
 
 <span class="comment">//new 一个和原数组同length同类型的数组，然后遍历赋值每个元素；</span>
 </pre></td></tr></table></figure>
-
 
 <p>4，颠倒数组元素的顺序：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -232,7 +238,6 @@ for(int i =0; i &lt; a.length / 2; i++) {
 }
 </pre></td></tr></table></figure>
 
-
 <a id="more"></a>
 
 <p>偶数个元素的交换过程：</p>
@@ -258,21 +263,20 @@ for(int i =0; i &lt; a.length / 2; i++) {
 11
 12
 13
-</pre></td><td class="code"><pre>int n = <span class="transposed_variable">a.</span><span class="built_in">length</span>;
+</pre></td><td class="code"><pre>int n = a.length;
 
-double<span class="matrix">[]</span><span class="matrix">[]</span> c = new double<span class="matrix">[n]</span><span class="matrix">[n]</span>;
+double[<span class="link_label"></span>][<span class="link_reference"></span>] c = new double[<span class="link_label">n</span>][<span class="link_reference">n</span>];
 
-<span class="keyword">for</span>(int <span class="built_in">i</span> = <span class="number">0</span>; <span class="built_in">i</span> &lt; n; <span class="built_in">i</span>++)
+for(int i = 0; i <span class="xml"><span class="tag">&lt; <span class="attribute">n</span>; <span class="attribute">i</span>++)
 
-    <span class="keyword">for</span> (int <span class="built_in">j</span> = <span class="number">0</span>; <span class="built_in">j</span> &lt; n; <span class="built_in">j</span>++) <span class="cell">{
+    <span class="attribute">for</span> (<span class="attribute">int</span> <span class="attribute">j</span> = <span class="attribute">0</span>; <span class="attribute">j</span> &lt; <span class="attribute">n</span>; <span class="attribute">j</span>++) {
 
-        for(int k = <span class="number">0</span>; k &lt; n; k++) //计算行i和列j的点乘
+        <span class="attribute">for</span>(<span class="attribute">int</span> <span class="attribute">k</span> = <span class="attribute">0</span>; <span class="attribute">k</span> &lt; <span class="attribute">n</span>; <span class="attribute">k</span>++) //计算行<span class="attribute">i</span>和列<span class="attribute">j</span>的点乘
 
-            c[i][j] += a[i][k] * b[k][j];
+            <span class="attribute">c</span>[<span class="attribute">i</span>][<span class="attribute">j</span>] += <span class="attribute">a</span>[<span class="attribute">i</span>][<span class="attribute">k</span>] * <span class="attribute">b</span>[<span class="attribute">k</span>][<span class="attribute">j</span>];
 
-    }</span>
+    }</span></span>
 </pre></td></tr></table></figure>
-
 
 <hr>
 <p><b>典型静态方法的实现</b></p>
@@ -282,13 +286,12 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
 3
 4
 5
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> abs(<span class="keyword">int</span> x) {
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">abs</span>(<span class="keyword">int</span> x) {
     <span class="keyword">if</span>(x &lt; <span class="number">0</span>)    <span class="keyword">return</span> -x;
 
     <span class="keyword">else</span>    <span class="keyword">return</span> x;
 }
 </pre></td></tr></table></figure>
-
 
 <p>//绝对值的规则很简单：不小于零就是本身，反之就返回-x；</p>
 <p>2， 计算浮点数的绝对值：</p>
@@ -297,13 +300,12 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
 3
 4
 5
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> abs(<span class="keyword">double</span> x) {
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">abs</span>(<span class="keyword">double</span> x) {
     <span class="keyword">if</span>( x &lt; <span class="number">0.0</span>)    <span class="keyword">return</span> -x;
 
     <span class="keyword">else</span>    <span class="keyword">return</span> x;
 }
 </pre></td></tr></table></figure>
-
 
 <p>3， 判断一个数是否是素数：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -315,7 +317,7 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
 7
 8
 9
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> isPrime(<span class="keyword">int</span> n) {
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPrime</span>(<span class="keyword">int</span> n) {
     <span class="keyword">if</span>(n &lt; <span class="number">2</span>)    <span class="keyword">return</span> <span class="keyword">false</span>;                        <span class="comment">//大于1的自然数，1不是素数</span>
 
     <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i * i &lt;= n; i++) {              <span class="comment">//i * i &lt;=n</span>
@@ -325,7 +327,6 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
     <span class="keyword">return</span> <span class="keyword">true</span>;
 }
 </pre></td></tr></table></figure>
-
 
 <p>//素数，就是质数。指在一个大于1的自然数中，除了1和此整数自身外，不能被其他自然数整除的数。</p>
 <p>判断的关键点：</p>
@@ -346,21 +347,20 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
 11
 12
 13
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> sqrt(<span class="keyword">double</span> c) {
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">sqrt</span>(<span class="keyword">double</span> c) {
 
-    <span class="keyword">if</span>(c &lt; <span class="number">0</span>) <span class="keyword">return</span> Double<span class="variable">.NaN</span>;
+    <span class="keyword">if</span>(c &lt; <span class="number">0</span>) <span class="keyword">return</span> Double.NaN;
 
     <span class="keyword">double</span> err =<span class="number">1e-15</span>;                 <span class="comment">//1乘以10的负15次方</span>
 
     <span class="keyword">double</span> t = c;
 
-    <span class="keyword">while</span>(Math<span class="variable">.abs</span>(t - c / t) &gt; err *t)
+    <span class="keyword">while</span>(Math.abs(t - c / t) &gt; err *t)
 
         t = (c/t + t) / <span class="number">2.0</span>;
     <span class="keyword">return</span> t;
 }
 </pre></td></tr></table></figure>
-
 
 <p>//不懂， TODO</p>
 <p>5， 计算直角三角形的斜边：</p>
@@ -368,12 +368,11 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
 2
 3
 4
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> hypotenuse(<span class="keyword">double</span> a, <span class="keyword">double</span> b) {
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">hypotenuse</span>(<span class="keyword">double</span> a, <span class="keyword">double</span> b) {
 
-    <span class="keyword">return</span> Math<span class="variable">.sqrt</span>(a * a + b * b);
+    <span class="keyword">return</span> Math.sqrt(a * a + b * b);
 }
 </pre></td></tr></table></figure>
-
 
 <p>6， 计算调和级数：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -397,7 +396,6 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
     <span class="keyword">return</span> <span class="keyword">sum</span>;
 }
 </pre></td></tr></table></figure>
-
 
 <p>//形如1/1+1/2+1/3+…+1/n+…的级数称为调和级数，它是 p=1 的p级数。 调和级数是发散级数。在n趋于无穷时其部分和没有极限（或部分和为无穷大）。</p>
 <hr>
@@ -426,13 +424,13 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
 18
 19
 20
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> rank(<span class="keyword">int</span> key, <span class="keyword">int</span>[] a) {
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">rank</span>(<span class="keyword">int</span> key, <span class="keyword">int</span>[] a) {
 
-    <span class="keyword">return</span> rank(key, a, <span class="number">0</span>, a<span class="variable">.length</span> - <span class="number">1</span>);
+    <span class="keyword">return</span> rank(key, a, <span class="number">0</span>, a.length - <span class="number">1</span>);
 
 }
 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> rank(<span class="keyword">int</span> key, <span class="keyword">int</span>[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi) {
+<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">rank</span>(<span class="keyword">int</span> key, <span class="keyword">int</span>[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi) {
 
     <span class="keyword">if</span>(lo &gt; hi)
 
@@ -447,7 +445,6 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
     <span class="keyword">else</span>     <span class="keyword">return</span> mid;
 }
 </pre></td></tr></table></figure>
-
 
 <p>//如果原始的方法参数不怎么适合递归或者不够递归方法，就另写一个满足要求的递归方法，用原始的调用之；</p>
 <p>比如二分查找的时候，并没有给定递归时需要的低坐标和高坐标，如果坚持要在原始方法中使用递归，那么必须对数组进行拆分和复制，效率低下，浪费空间；</p>
@@ -488,7 +485,6 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
 <span class="keyword">return</span> -<span class="number">1</span>;
 </pre></td></tr></table></figure>
 
-
 <hr>
 <p><b>不用temp实现swap</b></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -496,13 +492,12 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
 3
 4
 5
-</pre></td><td class="code"><pre><span class="setting">a = <span class="value">a + b;</span></span>
+</pre></td><td class="code"><pre><span class="literal">a</span> = <span class="literal">a</span> + b<span class="comment">;</span>
 
-<span class="setting">b = <span class="value">a - b;</span></span>
+b = <span class="literal">a</span> - b<span class="comment">;</span>
 
-<span class="setting">a = <span class="value">a - b;</span></span>
+<span class="literal">a</span> = <span class="literal">a</span> - b<span class="comment">;</span>
 </pre></td></tr></table></figure>
-
 
 <hr>
 <p><b>Dijkstra双栈算术表达式求值法</b></p>
@@ -580,7 +575,7 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
 66
 67
 68
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> calc(String[] equation) {
+</pre></td><td class="code"><pre>public static double calc(String[] equation) {
 
     Stack&lt;String&gt; ops = new Stack&lt;String&gt;();
 
@@ -588,68 +583,67 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
 
     <span class="keyword">for</span>(String s : equation) {
 
-        <span class="keyword">if</span>(s<span class="variable">.equals</span>(<span class="string">"("</span>))
+        <span class="keyword">if</span>(s.<span class="keyword">equals</span>(<span class="string">"("</span>))
 
             ;
 
-        <span class="keyword">else</span> <span class="keyword">if</span>(s<span class="variable">.equals</span>(<span class="string">"+"</span>))
+        <span class="keyword">else</span> <span class="keyword">if</span>(s.<span class="keyword">equals</span>(<span class="string">"+"</span>))
 
-            ops<span class="variable">.push</span>(s);
+            ops.push(s);
 
-        <span class="keyword">else</span> <span class="keyword">if</span>(s<span class="variable">.equals</span>(<span class="string">"-"</span>))
+        <span class="keyword">else</span> <span class="keyword">if</span>(s.<span class="keyword">equals</span>(<span class="string">"-"</span>))
 
-            ops<span class="variable">.push</span>(s);
+            ops.push(s);
 
-        <span class="keyword">else</span> <span class="keyword">if</span>(s<span class="variable">.equals</span>(<span class="string">"*"</span>))
+        <span class="keyword">else</span> <span class="keyword">if</span>(s.<span class="keyword">equals</span>(<span class="string">"*"</span>))
 
-            ops<span class="variable">.push</span>(s);
+            ops.push(s);
 
-        <span class="keyword">else</span> <span class="keyword">if</span>(s<span class="variable">.equals</span>(<span class="string">"/"</span>))
+        <span class="keyword">else</span> <span class="keyword">if</span>(s.<span class="keyword">equals</span>(<span class="string">"/"</span>))
 
-            ops<span class="variable">.push</span>(s);
+            ops.push(s);
 
-        <span class="keyword">else</span> <span class="keyword">if</span>(s<span class="variable">.equals</span>(<span class="string">"sqrt"</span>))
+        <span class="keyword">else</span> <span class="keyword">if</span>(s.<span class="keyword">equals</span>(<span class="string">"sqrt"</span>))
 
-            ops<span class="variable">.push</span>(s);
+            ops.push(s);
 
-        <span class="keyword">else</span> <span class="keyword">if</span>(s<span class="variable">.equals</span>(<span class="string">")"</span>)) {
+        <span class="keyword">else</span> <span class="keyword">if</span>(s.<span class="keyword">equals</span>(<span class="string">")"</span>)) {
 
-            String op = ops<span class="variable">.pop</span>();
+            String op = ops.pop();
 
-            <span class="keyword">double</span> v = vals<span class="variable">.pop</span>();
+            double v = vals.pop();
 
-            <span class="keyword">if</span>(op<span class="variable">.equals</span>(<span class="string">"+"</span>)) 
+            <span class="keyword">if</span>(op.<span class="keyword">equals</span>(<span class="string">"+"</span>)) 
 
-                v = vals<span class="variable">.pop</span>() + v;
+                v = vals.pop() + v;
 
-            <span class="keyword">if</span>(op<span class="variable">.equals</span>(<span class="string">"-"</span>)) 
+            <span class="keyword">if</span>(op.<span class="keyword">equals</span>(<span class="string">"-"</span>)) 
 
-                v = vals<span class="variable">.pop</span>() - v;
+                v = vals.pop() - v;
 
-            <span class="keyword">if</span>(op<span class="variable">.equals</span>(<span class="string">"*"</span>)) 
+            <span class="keyword">if</span>(op.<span class="keyword">equals</span>(<span class="string">"*"</span>)) 
 
-                v = vals<span class="variable">.pop</span>() * v;
+                v = vals.pop() * v;
 
-            <span class="keyword">if</span>(op<span class="variable">.equals</span>(<span class="string">"/"</span>)) 
+            <span class="keyword">if</span>(op.<span class="keyword">equals</span>(<span class="string">"/"</span>)) 
 
-                v = vals<span class="variable">.pop</span>() / v;
+                v = vals.pop() / v;
 
-            <span class="keyword">if</span>(op<span class="variable">.equals</span>(<span class="string">"sqrt"</span>)) 
+            <span class="keyword">if</span>(op.<span class="keyword">equals</span>(<span class="string">"sqrt"</span>)) 
 
-                v = Math<span class="variable">.sqrt</span>(v);
+                v = Math.sqrt(v);
 
-            vals<span class="variable">.push</span>(v);
+            vals.push(v);
 
         } <span class="keyword">else</span>
 
-            vals<span class="variable">.push</span>(Double<span class="variable">.parseDouble</span>(s));
+            vals.push(Double.parseDouble(s));
 
     }
-
-    <span class="keyword">return</span> vals<span class="variable">.pop</span>();
+<span class="command">
+    return</span> vals.pop();
 }
 </pre></td></tr></table></figure>
-
 
 <p>这其实就是编译原理中的解释器。</p>
 <p>应该也有其他方法，比如全部push入栈之后再依次出栈，前提是优先级用括号来明示。</p>
@@ -679,7 +673,6 @@ double<span class="matrix">[]</span><span class="matrix">[]</span> c = new doubl
 a = temp;
 </pre></td></tr></table></figure>
 
-
 <p>增：当数组满的时候，直接增加1倍；</p>
 <p>减：当数组不满1/4的时候，减少至1/2；</p>
 <p>以上是基于内存开销和性能之间的平衡，尤其是缩减数组，不能一个一个减，也不能不满1/2的时候直接减掉1/2，这样数组马上又满了，可能又需要增。</p>
@@ -706,30 +699,29 @@ a = temp;
 20
 21
 22
-</pre></td><td class="code"><pre>public void push(T <span class="property">item</span>) {
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span>(T item) {
 
-    <span class="keyword">if</span>(N == a.<span class="property">length</span>)
+    <span class="keyword">if</span>(N == a.length)
 
-        resize(<span class="number">2</span> * a.<span class="property">length</span>)
+        resize(<span class="number">2</span> * a.length)
 
-    a[N++] = <span class="property">item</span>;
+    a[N++] = item;
 
 }
 
-public T pop() {
+<span class="keyword">public</span> T <span class="title">pop</span>() {
 
-    T <span class="property">item</span> = a[<span class="comment">--N];</span>
+    T item = a[--N];
 
-    a[N] = null;  
+    a[N] = <span class="keyword">null</span>;  
 
-    <span class="keyword">if</span>(N &gt; <span class="number">0</span> &amp;&amp; N == a.<span class="property">length</span> / <span class="number">4</span>) //如果堆栈只满<span class="number">1</span>/<span class="number">4</span>，减为<span class="number">1</span>/<span class="number">2</span>，还能有<span class="number">1</span>/<span class="number">2</span>的空余；
+    <span class="keyword">if</span>(N &gt; <span class="number">0</span> &amp;&amp; N == a.length / <span class="number">4</span>) <span class="comment">//如果堆栈只满1/4，减为1/2，还能有1/2的空余；</span>
 
-        resize(a.<span class="property">length</span> / <span class="number">2</span>);
-<span class="command">
-    return</span> <span class="property">item</span>;
+        resize(a.length / <span class="number">2</span>);
+
+    <span class="keyword">return</span> item;
 }
 </pre></td></tr></table></figure>
-
 
 <p>pop()方法中要避免内存泄漏：</p>
 <p>对象游离： Stack的pop方法写的不好，就有可能导致内存泄漏；</p>
@@ -772,42 +764,41 @@ public T pop() {
 32
 33
 34
-</pre></td><td class="code"><pre>private Node first = null<span class="comment">; //栈顶节点</span>
+</pre></td><td class="code"><pre><span class="keyword">private</span> Node first = <span class="keyword">null</span>; <span class="comment">//栈顶节点</span>
 
-private Class Node { //描述栈帧的节点内部类定义
+<span class="keyword">private</span> Class Node { <span class="comment">//描述栈帧的节点内部类定义</span>
 
-    T item<span class="comment">;</span>
+    T item;
 
-    Node next<span class="comment">;</span>
-
-}
-
-public void <span class="keyword">push</span>(T item) {
-
-    Node oldFirst = first<span class="comment">;</span>
-
-    first = new Node()<span class="comment">;</span>
-
-    first<span class="preprocessor">.item</span> = item<span class="comment">;</span>
-
-    first<span class="preprocessor">.next</span> = oldFirst<span class="comment">;</span>
-
-    N++<span class="comment">;</span>
+    Node next;
 
 }
 
-public T <span class="keyword">pop</span>() {
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span>(T item) {
 
-    T item = first<span class="preprocessor">.item</span><span class="comment">;</span>
+    Node oldFirst = first;
 
-    first = first<span class="preprocessor">.next</span>()<span class="comment">;</span>
+    first = <span class="keyword">new</span> Node();
 
-    N--<span class="comment">;</span>
+    first.item = item;
 
-    return item<span class="comment">;</span>
+    first.next = oldFirst;
+
+    N++;
+
+}
+
+<span class="keyword">public</span> T <span class="title">pop</span>() {
+
+    T item = first.item;
+
+    first = first.next();
+
+    N--;
+
+    <span class="keyword">return</span> item;
 }
 </pre></td></tr></table></figure>
-
 
 <p>不用担心对象游离的问题，first = first.next之后，由于堆栈里并没有数组结构，出栈的对象在栈内不会再被引用，没用就回收掉了；</p>
 <p>堆栈也是集合，也要实现迭代器：</p>
@@ -858,7 +849,6 @@ public Iterator&lt;<span class="literal">T</span>&gt; iterator() {
 
     }
 </pre></td></tr></table></figure>
-
 
 <p>链表实现的迭代：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -916,7 +906,6 @@ public Iterator&lt;<span class="literal">T</span>&gt; iterator() {
 
     }
 </pre></td></tr></table></figure>
-
 
 <p>链表实现的队列就是一种堆栈，仍然从first出队，但是从last入队：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -1005,7 +994,6 @@ public Item dequeue() {
 }
 </pre></td></tr></table></figure>
 
-
 <p>到底用数组还是链表：</p>
 <p>堆栈是LIFO，数组实现的话，总是在数组的末尾进行赋值和置null，这个可以接受；但数组的调整大小问题导致数组实现又不是特别能接受，而链表就完全不存在这个问题；</p>
 <p>队列是FIFO，数组实现的话，假如入队末尾，那么出队必然在开头，删除开头元素要引起数组整体挪动；或者反过来，入队在开头，则出队在末尾，入队得在开头添加元素，引起数组整体挪动；所以说，队列一点都不适合用数组实现。</p>
@@ -1030,7 +1018,6 @@ public Item dequeue() {
             count++;
 </pre></td></tr></table></figure>
 
-
 <p>这个复杂度是(N-1) + (N-2) + … + (N-N) = N的平方 + N的平方/2 =-= N的平方；</p>
 <p>改进的算法：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -1040,15 +1027,14 @@ public Item dequeue() {
 5
 6
 7
-</pre></td><td class="code"><pre><span class="function"><span class="title">sort</span><span class="params">(a)</span>;
+</pre></td><td class="code"><pre>sort(a);
 
-<span class="title">for</span><span class="params">(int i = <span class="number">0</span>; i &lt; <span class="variable">N</span>; i++)</span> 
+<span class="keyword">for</span>(int <span class="built_in">i</span> = <span class="number">0</span>; <span class="built_in">i</span> &lt; N; <span class="built_in">i</span>++) 
 
-    <span class="title">if</span><span class="params">(<span class="variable">BinarySearch</span>(-a[i], a)</span> &gt; <span class="title">i</span>)
+    <span class="keyword">if</span>(BinarySearch(-a<span class="matrix">[i]</span>, a) &gt; <span class="built_in">i</span>)
 
-        <span class="title">count</span>++;
+        count++;
 </pre></td></tr></table></figure>
-
 
 <p>这个算法的思路，单循环数组a，对于每一个a[i]：</p>
 <p>1， 如果二分查找找不到-a[i]，计数器不增加；</p>
@@ -1065,8 +1051,8 @@ public Item dequeue() {
 <p>1， 惰性的，使用无序数据结构，插入元素不做任何操作，删除最大元素时再查找最大元素；</p>
 <p>2， 主动的，使用有序数据结构，插入元素时就排到合适的位置，删除最大元素时直接删第一个；</p>
 <p>优先队列的初级实现：</p>
-<pre><code>                        插入元素                        删除最大元素</code></pre>
-<p>有序数组                N                                    1</p>
+<pre><code>                        插入元素                        删除最大元素
+</code></pre><p>有序数组                N                                    1</p>
 <p>无序数组                1                                      N</p>
 <p>栈和队列的操作的复杂度都是个常数；</p>
 <p>优先队列用数组初级实现的话，操作的复杂度都是线性的；</p>
@@ -1101,7 +1087,6 @@ public Item dequeue() {
 }
 </pre></td></tr></table></figure>
 
-
 <p>同理，下沉：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -1125,20 +1110,19 @@ public Item dequeue() {
     <span class="keyword">while</span>(<span class="number">2</span> * k &lt;= N) {
         <span class="keyword">int</span> j = <span class="number">2</span> * k;
 
-        <span class="keyword">if</span>(j &lt; N &amp;&amp; p<span class="string">q[j]</span> &lt; p<span class="string">q[j+1]</span>) /<span class="regexp">/选取两个子节点中较大的一个往上交换
+        <span class="keyword">if</span>(j &lt; N &amp;&amp; p<span class="string">q[j]</span> &lt; p<span class="string">q[j+1]</span>) //选取两个子节点中较大的一个往上交换
 
                 j++;
 
-        if(pq[k] &gt;= pq[j])   /</span><span class="regexp">/结束下沉，已经比字节点大了
+        <span class="keyword">if</span>(p<span class="string">q[k]</span> &gt;= p<span class="string">q[j]</span>)   //结束下沉，已经比字节点大了
 
-                break;
+                <span class="keyword">break</span>;
 
-        swap(pq, k, j); /</span><span class="regexp">/下沉
+        swap(pq, k, j); <span class="regexp">//</span>下沉
 
         k = j;
 }
 </pre></td></tr></table></figure>
-
 
 <p>在实现二叉堆的数组中，插入一个数据到末尾是上浮；删除第一个数据，这个数据就是最大元素，然后把数组最末尾的元素放到顶端，让其下沉；</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -1187,31 +1171,31 @@ public Item dequeue() {
 44
 45
 46
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MaxPQ</span>&lt;<span class="title">Key</span> <span class="keyword">extends</span> <span class="title">Comparable</span>&lt;<span class="title">Key</span>&gt;&gt; {</span>
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">class</span> MaxPQ&lt;Key extends Comparable&lt;Key&gt;&gt; {
 
     <span class="keyword">private</span> Key[] pq;
 
     <span class="keyword">private</span> <span class="keyword">int</span> N = <span class="number">0</span>;
 
-    <span class="keyword">public</span> MaxPQ(<span class="keyword">int</span> maxN) {
+    <span class="keyword">public</span> <span class="title">MaxPQ</span>(<span class="keyword">int</span> maxN) {
 
         pq = (key[]) <span class="keyword">new</span> Comparable[maxN+<span class="number">1</span>];
 
     }
 
-    <span class="keyword">public</span> <span class="keyword">boolean</span> isEmpty() {
+    <span class="keyword">public</span> boolean <span class="title">isEmpty</span>() {
 
         <span class="keyword">return</span> N == <span class="number">0</span>;
 
     }
 
-    <span class="keyword">public</span> <span class="keyword">int</span> size() {
+    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span>() {
 
         <span class="keyword">return</span> N;
 
     }
 
-    <span class="keyword">public</span> <span class="keyword">void</span> insert(Key v) {
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span>(Key v) {
 
         pq[++N] = v;
 
@@ -1219,7 +1203,7 @@ public Item dequeue() {
 
     }
 
-    <span class="keyword">public</span> Key delMax() {
+    <span class="keyword">public</span> Key <span class="title">delMax</span>() {
 
         Key max = pq[<span class="number">1</span>];
 
@@ -1234,7 +1218,6 @@ public Item dequeue() {
     }
 }
 </pre></td></tr></table></figure>
-
 
 <p>由于插入和删除都最多是一次根节点到叶节点的堆秩序恢复，跟节点到叶节点的最长路径是lgN；所以二叉堆实现的优先队列的插入和删除的复杂度都是lgN（比较次数：lgN+1, 2lgN）；</p>
 <hr>
@@ -1310,10 +1293,10 @@ public Item dequeue() {
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

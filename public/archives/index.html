@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | Viyu</title>
+  <title>Archives | Mosthink</title>
   <meta name="author" content="Viyu">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -26,8 +26,8 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -48,6 +48,18 @@
   
     <article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -65,16 +77,11 @@
         <p>PopupWindow可以用来实现弹出任意位置的菜单，比Context Menu和Option Menu灵活性更高。<br> Android中弹出一个PopupWindow基本有两个方法：</p>
  <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre>//Display <span class="keyword">the</span> content view <span class="keyword">in</span> a popup window anchored <span class="keyword">to</span> <span class="keyword">the</span> bottom-left corner <span class="keyword">of</span> <span class="keyword">the</span> anchor view.
-public void showAsDropDown(View anchor, int xoff, int yoff);
+</pre></td><td class="code"><pre><span class="comment">//Display the content view in a popup window anchored to the bottom-left corner of the anchor view.</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showAsDropDown</span>(View anchor, <span class="keyword">int</span> xoff, <span class="keyword">int</span> yoff);
+</pre></td></tr></table></figure><br>这个方法是弹出的窗口在anchor view的bottom-left,一般Android应用的菜单都在右上，实现思路就是以app中右上的view作为anchor，然后用屏幕宽度减去popup window的宽度作为xoff.<br><br> 还有一个方法：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showAtLocation</span>(IBinder token, <span class="keyword">int</span> gravity, <span class="keyword">int</span> x, <span class="keyword">int</span> y);
 </pre></td></tr></table></figure>
-
-<p>这个方法是弹出的窗口在anchor view的bottom-left,一般Android应用的菜单都在右上，实现思路就是以app中右上的view作为anchor，然后用屏幕宽度减去popup window的宽度作为xoff.</p>
-<p> 还有一个方法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre> <span class="keyword">public</span> <span class="keyword">void</span> showAtLocation(IBinder token, <span class="keyword">int</span> gravity, <span class="keyword">int</span> x, <span class="keyword">int</span> y);
-</pre></td></tr></table></figure>
-
 
 <p>再来说如何实现一个PopupWindow，步骤基本如下，下面代码时extends了PopupWindow的子类的实现：</p>
 
@@ -97,6 +104,18 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -147,6 +166,18 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
   
     <article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -168,14 +199,10 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 <p>此方案仍然不行，ListView的scrollTo没效果。</p>
 <p>终极方案：<br>退出页面的时候：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="title">Parcelable</span> listState = listView.<span class="built_in">on</span>SaveInstanceState();
-</pre></td></tr></table></figure>
-
-<p>记住listState对象；<br>再次进入页面的时候：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="attribute">Parcelable listState </span>=<span class="string"> listView.onSaveInstanceState();</span>
+</pre></td></tr></table></figure><br>记住listState对象；<br>再次进入页面的时候：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>listView<span class="preprocessor">.onRestoreInstanceState</span>(listState)<span class="comment">;</span>
 </pre></td></tr></table></figure>
-
 
 <p>记忆的位置分毫不差。</p>
 <p>要注意：listView的状态记忆后，还要保证其数据在两次进入页面时的一致性；<br>另：ListView的header会影响其状态对象，不过这个是小问题。</p>
@@ -195,6 +222,18 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -216,13 +255,12 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 3
 4
 5
-</pre></td><td class="code"><pre><span class="keyword">public</span> boolean isGPSIsOn() {
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isGPSIsOn</span>() {
 	LocationManager locationManager = (LocationManager) mContext
-			<span class="variable">.getSystemService</span>(Context<span class="variable">.LOCATION_SERVICE</span>);
-	<span class="keyword">return</span> locationManager<span class="variable">.isProviderEnabled</span>(LocationManager<span class="variable">.GPS_PROVIDER</span>);
+			.getSystemService(Context.LOCATION_SERVICE);
+	<span class="keyword">return</span> locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 }
 </pre></td></tr></table></figure>
-
 
 <p>Method 2 is to open GPS setting page in Android device:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -234,17 +272,16 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 7
 8
 9
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">void</span> openGPSSettingPage() {
-	Intent intent = new Intent();
-	intent<span class="variable">.setAction</span>(Settings<span class="variable">.ACTION_LOCATION_SOURCE_SETTINGS</span>);
-	intent<span class="variable">.setFlags</span>(Intent<span class="variable">.FLAG_ACTIVITY_NEW_TASK</span>);
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">openGPSSettingPage</span>() {
+	Intent intent = <span class="keyword">new</span> Intent();
+	intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	<span class="keyword">try</span> {
-		context<span class="variable">.startActivity</span>(intent);
+		context.startActivity(intent);
 	} <span class="keyword">catch</span> (ActivityNotFoundException ex) {
 	}
 }
 </pre></td></tr></table></figure>
-
 
  
       
@@ -266,6 +303,18 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -300,26 +349,25 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 16
 17
 18
-</pre></td><td class="code"><pre>boolean flag = <span class="literal">false</span>;
-Runtime run = Runtime<span class="variable">.getRuntime</span>();
-Process proc = null;
+</pre></td><td class="code"><pre><span class="keyword">boolean</span> flag = <span class="keyword">false</span>;
+Runtime run = Runtime.getRuntime();
+Process proc = <span class="keyword">null</span>;
 <span class="keyword">try</span> {
-	proc = run<span class="variable">.exec</span>(<span class="string">"ping -c 1 127.0.0.1"</span>);
-	<span class="keyword">int</span> result = proc<span class="variable">.waitFor</span>();
+	proc = run.exec(<span class="string">"ping -c 1 127.0.0.1"</span>);
+	<span class="keyword">int</span> result = proc.waitFor();
 	<span class="keyword">if</span> (result == <span class="number">0</span>) {
-		flag = <span class="literal">true</span>;
+		flag = <span class="keyword">true</span>;
 	} <span class="keyword">else</span> {
-		flag = <span class="literal">false</span>;
+		flag = <span class="keyword">false</span>;
 	}
 } <span class="keyword">catch</span> (IOException e) {
-	e<span class="variable">.printStackTrace</span>();
+	e.printStackTrace();
 } <span class="keyword">catch</span> (InterruptedException e) {
-	e<span class="variable">.printStackTrace</span>();
+	e.printStackTrace();
 } <span class="keyword">finally</span> {
-	proc<span class="variable">.destroy</span>();
+	proc.destroy();
 }
 </pre></td></tr></table></figure>
-
 
 <p>Ping codes is simple, but:<br>1, you must run it in background thread since Process.waitfor() will blocks current thread.<br>2, And you should control the the execution time for Process.waitfor().</p>
 <p>The solutions of above 2 issues could be:<br>1, AsyncTask to run Process.waitfor() in background;<br>2, Handler.sendEmptyMessageDelayed() to send a delayed message which cancel the AsyncTask if the background codes running too long time.</p>
@@ -344,6 +392,18 @@ Process proc = null;
   
     <article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -365,10 +425,9 @@ Process proc = null;
 <p><b>1，开始拖拽：</b><br>开始拖拽要解决三个问题：<br>1， 什么时候开始？如何开始？<br>一般是在用户长按一个组件的时候，我们开始拖拽，所以给要被拖拽的View定义它的OnLongClickListener，在其中调用View.startDrag()方法就可以了。<br>startDrag()方法的定义：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre>boolean android<span class="variable">.view</span><span class="variable">.View</span><span class="variable">.startDrag</span>(
-		ClipData data, DragShadowBuilder shadowBuilder, Object myLocalState, <span class="keyword">int</span> flags)
+</pre></td><td class="code"><pre>boolean android<span class="preprocessor">.view</span><span class="preprocessor">.View</span><span class="preprocessor">.startDrag</span>(
+		ClipData data, DragShadowBuilder shadowBuilder, Object myLocalState, int flags)
 </pre></td></tr></table></figure>
-
 
 <p>第一个参数ClipData data是拖拽的对象，下面第2条来讲解；第二个参数DragShadowBuilder shadowBuilder是拖拽时的样子，下面的第3条来讲解。</p>
 
@@ -391,6 +450,18 @@ Process proc = null;
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -425,10 +496,9 @@ notification<span class="preprocessor">.ledOnMS</span> = <span class="number">50
 notificationManager<span class="preprocessor">.notify</span>(<span class="number">0</span>, notification)<span class="comment">;  </span>
 </pre></td></tr></table></figure>
 
-
 <p>ledARGB: The color of the led. The hardware will do its best approximation.</p>
-<p>ledOffMS: The number of milliseconds for the LED to be off while it&#39;s flashing. The hardware will do its best approximation.</p>
-<p>ledOnMS: The number of milliseconds for the LED to be on while it&#39;s flashing. The hardware will do its best approximation.</p>
+<p>ledOffMS: The number of milliseconds for the LED to be off while it’s flashing. The hardware will do its best approximation.</p>
+<p>ledOnMS: The number of milliseconds for the LED to be on while it’s flashing. The hardware will do its best approximation.</p>
 
       
     </div>
@@ -449,6 +519,18 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -478,10 +560,9 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
       <span class="attribute">android:tileMode</span>=<span class="value">”repeat”</span> /&gt;</span>  
 </pre></td></tr></table></figure>
 
-
 <p>Second, use it as the background,</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="symbol">android:</span>background=”<span class="variable">@drawable</span>/bg_texture_image”  
+</pre></td><td class="code"><pre><span class="attribute">android:background</span>=<span class="string">”@drawable/bg_texture_image”  </span>
 </pre></td></tr></table></figure>
 
       
@@ -499,6 +580,18 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -527,7 +620,6 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
      <span class="attribute">android:drawableLeft</span>=<span class="value">”@drawable</span>/<span class="attribute">loadingicon</span>” /&gt;</span>  
 </pre></td></tr></table></figure>
 
-
 <p>But above implementation just show a icon in the left of TextView, not an animation.</p>
 <p>How to show an animation instead of a icon?</p>
 
@@ -551,6 +643,18 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
   
     <article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -571,9 +675,8 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 <p>See below code snippets.</p>
 <p>In Adapter, passed in a List as data list.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>List<span class="tag">&lt;<span class="title">Data</span>&gt;</span> dataList;  
+</pre></td><td class="code"><pre><span class="built_in">List</span><span class="subst">&lt;</span><span class="built_in">Data</span><span class="subst">&gt;</span> dataList;  
 </pre></td></tr></table></figure>
-
 
 <p>and override getView() like this:</p>
 
@@ -596,6 +699,18 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -638,6 +753,18 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
   
     <article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -669,7 +796,6 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 /&gt;</span> 
 </pre></td></tr></table></figure>
 
-
 <p>The problem is: how to read the client’s text size number and set it to the TextVew of MyView?</p>
 
       
@@ -691,6 +817,18 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -715,7 +853,7 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 <p>Resumed</p>
 <p>In this state, the activity is in the foreground and the user can interact with it. (Also sometimes referred to as the “running” state.)</p>
 <p>Paused</p>
-<p>In this state, the activity is partially obscured by another activity—the other activity that‘s in the foreground is semi-transparent or doesn’t cover the entire screen. The paused activity does not receive user input and cannot execute any code. </p>
+<p>In this state, the activity is partially obscured by another activity—the other activity that’s in the foreground is semi-transparent or doesn’t cover the entire screen. The paused activity does not receive user input and cannot execute any code. </p>
 <p>Stopped</p>
 <p>In this state, the activity is completely hidden and not visible to the user; it is considered to be in the background. While stopped, the activity instance and all its state information such as member variables is retained, but it cannot execute any code.</p>
 
@@ -738,6 +876,18 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -764,18 +914,17 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 8
 9
 10
-</pre></td><td class="code"><pre>@Target({ElementType<span class="variable">.TYPE</span>, ElementType<span class="variable">.METHOD</span>})
+</pre></td><td class="code"><pre>@Target({ElementType.TYPE, ElementType.METHOD})
 
-@Retention(RetentionPolicy<span class="variable">.RUNTIME</span>)
+@Retention(RetentionPolicy.RUNTIME)
 
-<span class="keyword">public</span> @<span class="class"><span class="keyword">interface</span> <span class="id">ClassOrMethodFullName</span> {</span>
+<span class="keyword">public</span> @<span class="keyword">interface</span> ClassOrMethodFullName {
 
-        String value() <span class="keyword">default</span> <span class="string">"Unknown"</span>;
+        String <span class="keyword">value</span>() <span class="keyword">default</span> <span class="string">"Unknown"</span>;
 
         String fullName() <span class="keyword">default</span> <span class="string">"Unknown"</span>;
 }
 </pre></td></tr></table></figure>
-
 
 <p>定义描述方法参数个数的注解：MethodParameterCount.java</p>
 
@@ -798,6 +947,18 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -823,13 +984,11 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
 };  
 </pre></td></tr></table></figure>
 
-
 <p>function + 方法名 + 括号 + 代码块</p>
 <p>【调用这个js方法得加括号】</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">button</span> <span class="attribute">type</span>=<span class="value">"button"</span> <span class="attribute">onclick</span>=<span class="value">"alertdemo()"</span>&gt;</span>点击这里<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
 </pre></td></tr></table></figure>
-
 
 <p>【带参数的函数，参数是不需要声明类型部分的】</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -844,7 +1003,6 @@ alert(msg);
 }
 </pre></td></tr></table></figure>
 
-
 <p>【带返回值的函数，很好理解】</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -858,7 +1016,6 @@ alert(msg);
 }
 </pre></td></tr></table></figure>
 
-
 <p>返回值是可选的，means，你想在哪个分支返回就返回，在另一个分支不返回就不返回，返回啥都没人管，因为function根本不会申明返回类型，真是随便的语言啊。</p>
 <p>【修改html元素内容】</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -866,13 +1023,12 @@ alert(msg);
 3
 4
 5
-</pre></td><td class="code"><pre>x=document<span class="variable">.getElementById</span>(<span class="string">"demo"</span>) <span class="comment">//查找元素</span>
+</pre></td><td class="code"><pre>x=document.getElementById(<span class="string">"demo"</span>) <span class="comment">//查找元素</span>
 
-x<span class="variable">.innerHTML</span>=<span class="string">"Hello JavaScript"</span>; <span class="comment">//改变内容</span>
+x.innerHTML=<span class="string">"Hello JavaScript"</span>; <span class="comment">//改变内容</span>
 
-x<span class="variable">.style</span><span class="variable">.color</span>=<span class="string">"#ff0000"</span>;    <span class="comment">//改变样式</span>
+x.style.<span class="keyword">color</span>=<span class="string">"#ff0000"</span>;    <span class="comment">//改变样式</span>
 </pre></td></tr></table></figure>
-
 
 
       
@@ -894,6 +1050,18 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -931,15 +1099,15 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
 18
 19
 20
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span>  
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">class</span> Singleton {  
 
     <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>; 
 
-    <span class="keyword">private</span> Singleton() { 
+    <span class="keyword">private</span> <span class="title">Singleton</span>() { 
 
     } 
 
-    <span class="keyword">public</span> <span class="keyword">static</span> Singleton getInstance() { 
+    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span>() { 
 
         <span class="keyword">if</span> (instance == <span class="keyword">null</span>) {     
 
@@ -952,7 +1120,6 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
     } 
 } 
 </pre></td></tr></table></figure>
-
 
 <p>多线程下，上面的instance == null 与 instance = new Singleton()的操作不是原子的，所以会导致instance == null的判断不正确，从而导致出现多个实例；</p>
 <p>synchronized能保证上述的原子性：</p>
@@ -976,15 +1143,15 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
 18
 19
 20
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span>  
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">class</span> Singleton {  
 
     <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>; 
 
-    <span class="keyword">private</span> Singleton () { 
+    <span class="keyword">private</span> <span class="title">Singleton</span> () { 
 
     } 
 
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton getInstance() { 
+    <span class="keyword">public</span> <span class="keyword">static</span> synchronized Singleton <span class="title">getInstance</span>() { 
 
         <span class="keyword">if</span> (instance == <span class="keyword">null</span>) { 
 
@@ -997,7 +1164,6 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
      } 
 } 
 </pre></td></tr></table></figure>
-
 
 <p>synchronized解决了原子性问题，但是，当第一次Singleton实例构造之后，这个instance对所有线程都可见了，所有线程都能正确判断instance == null为false了，此时再synchronized就没必要了，造成性能开销；</p>
 
@@ -1020,6 +1186,18 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -1068,6 +1246,18 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
   
     <article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -1105,26 +1295,25 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
 18
 19
 </pre></td><td class="code"><pre>{      
-  Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span> stack = new Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span>();
+  <span class="built_in">Stack</span><span class="subst">&lt;</span>One<span class="subst">&gt;</span> <span class="built_in">stack</span> <span class="subst">=</span> <span class="literal">new</span> <span class="built_in">Stack</span><span class="subst">&lt;</span>One<span class="subst">&gt;</span>();
 
-  stack.pushSingle(new One());
+  <span class="built_in">stack</span><span class="built_in">.</span>pushSingle(<span class="literal">new</span> One());
 
-  stack.pushSingle(new Two());
+  <span class="built_in">stack</span><span class="built_in">.</span>pushSingle(<span class="literal">new</span> Two());
 
-  List<span class="tag">&lt;<span class="title">One</span>&gt;</span> arrayList = new ArrayList<span class="tag">&lt;<span class="title">One</span>&gt;</span>();
+  <span class="built_in">List</span><span class="subst">&lt;</span>One<span class="subst">&gt;</span> arrayList <span class="subst">=</span> <span class="literal">new</span> ArrayList<span class="subst">&lt;</span>One<span class="subst">&gt;</span>();
 
-  stack.push(arrayList);
+  <span class="built_in">stack</span><span class="built_in">.</span>push(arrayList);
 
-  //有限通配符的用法
+  <span class="comment">//有限通配符的用法</span>
 
-  List<span class="tag">&lt;<span class="title">Two</span>&gt;</span> list = new ArrayList<span class="tag">&lt;<span class="title">Two</span>&gt;</span>();
+  <span class="built_in">List</span><span class="subst">&lt;</span>Two<span class="subst">&gt;</span> <span class="built_in">list</span> <span class="subst">=</span> <span class="literal">new</span> ArrayList<span class="subst">&lt;</span>Two<span class="subst">&gt;</span>();
 
-  stack.push(list); //The method push(List<span class="tag">&lt;<span class="title">One</span>&gt;</span>) in the type Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span> is not applicable for the arguments (List<span class="tag">&lt;<span class="title">Two</span>&gt;</span>)
+  <span class="built_in">stack</span><span class="built_in">.</span>push(<span class="built_in">list</span>); <span class="comment">//The method push(List&lt;One&gt;) in the type Stack&lt;One&gt; is not applicable for the arguments (List&lt;Two&gt;)</span>
 
-  stack.push2(list);
+  <span class="built_in">stack</span><span class="built_in">.</span>push2(<span class="built_in">list</span>);
 }
 </pre></td></tr></table></figure>
-
 
 
       
@@ -1146,6 +1335,18 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -1195,6 +1396,18 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
   
     <article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -1213,7 +1426,7 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
 <p>a[i++] —&gt; a[n]，从前往后看、选择最小值、一次交换到位</p>
 <p>1，完整循环找到数组中最小的元素；</p>
 <p>2，把这个最小的元素与a[0]交换；</p>
-<p>3，在a[i]-a[n](i = 1, 2, … n)的子数组中重复1-2步骤；</p>
+<p>3，在a[i]-a<a href="i = 1, 2, ... n">n</a>的子数组中重复1-2步骤；</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -1228,22 +1441,21 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
 12
 13
 14
-</pre></td><td class="code"><pre><span class="function"><span class="title">for</span><span class="params">(int i = <span class="number">0</span>; i &lt; n; i++)</span> {
+</pre></td><td class="code"><pre><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {
 
-    <span class="title">int</span> <span class="title">min</span> = <span class="title">i</span>;
+    <span class="keyword">int</span> <span class="built_in">min</span> = i;
 
-    <span class="title">for</span><span class="params">(int j = i + <span class="number">1</span>; j &lt; n; j++)</span> {
+    <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++) {
 
-        <span class="title">if</span><span class="params">(a[j] &lt; min)</span> 
+        <span class="keyword">if</span>(a[j] &lt; <span class="built_in">min</span>) 
 
-            <span class="title">min</span> = <span class="title">j</span>;
+            <span class="built_in">min</span> = j;
 
     }
 
-    <span class="title">swap</span><span class="params">(i, j, a)</span>;
+    swap(i, j, a);
 }
 </pre></td></tr></table></figure>
-
 
 <p>简写：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -1257,7 +1469,6 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
     <span class="comment">//将min和本次循环的i两个元素交换；</span>
 }
 </pre></td></tr></table></figure>
-
 
 
       
@@ -1300,10 +1511,10 @@ x<span class="variable">.style</span><span class="variable">.color</span>=<span 
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

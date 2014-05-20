@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Units Problem: How to read text size as custom attr from xml and set it to TextView in java code | Viyu</title>
+  <title>Units Problem: How to read text size as custom attr from xml and set it to TextView in java code | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="Here is this topic’s background:
@@ -15,13 +15,12 @@ So far, clients code can set text size like this:
 4
 5
 6
-&lt;MyView  
+&amp;lt;MyView  
      android:…  
      …
      my:myviewtextsize=”@dimen/textsize_24″  
      …  
-/&gt; 
-
+/&amp;gt; 
 
 
 The problem is: how to read the client’s text size number and set it to the TextVew of MyView?">
@@ -30,14 +29,14 @@ The problem is: how to read the client’s text size number and set it to the Te
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="Units Problem: How to read text size as custom attr from xml and set it to TextView in java code"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -46,8 +45,8 @@ The problem is: how to read the client’s text size number and set it to the Te
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -62,6 +61,18 @@ The problem is: how to read the client’s text size number and set it to the Te
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -94,7 +105,6 @@ The problem is: how to read the client’s text size number and set it to the Te
 /&gt;</span> 
 </pre></td></tr></table></figure>
 
-
 <p>The problem is: how to read the client’s text size number and set it to the TextVew of MyView?</p>
 <a id="more"></a>
 
@@ -102,20 +112,18 @@ The problem is: how to read the client’s text size number and set it to the Te
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre><span class="title">float</span> textSize = <span class="typedef">typedArray.getDimension<span class="container">(<span class="type">R</span>.<span class="type">MyView_myviewtextsize</span>, -1)</span>;  </span>
+</pre></td><td class="code"><pre>float textSize = typedArray<span class="preprocessor">.getDimension</span>(R<span class="preprocessor">.MyView</span>_myviewtextsize, -<span class="number">1</span>)<span class="comment">;  </span>
   
-<span class="title">this</span>.textView.setTextSize(textSize).  
+this<span class="preprocessor">.textView</span><span class="preprocessor">.setTextSize</span>(textSize).  
 </pre></td></tr></table></figure>
-
 
 <p>Above code goes wrong. The text size is bigger than it’s supposed to.</p>
 <p>Why? It is mixed units problem.</p>
 <p>The default method setTextSize(float) assumes you’re inputting sp units (scaled pixels), while the typedArray.getDimension() method returns an exact pixel size.</p>
 <p>It can be fixed this by using the alternate <b>setTextSize(TypedValue, float)</b>, like below:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="keyword">this</span><span class="variable">.textView</span><span class="variable">.setTextSize</span>(TypedValue<span class="variable">.COMPLEX_UNIT_PX</span>, size);  
+</pre></td><td class="code"><pre>this<span class="preprocessor">.textView</span><span class="preprocessor">.setTextSize</span>(TypedValue<span class="preprocessor">.COMPLEX</span>_UNIT_PX, size)<span class="comment">;  </span>
 </pre></td></tr></table></figure>
-
 
 <p>This will make sure you’re working with the same units.</p>
 
@@ -188,10 +196,10 @@ The problem is: how to read the client’s text size number and set it to the Te
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

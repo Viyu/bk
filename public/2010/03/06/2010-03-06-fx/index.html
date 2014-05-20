@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>泛型：有限通配符的用法 | Viyu</title>
+  <title>泛型：有限通配符的用法 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="发送一个子类对象给声明了其父类类型的方法，是没问题的；
 但是发送一个子类对象List给声明了其父类类型List的方法，是不行的；
-这个时候，有限通配符就可以派上用场，在接受方法的声明中：List&lt;? extends E&gt; o;
+这个时候，有限通配符就可以派上用场，在接受方法的声明中：List&amp;lt;? extends E&amp;gt; o;
 1
 2
 3
@@ -29,21 +29,21 @@
 18
 19
 {      
-  Stack&lt;One&gt; stack = new Stack&lt;One&gt;();
+  Stack&amp;lt;One&amp;gt; stack = new Stack&amp;lt;One&amp;gt;();
 
   stack.pushSingle(new One());
 
   stack.pushSingle(new Two());
 
-  List&lt;One&gt; arrayList = new ArrayList&lt;One&gt;();
+  List&amp;lt;One&amp;gt; arrayList = new ArrayList&amp;lt;One&amp;gt;();
 
   stack.push(arrayList);
 
   //有限通配符的用法
 
-  List&lt;Two&gt; list = new ArrayList&lt;Two&gt;();
+  List&amp;lt;Two&amp;gt; list = new ArrayList&amp;lt;Two&amp;gt;();
 
-  stack.push(list); //The method push(List&lt;One&gt;) in the type Stack&lt;One&gt; is not applicable for the arguments (List&lt;Two&gt;)
+  stack.push(list); //The method push(List&amp;lt;One&amp;gt;) in the type Stack&amp;lt;One&amp;gt; is not applicable for the arguments (List&amp;lt;Two&amp;gt;)
 
   stack.push2(list);
 }">
@@ -52,14 +52,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="泛型：有限通配符的用法"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -68,8 +68,8 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -84,6 +84,18 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -122,26 +134,25 @@
 18
 19
 </pre></td><td class="code"><pre>{      
-  Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span> stack = new Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span>();
+  <span class="built_in">Stack</span><span class="subst">&lt;</span>One<span class="subst">&gt;</span> <span class="built_in">stack</span> <span class="subst">=</span> <span class="literal">new</span> <span class="built_in">Stack</span><span class="subst">&lt;</span>One<span class="subst">&gt;</span>();
 
-  stack.pushSingle(new One());
+  <span class="built_in">stack</span><span class="built_in">.</span>pushSingle(<span class="literal">new</span> One());
 
-  stack.pushSingle(new Two());
+  <span class="built_in">stack</span><span class="built_in">.</span>pushSingle(<span class="literal">new</span> Two());
 
-  List<span class="tag">&lt;<span class="title">One</span>&gt;</span> arrayList = new ArrayList<span class="tag">&lt;<span class="title">One</span>&gt;</span>();
+  <span class="built_in">List</span><span class="subst">&lt;</span>One<span class="subst">&gt;</span> arrayList <span class="subst">=</span> <span class="literal">new</span> ArrayList<span class="subst">&lt;</span>One<span class="subst">&gt;</span>();
 
-  stack.push(arrayList);
+  <span class="built_in">stack</span><span class="built_in">.</span>push(arrayList);
 
-  //有限通配符的用法
+  <span class="comment">//有限通配符的用法</span>
 
-  List<span class="tag">&lt;<span class="title">Two</span>&gt;</span> list = new ArrayList<span class="tag">&lt;<span class="title">Two</span>&gt;</span>();
+  <span class="built_in">List</span><span class="subst">&lt;</span>Two<span class="subst">&gt;</span> <span class="built_in">list</span> <span class="subst">=</span> <span class="literal">new</span> ArrayList<span class="subst">&lt;</span>Two<span class="subst">&gt;</span>();
 
-  stack.push(list); //The method push(List<span class="tag">&lt;<span class="title">One</span>&gt;</span>) in the type Stack<span class="tag">&lt;<span class="title">One</span>&gt;</span> is not applicable for the arguments (List<span class="tag">&lt;<span class="title">Two</span>&gt;</span>)
+  <span class="built_in">stack</span><span class="built_in">.</span>push(<span class="built_in">list</span>); <span class="comment">//The method push(List&lt;One&gt;) in the type Stack&lt;One&gt; is not applicable for the arguments (List&lt;Two&gt;)</span>
 
-  stack.push2(list);
+  <span class="built_in">stack</span><span class="built_in">.</span>push2(<span class="built_in">list</span>);
 }
 </pre></td></tr></table></figure>
-
 
 <a id="more"></a>
 
@@ -170,15 +181,15 @@
 23
 </pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;<span class="title">E</span>&gt; {</span>
 
-<span class="keyword">public</span> <span class="keyword">void</span> pushSingle(E o) {
+<span class="keyword">public</span> void pushSingle(E o) {
 
 }
 
-<span class="keyword">public</span> <span class="keyword">void</span> push(List&lt;E&gt; o) {
+<span class="keyword">public</span> void push(<span class="keyword">List</span>&lt;E&gt; o) {
 
 }
 
-<span class="keyword">public</span> <span class="keyword">void</span> push2(List&lt;? <span class="keyword">extends</span> E&gt; o) {
+<span class="keyword">public</span> void push2(<span class="keyword">List</span><span class="preprocessor">&lt;?</span> extends E&gt; o) {
 
 }
 
@@ -188,7 +199,7 @@
 
 }
 
-<span class="class"><span class="keyword">class</span> <span class="title">Two</span> <span class="inheritance"><span class="keyword">extends</span> </span><span class="title">One</span> {</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Two</span> <span class="keyword">extends</span> <span class="title">One</span> {</span>
 
 }
 </pre></td></tr></table></figure>
@@ -262,10 +273,10 @@
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

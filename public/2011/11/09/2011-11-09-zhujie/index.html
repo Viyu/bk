@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>注解Demo | Viyu</title>
+  <title>注解Demo | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="定义描述类名或者方法名的注解：ClassOrMethodFullName.java
@@ -29,21 +29,20 @@ public @interface ClassOrMethodFullName {
 }
 
 
-
 定义描述方法参数个数的注解：MethodParameterCount.java">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="注解Demo"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -52,8 +51,8 @@ public @interface ClassOrMethodFullName {
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -68,6 +67,18 @@ public @interface ClassOrMethodFullName {
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -94,18 +105,17 @@ public @interface ClassOrMethodFullName {
 8
 9
 10
-</pre></td><td class="code"><pre>@Target({ElementType<span class="variable">.TYPE</span>, ElementType<span class="variable">.METHOD</span>})
+</pre></td><td class="code"><pre>@Target({ElementType.TYPE, ElementType.METHOD})
 
-@Retention(RetentionPolicy<span class="variable">.RUNTIME</span>)
+@Retention(RetentionPolicy.RUNTIME)
 
-<span class="keyword">public</span> @<span class="class"><span class="keyword">interface</span> <span class="id">ClassOrMethodFullName</span> {</span>
+<span class="keyword">public</span> @<span class="keyword">interface</span> ClassOrMethodFullName {
 
-        String value() <span class="keyword">default</span> <span class="string">"Unknown"</span>;
+        String <span class="keyword">value</span>() <span class="keyword">default</span> <span class="string">"Unknown"</span>;
 
         String fullName() <span class="keyword">default</span> <span class="string">"Unknown"</span>;
 }
 </pre></td></tr></table></figure>
-
 
 <p>定义描述方法参数个数的注解：MethodParameterCount.java</p>
 <a id="more"></a>
@@ -120,18 +130,17 @@ public @interface ClassOrMethodFullName {
 8
 9
 10
-</pre></td><td class="code"><pre>@Target(ElementType<span class="variable">.METHOD</span>)
+</pre></td><td class="code"><pre>@Target(ElementType.METHOD)
 
-@Retention(RetentionPolicy<span class="variable">.RUNTIME</span>)
+@Retention(RetentionPolicy.RUNTIME)
 
-<span class="keyword">public</span> @<span class="class"><span class="keyword">interface</span> <span class="id">MethodParameterCount</span> {</span>
+<span class="keyword">public</span> @<span class="keyword">interface</span> MethodParameterCount {
 
-        <span class="keyword">int</span> value() <span class="keyword">default</span> <span class="number">0</span>;
+        <span class="keyword">int</span> <span class="keyword">value</span>() <span class="keyword">default</span> <span class="number">0</span>;
 
         <span class="keyword">int</span> parameterCount() <span class="keyword">default</span> <span class="number">0</span>;
 }
 </pre></td></tr></table></figure>
-
 
 <p>使用注解：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -158,13 +167,13 @@ public @interface ClassOrMethodFullName {
 22
 </pre></td><td class="code"><pre><span class="annotation">@ClassOrMethodFullName</span>(fullName = <span class="string">"com.demo.annotations.Monday"</span>)
 
-<span class="class"><span class="keyword">class</span> <span class="title">Monday</span> {</span>
+class Monday {
 
         <span class="annotation">@MethodParameterCount</span>(<span class="number">3</span>)
 
         <span class="annotation">@ClassOrMethodFullName</span>(<span class="string">"Monday.printDay-03"</span>)
 
-        <span class="keyword">public</span> <span class="keyword">void</span> printDay(<span class="keyword">int</span> a, <span class="keyword">boolean</span> b, <span class="keyword">char</span> c) {
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printDay</span>(<span class="keyword">int</span> a, <span class="keyword">boolean</span> b, <span class="keyword">char</span> c) {
 
         }
 
@@ -174,12 +183,11 @@ public @interface ClassOrMethodFullName {
 
         <span class="annotation">@ClassOrMethodFullName</span>(fullName = <span class="string">"Monday.printDay-02"</span>)
 
-        <span class="keyword">public</span> <span class="keyword">void</span> printDay(<span class="keyword">int</span> a, <span class="keyword">boolean</span> b) {
+        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printDay</span>(<span class="keyword">int</span> a, <span class="keyword">boolean</span> b) {
 
         }
 }
 </pre></td></tr></table></figure>
-
 
 <p>获取注解的值，默认、不用特意指明的是value方法：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -268,7 +276,6 @@ Class mc = m<span class="preprocessor">.getClass</span>()<span class="comment">;
 }
 </pre></td></tr></table></figure>
 
-
 <p>输出：</p>
 <p>com.demo.annotations.Monday</p>
 <p>Monday.printDay-03</p>
@@ -345,10 +352,10 @@ Class mc = m<span class="preprocessor">.getClass</span>()<span class="comment">;
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

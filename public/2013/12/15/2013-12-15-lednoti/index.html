@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>LED notification in Android device | Viyu</title>
+  <title>LED notification in Android device | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="Code can control the LED notification in Android device, using android.app.Notification:
@@ -25,23 +25,22 @@ notification.ledOnMS = 500;
 notificationManager.notify(0, notification);  
 
 
-
 ledARGB: The color of the led. The hardware will do its best approximation.
-ledOffMS: The number of milliseconds for the LED to be off while it&amp;#39;s flashing. The hardware will do its best approximation.
-ledOnMS: The number of milliseconds for the LED to be on while it&amp;#39;s flashing. The hardware will do its best approximation.">
+ledOffMS: The number of milliseconds for the LED to be off while it’s flashing. The hardware will do its best approximation.
+ledOnMS: The number of milliseconds for the LED to be on while it’s flashing. The hardware will do its best approximation.">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="LED notification in Android device"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -50,8 +49,8 @@ ledOnMS: The number of milliseconds for the LED to be on while it&amp;#39;s flas
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -66,6 +65,18 @@ ledOnMS: The number of milliseconds for the LED to be on while it&amp;#39;s flas
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -100,19 +111,19 @@ notification<span class="preprocessor">.ledOnMS</span> = <span class="number">50
 notificationManager<span class="preprocessor">.notify</span>(<span class="number">0</span>, notification)<span class="comment">;  </span>
 </pre></td></tr></table></figure>
 
-
 <p>ledARGB: The color of the led. The hardware will do its best approximation.</p>
-<p>ledOffMS: The number of milliseconds for the LED to be off while it&#39;s flashing. The hardware will do its best approximation.</p>
-<p>ledOnMS: The number of milliseconds for the LED to be on while it&#39;s flashing. The hardware will do its best approximation.</p>
+<p>ledOffMS: The number of milliseconds for the LED to be off while it’s flashing. The hardware will do its best approximation.</p>
+<p>ledOnMS: The number of milliseconds for the LED to be on while it’s flashing. The hardware will do its best approximation.</p>
 <a id="more"></a>
 
 <p>Notice, above 3 parameters are all explained as <b>“The hardware will do its best approximation”</b>. </p>
-<p>In my Phone, ZTE U5, it seems that only Color.Red, Color.Green and Color.Yellow are supported. Color.Blue, Color.White and others doesn&#39;t work.</p>
+<p>In my Phone, ZTE U5, it seems that only Color.Red, Color.Green and Color.Yellow are supported. Color.Blue, Color.White and others doesn’t work.</p>
 <p>Notification.FLAG_SHOW_LIGHTS references:</p>
 <p>Since hardware varies, you are not guaranteed that any of the values you pass are honored exactly. Use the system defaults (TODO) if possible because they will be set to values that work on any given hardware.</p>
-<p>So it&#39;s better to use : notification.defaults = Notification.DEFAULT_LIGHTS;</p>
+<p>So it’s better to use : notification.defaults = Notification.DEFAULT_LIGHTS;</p>
 <p>Codes:</p>
 <script src="https://gist.github.com/Viyu/8093389.js"></script>
+
       
     </div>
     <footer>
@@ -182,10 +193,10 @@ notificationManager<span class="preprocessor">.notify</span>(<span class="number
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

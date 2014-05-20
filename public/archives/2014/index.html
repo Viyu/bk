@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014 | Viyu</title>
+  <title>Archives: 2014 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -26,8 +26,8 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -48,6 +48,18 @@
   
     <article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -65,16 +77,11 @@
         <p>PopupWindow可以用来实现弹出任意位置的菜单，比Context Menu和Option Menu灵活性更高。<br> Android中弹出一个PopupWindow基本有两个方法：</p>
  <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre>//Display <span class="keyword">the</span> content view <span class="keyword">in</span> a popup window anchored <span class="keyword">to</span> <span class="keyword">the</span> bottom-left corner <span class="keyword">of</span> <span class="keyword">the</span> anchor view.
-public void showAsDropDown(View anchor, int xoff, int yoff);
+</pre></td><td class="code"><pre><span class="comment">//Display the content view in a popup window anchored to the bottom-left corner of the anchor view.</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showAsDropDown</span>(View anchor, <span class="keyword">int</span> xoff, <span class="keyword">int</span> yoff);
+</pre></td></tr></table></figure><br>这个方法是弹出的窗口在anchor view的bottom-left,一般Android应用的菜单都在右上，实现思路就是以app中右上的view作为anchor，然后用屏幕宽度减去popup window的宽度作为xoff.<br><br> 还有一个方法：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showAtLocation</span>(IBinder token, <span class="keyword">int</span> gravity, <span class="keyword">int</span> x, <span class="keyword">int</span> y);
 </pre></td></tr></table></figure>
-
-<p>这个方法是弹出的窗口在anchor view的bottom-left,一般Android应用的菜单都在右上，实现思路就是以app中右上的view作为anchor，然后用屏幕宽度减去popup window的宽度作为xoff.</p>
-<p> 还有一个方法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre> <span class="keyword">public</span> <span class="keyword">void</span> showAtLocation(IBinder token, <span class="keyword">int</span> gravity, <span class="keyword">int</span> x, <span class="keyword">int</span> y);
-</pre></td></tr></table></figure>
-
 
 <p>再来说如何实现一个PopupWindow，步骤基本如下，下面代码时extends了PopupWindow的子类的实现：</p>
 
@@ -97,6 +104,18 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -147,6 +166,18 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
   
     <article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -168,14 +199,10 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 <p>此方案仍然不行，ListView的scrollTo没效果。</p>
 <p>终极方案：<br>退出页面的时候：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="title">Parcelable</span> listState = listView.<span class="built_in">on</span>SaveInstanceState();
-</pre></td></tr></table></figure>
-
-<p>记住listState对象；<br>再次进入页面的时候：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="attribute">Parcelable listState </span>=<span class="string"> listView.onSaveInstanceState();</span>
+</pre></td></tr></table></figure><br>记住listState对象；<br>再次进入页面的时候：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre>listView<span class="preprocessor">.onRestoreInstanceState</span>(listState)<span class="comment">;</span>
 </pre></td></tr></table></figure>
-
 
 <p>记忆的位置分毫不差。</p>
 <p>要注意：listView的状态记忆后，还要保证其数据在两次进入页面时的一致性；<br>另：ListView的header会影响其状态对象，不过这个是小问题。</p>
@@ -195,6 +222,18 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -216,13 +255,12 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 3
 4
 5
-</pre></td><td class="code"><pre><span class="keyword">public</span> boolean isGPSIsOn() {
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isGPSIsOn</span>() {
 	LocationManager locationManager = (LocationManager) mContext
-			<span class="variable">.getSystemService</span>(Context<span class="variable">.LOCATION_SERVICE</span>);
-	<span class="keyword">return</span> locationManager<span class="variable">.isProviderEnabled</span>(LocationManager<span class="variable">.GPS_PROVIDER</span>);
+			.getSystemService(Context.LOCATION_SERVICE);
+	<span class="keyword">return</span> locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 }
 </pre></td></tr></table></figure>
-
 
 <p>Method 2 is to open GPS setting page in Android device:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -234,17 +272,16 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 7
 8
 9
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">void</span> openGPSSettingPage() {
-	Intent intent = new Intent();
-	intent<span class="variable">.setAction</span>(Settings<span class="variable">.ACTION_LOCATION_SOURCE_SETTINGS</span>);
-	intent<span class="variable">.setFlags</span>(Intent<span class="variable">.FLAG_ACTIVITY_NEW_TASK</span>);
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">openGPSSettingPage</span>() {
+	Intent intent = <span class="keyword">new</span> Intent();
+	intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	<span class="keyword">try</span> {
-		context<span class="variable">.startActivity</span>(intent);
+		context.startActivity(intent);
 	} <span class="keyword">catch</span> (ActivityNotFoundException ex) {
 	}
 }
 </pre></td></tr></table></figure>
-
 
  
       
@@ -266,6 +303,18 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 
   
     <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -300,26 +349,25 @@ public void showAsDropDown(View anchor, int xoff, int yoff);
 16
 17
 18
-</pre></td><td class="code"><pre>boolean flag = <span class="literal">false</span>;
-Runtime run = Runtime<span class="variable">.getRuntime</span>();
-Process proc = null;
+</pre></td><td class="code"><pre><span class="keyword">boolean</span> flag = <span class="keyword">false</span>;
+Runtime run = Runtime.getRuntime();
+Process proc = <span class="keyword">null</span>;
 <span class="keyword">try</span> {
-	proc = run<span class="variable">.exec</span>(<span class="string">"ping -c 1 127.0.0.1"</span>);
-	<span class="keyword">int</span> result = proc<span class="variable">.waitFor</span>();
+	proc = run.exec(<span class="string">"ping -c 1 127.0.0.1"</span>);
+	<span class="keyword">int</span> result = proc.waitFor();
 	<span class="keyword">if</span> (result == <span class="number">0</span>) {
-		flag = <span class="literal">true</span>;
+		flag = <span class="keyword">true</span>;
 	} <span class="keyword">else</span> {
-		flag = <span class="literal">false</span>;
+		flag = <span class="keyword">false</span>;
 	}
 } <span class="keyword">catch</span> (IOException e) {
-	e<span class="variable">.printStackTrace</span>();
+	e.printStackTrace();
 } <span class="keyword">catch</span> (InterruptedException e) {
-	e<span class="variable">.printStackTrace</span>();
+	e.printStackTrace();
 } <span class="keyword">finally</span> {
-	proc<span class="variable">.destroy</span>();
+	proc.destroy();
 }
 </pre></td></tr></table></figure>
-
 
 <p>Ping codes is simple, but:<br>1, you must run it in background thread since Process.waitfor() will blocks current thread.<br>2, And you should control the the execution time for Process.waitfor().</p>
 <p>The solutions of above 2 issues could be:<br>1, AsyncTask to run Process.waitfor() in background;<br>2, Handler.sendEmptyMessageDelayed() to send a delayed message which cancel the AsyncTask if the background codes running too long time.</p>
@@ -362,10 +410,10 @@ Process proc = null;
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

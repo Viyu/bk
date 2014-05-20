@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>String | Viyu</title>
+  <title>String | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="【String】就是对char[]数组进行封装的对象，由三部分组成：
@@ -13,10 +13,10 @@ String是特定设计的，包含以下三个特点：
 1， 不变性： 不变模式immutable，节省了同步和锁等待的消耗；
 2， 针对【常量池】的优化：
 变量                                                            内存空间                           常量池
-String str1 = “abc”   ———————&gt;
-String str2 = “abc”   ———————&gt;                                                   abc
-String str3 = new String(“abc”)  —-&gt;      str实例         ———&gt;
-注意：str1 == str3.intern()是true；str2, str2直接指向常量池中的“abc”，不拷贝；
+String str1 = “abc”   ———————&amp;gt;
+String str2 = “abc”   ———————&amp;gt;                                                   abc
+String str3 = new String(“abc”)  —-&amp;gt;      str实例         ———&amp;gt;
+注意：str1 == str3.intern()是true；str2, str2直接指向常量池中的”abc”，不拷贝；
 3，类的final定义;
 String的两个构造方法：
 public String(char value[]) {
@@ -39,14 +39,14 @@ String(char[] value, boolean share) {
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="String"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -55,8 +55,8 @@ String(char[] value, boolean share) {
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -71,6 +71,18 @@ String(char[] value, boolean share) {
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -96,10 +108,10 @@ String(char[] value, boolean share) {
 <p>String str1 = “abc”   ———————&gt;</p>
 <p>String str2 = “abc”   ———————&gt;                                                   abc</p>
 <p>String str3 = new String(“abc”)  —-&gt;      str实例         ———&gt;</p>
-<p>注意：str1 == str3.intern()是true；str2, str2直接指向常量池中的“abc”，不拷贝；</p>
+<p>注意：str1 == str3.intern()是true；str2, str2直接指向常量池中的”abc”，不拷贝；</p>
 <p>3，类的final定义;</p>
 <p>String的两个构造方法：</p>
-<pre><code><span class="keyword">public</span> String(<span class="keyword">char</span> <span class="keyword">value</span>[]) {
+<pre><code><span class="keyword">public</span> <span class="title">String</span>(<span class="keyword">char</span> <span class="keyword">value</span>[]) {
 
     <span class="keyword">this</span>.<span class="keyword">value</span> = Arrays.copyOf(<span class="keyword">value</span>, <span class="keyword">value</span>.length);
 
@@ -109,8 +121,8 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
 
     <span class="keyword">this</span>.<span class="keyword">value</span> = <span class="keyword">value</span>;
 
-}</code></pre>
-<p>第一个构造方法会构造全新的char[]数组；</p>
+}
+</code></pre><p>第一个构造方法会构造全新的char[]数组；</p>
 <p>第二个构造方法共享了原来的char[]数组；</p>
 <p>【内存泄漏】第二个包可见的共享char[]数组的构造方法会导致内存泄露</p>
 <p>这个构造方法是空间换时间的策略（很有可能理解为时间换空间，因为share了空间，但这里大多数情况下是阻止大空间的GC）；</p>
@@ -133,12 +145,12 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
 <p>1000000个字符常驻内存，无法GC，因为5个字符串的使用；</p>
 <p>【字符串分割】</p>
 <p>String.split提供【正则表达式】分割功能：</p>
-<p>“a;b,c:d”.split(&quot;[;|,|:]&quot;);</p>
+<p>“a;b,c:d”.split(“[;|,|:]”);</p>
 <p>StringTokenizer是分割字符串的迭代器：</p>
 <p>StringTokenizer st = new StringTokenizer(orignalString, “;”);</p>
 <p>while(st.hasMoreTokens())</p>
-<pre><code><span class="keyword">st</span><span class="preprocessor">.nextToken</span>()<span class="comment">;</span></code></pre>
-<p>用String.indexOf和String.subString来分割字符串：</p>
+<pre><code><span class="keyword">st</span><span class="preprocessor">.nextToken</span>()<span class="comment">;</span>
+</code></pre><p>用String.indexOf和String.subString来分割字符串：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -153,22 +165,21 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
 12
 13
 14
-</pre></td><td class="code"><pre><span class="keyword">while</span>(<span class="literal">true</span>) {
+</pre></td><td class="code"><pre><span class="keyword">while</span>(<span class="keyword">true</span>) {
 
-    String splitStr = null;
+    String splitStr = <span class="keyword">null</span>;
 
-    <span class="keyword">int</span> j = orignalStr<span class="variable">.indexOf</span>(<span class="string">';'</span>);
+    <span class="keyword">int</span> j = orignalStr.indexOf(<span class="string">';'</span>);
 
     <span class="keyword">if</span>(j &lt; <span class="number">0</span>)
 
         <span class="keyword">break</span>;
 
-    splitStr = orignalStr<span class="variable">.subString</span>(<span class="number">0</span>, j);
+    splitStr = orignalStr.subString(<span class="number">0</span>, j);
 
-    orignalStr = orignalStr<span class="variable">.subString</span>(j + <span class="number">1</span>); <span class="comment">//更新string</span>
+    orignalStr = orignalStr.subString(j + <span class="number">1</span>); <span class="comment">//更新string</span>
 }
 </pre></td></tr></table></figure>
-
 
 <p>分割性能：split &lt; StringTokenizer &lt; indexOf&amp;subString</p>
 <hr>
@@ -183,11 +194,11 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
 <hr>
 <p>【字符串连接 + += concat StringBuilder StringBuffer】</p>
 <p>静态字符串(String常量)的连接操作，会在编译期被编译器直接运算优化：</p>
-<p>String result = “abc + ”and“ + ”123&quot;; 的性能高于</p>
+<p>String result = “abc + “and” + “123”; 的性能高于</p>
 <p>StringBuilder builder = new StringBuilder();</p>
 <p>builder.append(“abc”);</p>
 <p>…</p>
-<p>因为静态字符串的+操作在编译期就被运算了，运行期只存在“abcand123”一个字符串，并非：</p>
+<p>因为静态字符串的+操作在编译期就被运算了，运行期只存在”abcand123”一个字符串，并非：</p>
 <p>“abc”, “and”, “123”, “abcand”, “abcand123”；</p>
 <p>动态字符串(String变量)的连接操作，会在编译期被编译器转换为StringBuilder实现，循环中的局部变量也不例外：</p>
 <p>所以，</p>
@@ -200,15 +211,15 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
 <p>所以，其实用+操作和StringBuilder的性能是一样的 ；</p>
 <p>但编译器把+转换为StringBuilder时不够聪明，经常会过多new StringBuilder的对象：</p>
 <p>for(int i = 0; i &lt; 10000; i++)</p>
-<pre><code><span class="keyword">str</span> = <span class="keyword">str</span> + i;</code></pre>
-<p>会被编译器转换为：</p>
+<pre><code><span class="keyword">str</span> = <span class="keyword">str</span> + i;
+</code></pre><p>会被编译器转换为：</p>
 <p>for(int i = 0; i &lt; 10000; i++)</p>
-<pre><code>str = (new StringBuilder(String<span class="preprocessor">.valueOf</span>(str)))<span class="preprocessor">.append</span>(i)<span class="preprocessor">.toString</span>()<span class="comment">;</span></code></pre>
-<p>所以应该显式使用StringBuilder而不是依靠编译器转换为StringBuilder实现：</p>
+<pre><code><span class="keyword">str</span> = (<span class="keyword">new</span> StringBuilder(String.valueOf(<span class="keyword">str</span>))).append(i).toString();
+</code></pre><p>所以应该显式使用StringBuilder而不是依靠编译器转换为StringBuilder实现：</p>
 <p>StringBuilder sb = new StringBuilder();</p>
 <p>for(int i = 0; i &lt; 100000; i++)</p>
-<pre><code>sb<span class="preprocessor">.append</span>(i)<span class="comment">;</span></code></pre>
-<p>StringBuffer是线程安全的，理论上性能略低于StringBuilder；</p>
+<pre><code>sb<span class="preprocessor">.append</span>(i)<span class="comment">;</span>
+</code></pre><p>StringBuffer是线程安全的，理论上性能略低于StringBuilder；</p>
 <p>StringBuilder和StringBuffer就是变长的char[]数组，跟所有变长数组一样，指定合适capacity可以节省扩容的消耗，提高性能：</p>
 <p>StringBuffer(int capacity)            StringBuilder(int capacity);</p>
 <p>字符串连接的效率：StringBuilder &gt;&gt; concat &gt; +</p>
@@ -282,10 +293,10 @@ String(<span class="keyword">char</span>[] <span class="keyword">value</span>, b
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

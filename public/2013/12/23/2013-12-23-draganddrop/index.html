@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android客户端的图形化拖放操作的设计实现 | Viyu</title>
+  <title>Android客户端的图形化拖放操作的设计实现 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="为什么要拖放？拖放在某些UI交互中可以简化用户操作。
@@ -17,21 +17,20 @@ boolean android.view.View.startDrag(
 		ClipData data, DragShadowBuilder shadowBuilder, Object myLocalState, int flags)
 
 
-
 第一个参数ClipData data是拖拽的对象，下面第2条来讲解；第二个参数DragShadowBuilder shadowBuilder是拖拽时的样子，下面的第3条来讲解。">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="Android客户端的图形化拖放操作的设计实现"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -40,8 +39,8 @@ boolean android.view.View.startDrag(
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -56,6 +55,18 @@ boolean android.view.View.startDrag(
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -78,10 +89,9 @@ boolean android.view.View.startDrag(
 <p><b>1，开始拖拽：</b><br>开始拖拽要解决三个问题：<br>1， 什么时候开始？如何开始？<br>一般是在用户长按一个组件的时候，我们开始拖拽，所以给要被拖拽的View定义它的OnLongClickListener，在其中调用View.startDrag()方法就可以了。<br>startDrag()方法的定义：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
-</pre></td><td class="code"><pre>boolean android<span class="variable">.view</span><span class="variable">.View</span><span class="variable">.startDrag</span>(
-		ClipData data, DragShadowBuilder shadowBuilder, Object myLocalState, <span class="keyword">int</span> flags)
+</pre></td><td class="code"><pre>boolean android<span class="preprocessor">.view</span><span class="preprocessor">.View</span><span class="preprocessor">.startDrag</span>(
+		ClipData data, DragShadowBuilder shadowBuilder, Object myLocalState, int flags)
 </pre></td></tr></table></figure>
-
 
 <p>第一个参数ClipData data是拖拽的对象，下面第2条来讲解；第二个参数DragShadowBuilder shadowBuilder是拖拽时的样子，下面的第3条来讲解。</p>
 <a id="more"></a> 
@@ -107,7 +117,6 @@ boolean android.view.View.startDrag(
 public ClipData (CharSequence label, String[] mimeTypes, ClipData.Item <span class="property">item</span>) 
 </pre></td></tr></table></figure>
 
-
 <p>由此可见，构造一个ClipData对象，作为拖拽的数据对象，它的构造需要三个参数：<br>1，label 给一个标签；<br>2，mimeTypes<br>3，一个ClipData.Item对象<br>再来看ClipData.Item的定义：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -127,14 +136,13 @@ public ClipData (CharSequence label, String[] mimeTypes, ClipData.Item <span cla
 * <span class="keyword">by</span> corresponding Android built-<span class="keyword">in</span> style spans. (Custom <span class="type">application</span> spans are <span class="keyword">not</span> supported <span class="keyword">and</span> will be 
 * stripped when transporting <span class="keyword">through</span> <span class="command">the clipboard</span>.) 
 * Intent: an arbitrary Intent object. A typical use <span class="keyword">is</span> <span class="keyword">the</span> shortcut <span class="keyword">to</span> create when pasting a clipped <span class="property">item</span> 
-* <span class="function_start"><span class="keyword">on</span> <span class="title">to</span></span> <span class="keyword">the</span> home screen. 
+* <span class="function_start"><span class="keyword">on</span></span> <span class="keyword">to</span> <span class="keyword">the</span> home screen. 
 * Uri: a URI <span class="keyword">reference</span>. This may be any URI (such <span class="keyword">as</span> an http: URI representing a bookmark), 
 * however <span class="keyword">it</span> <span class="keyword">is</span> often a content: URI. Using content provider references <span class="keyword">as</span> clips like this allows 
 * an <span class="type">application</span> <span class="keyword">to</span> share complex <span class="keyword">or</span> large clips <span class="keyword">through</span> <span class="keyword">the</span> standard content provider facilities. 
 */
 android.content.ClipData.Item 
 </pre></td></tr></table></figure>
-
 
 <p>ClipData.item有三类构造方法：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -166,7 +174,7 @@ android.content.ClipData.Item
 </pre></td><td class="code"><pre><span class="javadoc">/**
 * Create an Item consisting of a single block of (possibly styled) text.
 */</span>
-<span class="keyword">public</span> Item(CharSequence text) {
+<span class="keyword">public</span> <span class="title">Item</span>(CharSequence text) {
 }
 
 <span class="javadoc">/**
@@ -175,22 +183,21 @@ android.content.ClipData.Item
 * supply a plain text representation in addition to HTML text; coercion
 * will not be done from HTML formated text into plain text.
 */</span>
-<span class="keyword">public</span> Item(CharSequence text, String htmlText) {
+<span class="keyword">public</span> <span class="title">Item</span>(CharSequence text, String htmlText) {
 }
 
 <span class="javadoc">/**
 * Create an Item consisting of an arbitrary Intent.
 */</span>
-<span class="keyword">public</span> Item(Intent intent) {
+<span class="keyword">public</span> <span class="title">Item</span>(Intent intent) {
 }
 
 <span class="javadoc">/**
 * Create an Item consisting of an arbitrary URI.
 */</span>
-<span class="keyword">public</span> Item(Uri uri) {
+<span class="keyword">public</span> <span class="title">Item</span>(Uri uri) {
 }
 </pre></td></tr></table></figure>
-
 
 <p>就是分别可以用Text, Intent和Uri来构造。</p>
 <p>3， DragShadowBuilder: 拖拽时的样子：</p>
@@ -206,7 +213,7 @@ android.content.ClipData.Item
 9
 </pre></td><td class="code"><pre>/**
 * Added <span class="keyword">in</span> API level <span class="number">11</span>
-* Constructs a shadow image builder based <span class="function_start"><span class="keyword">on</span> <span class="title">a</span></span> View. By default, <span class="keyword">the</span> resulting drag shadow will have <span class="keyword">the</span> same appearance <span class="keyword">and</span> 
+* Constructs a shadow image builder based <span class="function_start"><span class="keyword">on</span></span> a View. By default, <span class="keyword">the</span> resulting drag shadow will have <span class="keyword">the</span> same appearance <span class="keyword">and</span> 
 * dimensions <span class="keyword">as</span> <span class="keyword">the</span> View, <span class="keyword">with</span> <span class="keyword">the</span> touch point <span class="keyword">over</span> <span class="keyword">the</span> center <span class="keyword">of</span> <span class="keyword">the</span> View.
 * Parameters
 * view  A View. Any View <span class="keyword">in</span> scope can be used.
@@ -214,7 +221,6 @@ android.content.ClipData.Item
 public View.DragShadowBuilder (View view) 
   
 </pre></td></tr></table></figure>
-
 
 <p>OK，拖拽的第一阶段：开始拖拽就讲完了，看一下完整代码：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -234,23 +240,22 @@ public View.DragShadowBuilder (View view)
 15
 16
 </pre></td><td class="code"><pre><span class="comment">//给要被拖拽的View mNote_1添加长按事件</span>
-mNote_1<span class="variable">.setOnLongClickListener</span>(new View<span class="variable">.OnLongClickListener</span>() {
-  @Override
-  <span class="keyword">public</span> boolean onLongClick(View v) {
+mNote_1.setOnLongClickListener(<span class="keyword">new</span> View.OnLongClickListener() {
+  <span class="annotation">@Override</span>
+  <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onLongClick</span>(View v) {
   <span class="comment">//在我的代码实现中，给mNote_1设置了一个Text作为其Tag，这里取出来用来构造Item</span>
-    ClipData<span class="variable">.Item</span> item = new ClipData<span class="variable">.Item</span>((CharSequence)v<span class="variable">.getTag</span>());
-    String[] mimeTypes = {ClipDescription<span class="variable">.MIMETYPE_TEXT_PLAIN</span>};
+    ClipData.Item item = <span class="keyword">new</span> ClipData.Item((CharSequence)v.getTag());
+    String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
     <span class="comment">//构造一个drag data</span>
-    ClipData dragData = new ClipData(v<span class="variable">.getTag</span>()<span class="variable">.toString</span>(), mimeTypes, item);
+    ClipData dragData = <span class="keyword">new</span> ClipData(v.getTag().toString(), mimeTypes, item);
     <span class="comment">//构造一个shadow</span>
-    View<span class="variable">.DragShadowBuilder</span> myShadow = new DragShadowBuilder(mNote_1);
+    View.DragShadowBuilder myShadow = <span class="keyword">new</span> DragShadowBuilder(mNote_1);
     <span class="comment">//发起拖拽</span>
-    v<span class="variable">.startDrag</span>(dragData, myShadow, null, <span class="number">0</span>);
-    <span class="keyword">return</span> <span class="literal">true</span>;
+    v.startDrag(dragData, myShadow, <span class="keyword">null</span>, <span class="number">0</span>);
+    <span class="keyword">return</span> <span class="keyword">true</span>;
   }
 });
 </pre></td></tr></table></figure>
-
 
 <p><b>2，正在拖拽 </b></p>
 <p>只要给View添加一个OnDragListener，就可以得到整个拖拽过程中的所有回调事件。<br>OnDragListener的方法onDrag定义如下：</p>
@@ -266,16 +271,15 @@ mNote_1<span class="variable">.setOnLongClickListener</span>(new View<span class
 10
 </pre></td><td class="code"><pre>/**
  * Added <span class="keyword">in</span> API level <span class="number">11</span> 
- * Called when a drag event <span class="keyword">is</span> dispatched <span class="keyword">to</span> a view. This allows listeners <span class="keyword">to</span> <span class="keyword">get</span> a chance <span class="keyword">to</span> override base View behavior.
+ * Called <span class="keyword">when</span> a drag <span class="keyword">event</span> <span class="keyword">is</span> dispatched <span class="keyword">to</span> a view. This allows listeners <span class="keyword">to</span> <span class="keyword">get</span> a chance <span class="keyword">to</span> override base View behavior.
  * Parameters
- * v  The View <span class="keyword">that</span> received <span class="keyword">the</span> drag event. 
- * event  The DragEvent object <span class="keyword">for</span> <span class="keyword">the</span> drag event. 
+ * v  The View that received the drag <span class="keyword">event</span>. 
+ * <span class="keyword">event</span>  The DragEvent <span class="built_in">object</span> <span class="keyword">for</span> the drag <span class="keyword">event</span>. 
  * Returns
- * <span class="constant">true</span> <span class="keyword">if</span> <span class="keyword">the</span> drag event was handled successfully, <span class="keyword">or</span> <span class="constant">false</span> <span class="keyword">if</span> <span class="keyword">the</span> drag event was <span class="keyword">not</span> handled. Note <span class="keyword">that</span> <span class="constant">false</span> will trigger <span class="keyword">the</span> View <span class="keyword">to</span> call <span class="keyword">its</span> onDragEvent() handler. 
+ * <span class="literal">true</span> <span class="keyword">if</span> the drag <span class="keyword">event</span> was handled successfully, <span class="keyword">or</span> <span class="literal">false</span> <span class="keyword">if</span> the drag <span class="keyword">event</span> was <span class="keyword">not</span> handled. Note that <span class="literal">false</span> will trigger the View <span class="keyword">to</span> <span class="keyword">call</span> its onDragEvent() handler. 
  */
-public abstract <span class="type">boolean</span> onDrag (View v, DragEvent event) 
+<span class="keyword">public</span> abstract <span class="built_in">boolean</span> onDrag (View v, DragEvent <span class="keyword">event</span>) 
 </pre></td></tr></table></figure>
-
 
 <p>DragEvent定义了所有拖拽中的事件：</p>
 <p><b>ACTION_DRAG_STARTED</b><br>只在应用程序调用startDrag()方法，并且获得了拖拽影子后，View对象的拖拽事件监听器才接收这种事件操作。<br><b>ACTION_DRAG_ENTERED</b><br>当拖拽影子刚进入View对象的边框时，View对象的拖拽事件监听器会接收这种事件操作类型。<br><b>ACTION_DRAG_LOCATION</b><br>在View对象收到一个ACTION_DRAG_ENTERED事件之后，并且拖拽影子依然还在这个对象的边框之内时，这个View对象的拖拽事件监听器会接收这种事件操作类型<br><b>ACTION_DRAG_EXITED</b><br>View对象收到一个ACTION_DRAG_ENTERED和至少一个ACTION_DRAG_LOCATION事件之后，这个对象的事件监听器会接受这种操作类型。<br><b>ACTION_DROP</b><br>当用户在一个View对象之上释放了拖拽影子，这个对象的拖拽事件监听器就会收到这种操作类型。如果这个监听器在响应ACTION_DRAG_STARTED拖拽事件中返回了true，那么这种操作类型只会发送给一个View对象。如果用户在没有被注册监听器的View对象上释放了拖拽影子，或者用户没有在当前布局的任何部分释放操作影子，这个操作类型就不会被发送。如果View对象成功的处理放下事件，监听器要返回true，否则应该返回false。<br><b>ACTION_DRAG_ENDED</b><br>当系统结束拖拽操作时，View对象拖拽监听器会接收这种事件操作类型。这种操作类型之前不一定是ACTION_DROP事件。如果系统发送了一个ACTION_DROP事件，那么接收ACTION_DRAG_ENDED操作类型不意味着放下操作成功了。监听器必须调用getResult()方法来获得响应ACTION_DROP事件中的返回值。如果ACTION_DROP事件没有被发送，那么getResult()会返回false。</p>
@@ -328,9 +332,9 @@ public abstract <span class="type">boolean</span> onDrag (View v, DragEvent even
 })<span class="comment">;</span>
 </pre></td></tr></table></figure>
 
-
 <p>源代码： </p>
 <script src="https://gist.github.com/Viyu/8093281.js"></script>
+
       
     </div>
     <footer>
@@ -400,10 +404,10 @@ public abstract <span class="type">boolean</span> onDrag (View v, DragEvent even
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>

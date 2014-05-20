@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>排序 | Viyu</title>
+  <title>排序 | Mosthink</title>
   <meta name="author" content="Viyu">
   
   <meta name="description" content="【选择排序】
-a[i++] —&gt; a[n]，从前往后看、选择最小值、一次交换到位
+a[i++] —&amp;gt; a[n]，从前往后看、选择最小值、一次交换到位
 1，完整循环找到数组中最小的元素；
 2，把这个最小的元素与a[0]交换；
-3，在a[i]-a[n](i = 1, 2, … n)的子数组中重复1-2步骤；
+3，在a[i]-an的子数组中重复1-2步骤；
 1
 2
 3
@@ -25,13 +25,13 @@ a[i++] —&gt; a[n]，从前往后看、选择最小值、一次交换到位
 12
 13
 14
-for(int i = 0; i &lt; n; i++) {
+for(int i = 0; i &amp;lt; n; i++) {
 
     int min = i;
 
-    for(int j = i + 1; j &lt; n; j++) {
+    for(int j = i + 1; j &amp;lt; n; j++) {
 
-        if(a[j] &lt; min) 
+        if(a[j] &amp;lt; min) 
 
             min = j;
 
@@ -41,14 +41,13 @@ for(int i = 0; i &lt; n; i++) {
 }
 
 
-
 简写：
 1
 2
 3
 4
 5
-for(int i =0; i &lt; n; i++) {
+for(int i =0; i &amp;lt; n; i++) {
     min = //本次循环的i...n中的最小的元素的index；
 
     //将min和本次循环的i两个元素交换；
@@ -58,14 +57,14 @@ for(int i =0; i &lt; n; i++) {
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta property="og:title" content="排序"/>
-  <meta property="og:site_name" content="Viyu"/>
+  <meta property="og:site_name" content="Mosthink"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.png" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Viyu" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Mosthink" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
@@ -74,8 +73,8 @@ for(int i =0; i &lt; n; i++) {
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">Viyu</a></h1>
-  <h2><a href="/">Viyu's Blog</a></h2>
+  <h1><a href="/">Mosthink</a></h1>
+  <h2><a href="/">Viyu&#39;s Blog</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -90,6 +89,18 @@ for(int i =0; i &lt; n; i++) {
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
@@ -109,7 +120,7 @@ for(int i =0; i &lt; n; i++) {
 <p>a[i++] —&gt; a[n]，从前往后看、选择最小值、一次交换到位</p>
 <p>1，完整循环找到数组中最小的元素；</p>
 <p>2，把这个最小的元素与a[0]交换；</p>
-<p>3，在a[i]-a[n](i = 1, 2, … n)的子数组中重复1-2步骤；</p>
+<p>3，在a[i]-a<a href="i = 1, 2, ... n">n</a>的子数组中重复1-2步骤；</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -124,22 +135,21 @@ for(int i =0; i &lt; n; i++) {
 12
 13
 14
-</pre></td><td class="code"><pre><span class="function"><span class="title">for</span><span class="params">(int i = <span class="number">0</span>; i &lt; n; i++)</span> {
+</pre></td><td class="code"><pre><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {
 
-    <span class="title">int</span> <span class="title">min</span> = <span class="title">i</span>;
+    <span class="keyword">int</span> <span class="built_in">min</span> = i;
 
-    <span class="title">for</span><span class="params">(int j = i + <span class="number">1</span>; j &lt; n; j++)</span> {
+    <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++) {
 
-        <span class="title">if</span><span class="params">(a[j] &lt; min)</span> 
+        <span class="keyword">if</span>(a[j] &lt; <span class="built_in">min</span>) 
 
-            <span class="title">min</span> = <span class="title">j</span>;
+            <span class="built_in">min</span> = j;
 
     }
 
-    <span class="title">swap</span><span class="params">(i, j, a)</span>;
+    swap(i, j, a);
 }
 </pre></td></tr></table></figure>
-
 
 <p>简写：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
@@ -153,7 +163,6 @@ for(int i =0; i &lt; n; i++) {
     <span class="comment">//将min和本次循环的i两个元素交换；</span>
 }
 </pre></td></tr></table></figure>
-
 
 <a id="more"></a>
 
@@ -175,14 +184,13 @@ for(int i =0; i &lt; n; i++) {
 4
 5
 6
-</pre></td><td class="code"><pre><span class="function"><span class="title">for</span><span class="params">(int i = <span class="number">1</span>; i &lt; n; i++)</span> {
+</pre></td><td class="code"><pre><span class="keyword">for</span>(int <span class="built_in">i</span> = <span class="number">1</span>; <span class="built_in">i</span> &lt; n; <span class="built_in">i</span>++) <span class="cell">{
 
-    <span class="title">for</span><span class="params">(int j = i; j &gt; <span class="number">0</span> &amp;&amp; a[j] &lt; a[j-<span class="number">1</span>]; j--)</span> 
+    for(int j = i; j &gt; <span class="number">0</span> &amp;&amp; a[j] &lt; a[j-<span class="number">1</span>]; j--) 
 
-        <span class="title">swap</span><span class="params">(j, j -<span class="number">1</span>, a)</span>;
-}
+        swap(j, j -<span class="number">1</span>, a);
+}</span>
 </pre></td></tr></table></figure>
-
 
 <p>每次子循环的结果，左侧的元素肯定是在已知（已经扫描）的数组中有序的，所以每次子循环发生的条件是，如果a[j]小于a[j-1]，则交换，然后继续进行j—之后的扫描；但如果a[j]不小于a[j-1]，因为左侧在已知数组中是有序的，这个时候该子循环就不会发生了；</p>
 <p>对已然有序的数组排序，插入排序是线性扫描，0次交换；</p>
@@ -232,7 +240,6 @@ for(int i =0; i &lt; n; i++) {
 }
 </pre></td></tr></table></figure>
 
-
 <p>自顶向下的归并排序：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -248,22 +255,21 @@ for(int i =0; i &lt; n; i++) {
 12
 13
 14
-</pre></td><td class="code"><pre><span class="function"><span class="title">sort</span><span class="params">(a, <span class="number">0</span>, a.length - <span class="number">1</span>)</span>;
+</pre></td><td class="code"><pre><span class="keyword">sort</span>(a, <span class="number">0</span>, a.<span class="keyword">length</span> - <span class="number">1</span>);
 
-<span class="title">void</span> <span class="title">sort</span><span class="params">(<span class="variable">Comparable</span>[] a, int low, int hign)</span> {
+void <span class="keyword">sort</span>(Comparable[] a, <span class="keyword">int</span> low, <span class="keyword">int</span> hign) {
 
-    <span class="title">if</span><span class="params">(hign &lt; = low)</span>        <span class="title">return</span>;
+    <span class="keyword">if</span>(hign &lt; = low)        <span class="keyword">return</span>;
 
-    <span class="title">int</span> <span class="title">mid</span> = <span class="title">low</span> + <span class="params">(hign - low)</span> / 2;
+    <span class="keyword">int</span> mid = low + (hign - low) / <span class="number">2</span>;
 
-    <span class="title">sort</span><span class="params">(a, low, mid)</span>;
+    <span class="keyword">sort</span>(a, low, mid);
 
-    <span class="title">sort</span><span class="params">(a, mid + <span class="number">1</span>, hign)</span>;
+    <span class="keyword">sort</span>(a, mid + <span class="number">1</span>, hign);
 
-    <span class="title">merge</span><span class="params">(a, low, mid, hign)</span>;
+    merge(a, low, mid, hign);
 }
 </pre></td></tr></table></figure>
-
 
 <p>归并算法的思路就是：两个单元素的数组是分别有序的，可以通过merge方法将其归并为一个2元素的有序数组，依此类推，两个a[low]到a[mid]和a[mid+1]到a[hign]的数组分别有序，可以通过merge方法将其归并为一个有序数组a[low]到a[hign]；</p>
 <p>归并自上而下，先分拆(sort)直至单元素数组，再归并(merge)回到原数组；</p>
@@ -284,18 +290,17 @@ for(int i =0; i &lt; n; i++) {
 8
 9
 10
-</pre></td><td class="code"><pre><span class="comment">void</span> <span class="comment">sort(Comparable</span>[<span class="title">]</span> <span class="comment">a)</span> <span class="comment">{</span>
+</pre></td><td class="code"><pre><span class="keyword">void</span> sort(Comparable[] a) {
 
-    <span class="comment">aux</span> <span class="comment">=</span> <span class="comment">new</span> <span class="comment">Comparable</span>[<span class="comment">a</span>.<span class="comment">length</span>]<span class="comment">;</span>
+    aux = new Comparable[a.<span class="built_in">length</span>];
 
-    <span class="comment">for(int</span> <span class="comment">sz</span> <span class="comment">=</span> <span class="comment">1;</span> <span class="comment">sz</span> &lt; <span class="comment">a</span>.<span class="comment">length;</span> <span class="comment">sz</span> <span class="comment">=</span> <span class="comment">sz</span> <span class="literal">+</span> <span class="comment">sz)</span> 
+    <span class="keyword">for</span>(<span class="keyword">int</span> sz = <span class="number">1</span>; sz &lt; a.<span class="built_in">length</span>; sz = sz + sz) 
 
-        <span class="comment">for(int</span> <span class="comment">low</span> <span class="comment">=</span> <span class="comment">0;</span> <span class="comment">low</span> &lt; <span class="comment">N</span> <span class="literal">-</span> <span class="comment">sz;</span> <span class="comment">low</span> <span class="literal">+</span><span class="comment">=</span> <span class="comment">sz</span> <span class="literal">+</span> <span class="comment">sz)</span> 
+        <span class="keyword">for</span>(<span class="keyword">int</span> low = <span class="number">0</span>; low &lt; N - sz; low += sz + sz) 
 
-            <span class="comment">merge(a</span>, <span class="comment">low</span>, <span class="comment">low</span> <span class="literal">+</span> <span class="comment">sz</span> <span class="literal">-</span> <span class="comment">1</span>, <span class="comment">Math</span>.<span class="comment">min(low</span> <span class="literal">+</span> <span class="comment">sz</span> <span class="literal">+</span> <span class="comment">sz</span> <span class="literal">-</span> <span class="comment">1</span>, <span class="comment">N</span> <span class="literal">-</span><span class="comment">1);</span>
-<span class="comment">}
+            merge(a, low, low + sz - <span class="number">1</span>, Math.<span class="built_in">min</span>(low + sz + sz - <span class="number">1</span>, N -<span class="number">1</span>);
+}
 </pre></td></tr></table></figure>
-
 
 <p>自顶向下是 化整为零，自底向上是循序渐进；</p>
 <p>归并排序用了aux辅助数组，是空间复杂度不是最优的；</p>
@@ -354,7 +359,6 @@ void <span class="keyword">sort</span>(Comparable[] a, <span class="keyword">int
 }
 </pre></td></tr></table></figure>
 
-
 <p>递归调用切分实现排序的思路：</p>
 <p>如果左子数组和右子数组都是有序的，那么由左子数组（有序且所有元素都小于等于切分元素+切分元素+右子数组（有序且所有元素大于等于切分元素）组成的结果数组也一定是有序的；</p>
 <p>切分找j的条件</p>
@@ -395,40 +399,39 @@ void <span class="keyword">sort</span>(Comparable[] a, <span class="keyword">int
 30
 31
 32
-</pre></td><td class="code"><pre><span class="keyword">int</span> partition(Comparable[] a, <span class="keyword">int</span> low, <span class="keyword">int</span> hign) {
+</pre></td><td class="code"><pre>int partition(Comparable[] <span class="literal">a</span>, int low, int hign) {
 
-    <span class="keyword">int</span> i = low, j = hign + <span class="number">1</span>;
+    int i = low, j = hign + <span class="number">1</span><span class="comment">;</span>
 
-    Comparable v = a[<span class="number">0</span>];
+    Comparable v = <span class="literal">a</span>[<span class="number">0</span>]<span class="comment">;</span>
 
-    <span class="keyword">while</span>(<span class="keyword">true</span>) {
+    <span class="keyword">while</span>(<span class="literal">true</span>) {
 
-        <span class="keyword">while</span>(a[++i]  &lt; v)
+        <span class="keyword">while</span>(<span class="literal">a</span>[++i]  &lt; v)
 
             <span class="keyword">if</span>(i == hign)
 
-                    <span class="keyword">break</span>;
+                    <span class="keyword">break</span><span class="comment">;</span>
 
-        <span class="keyword">while</span>(a[--j] &gt; v)
+        <span class="keyword">while</span>(<span class="literal">a</span>[--j] &gt; v)
 
             <span class="keyword">if</span>(j == low)
 
-                <span class="keyword">break</span>;
+                <span class="keyword">break</span><span class="comment">;</span>
 
         <span class="keyword">if</span>(i &gt;= j)
 
-            <span class="keyword">break</span>;
+            <span class="keyword">break</span><span class="comment">;</span>
 
-        swap(a, i, j);
+        swap(<span class="literal">a</span>, i, j)<span class="comment">;</span>
 
     }
 
-    swap(a, low, j);
+    swap(<span class="literal">a</span>, low, j)<span class="comment">;</span>
 
-    <span class="keyword">return</span> j;
+    <span class="keyword">return</span> j<span class="comment">;</span>
 }
 </pre></td></tr></table></figure>
-
 
 <p>两个小while分别做从左、从右往中间走的动作；</p>
 <p>从左边走遇见的比切分元素大的元素，跟从右边走遇见的比切分元素小的元素，交换之;</p>
@@ -466,27 +469,26 @@ void <span class="keyword">sort</span>(Comparable[] a, <span class="keyword">int
 17
 18
 19
-</pre></td><td class="code"><pre>int lo = <span class="number">0</span>, hi = a.length - <span class="number">1</span>;
+</pre></td><td class="code"><pre>int lo = <span class="number">0</span>, hi = <span class="literal">a</span>.length - <span class="number">1</span><span class="comment">;</span>
 
-<span class="function"><span class="title">while</span><span class="params">(hi &gt; lo)</span> {
+<span class="keyword">while</span>(hi &gt; lo) {
 
-    <span class="title">int</span> <span class="title">j</span> = <span class="title">partition</span><span class="params">(a, lo, hi)</span>;
+    int j = partition(<span class="literal">a</span>, lo, hi)<span class="comment">;</span>
 
-    <span class="title">if</span><span class="params">(j == k)</span>
+    <span class="keyword">if</span>(j == k)
 
-        <span class="title">return</span> <span class="title">a</span>[<span class="title">k</span>];
+        <span class="keyword">return</span> <span class="literal">a</span>[k]<span class="comment">;</span>
 
-    <span class="title">if</span><span class="params">(j &gt; k)</span>
+    <span class="keyword">if</span>(j &gt; k)
 
-        <span class="title">hi</span> = <span class="title">j</span> - 1;
+        hi = j - <span class="number">1</span><span class="comment">;</span>
 
-    <span class="title">if</span><span class="params">(j &lt; k)</span>
+    <span class="keyword">if</span>(j &lt; k)
 
-        <span class="title">lo</span> = <span class="title">j</span> + 1;
+        lo = j + <span class="number">1</span><span class="comment">;</span>
 
-    <span class="title">return</span> <span class="title">a</span>[<span class="title">k</span>];
+    <span class="keyword">return</span> <span class="literal">a</span>[k]<span class="comment">;</span>
 </pre></td></tr></table></figure>
-
 
 <hr>
 <p><b>【堆排序】</b></p>
@@ -538,54 +540,53 @@ void <span class="keyword">sort</span>(Comparable[] a, <span class="keyword">int
 44
 45
 46
-</pre></td><td class="code"><pre><span class="keyword">void</span> swim(<span class="keyword">int</span> k) {
+</pre></td><td class="code"><pre>void swim(<span class="keyword">int</span> k) {
 
-    <span class="keyword">while</span>(k &gt; <span class="number">1</span> &amp;&amp; pq[k/<span class="number">2</span>] &lt; pq[k]) {
+    <span class="keyword">while</span>(k &gt; <span class="number">1</span> &amp;&amp; p<span class="string">q[k/2]</span> &lt; p<span class="string">q[k]</span>) {
 
         swap(pq, k/<span class="number">2</span>, k);
 
         k = k / <span class="number">2</span>;
 }
 
-<span class="keyword">void</span> sink(<span class="keyword">int</span> k) {
+void sink(<span class="keyword">int</span> k) {
 
     <span class="keyword">while</span>(<span class="number">2</span> * k &lt;= N) {
         <span class="keyword">int</span> j = <span class="number">2</span> * k;
 
-        <span class="keyword">if</span>(j &lt; N &amp;&amp; pq[j] &lt; pq[j+<span class="number">1</span>]) <span class="comment">//选取两个子节点中较大的一个往上交换</span>
+        <span class="keyword">if</span>(j &lt; N &amp;&amp; p<span class="string">q[j]</span> &lt; p<span class="string">q[j+1]</span>) //选取两个子节点中较大的一个往上交换
 
                 j++;
 
-        <span class="keyword">if</span>(pq[k] &gt;= pq[j])   <span class="comment">//结束下沉，已经比字节点大了</span>
+        <span class="keyword">if</span>(p<span class="string">q[k]</span> &gt;= p<span class="string">q[j]</span>)   //结束下沉，已经比字节点大了
 
                 <span class="keyword">break</span>;
 
-        swap(pq, k, j); <span class="comment">//下沉</span>
+        swap(pq, k, j); <span class="regexp">//</span>下沉
 
         k = j;
 
 }
 
-<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> sort(Comparable[] a) {
+public static void <span class="keyword">sort</span>(Comparable[] a) {
 
-    <span class="keyword">int</span> N = a<span class="variable">.length</span>;
+    <span class="keyword">int</span> N = a.<span class="keyword">length</span>;
 
-    <span class="comment">//先使得堆有序</span>
+    <span class="regexp">//</span>先使得堆有序
 
-    <span class="keyword">for</span>(<span class="keyword">int</span> k = N/<span class="number">2</span>; k &gt;= <span class="number">1</span>; k--)  <span class="comment">//从右到左扫，因为最终堆有序是右边总比左边小；</span>
+    <span class="keyword">for</span>(<span class="keyword">int</span> k = N/<span class="number">2</span>; k &gt;= <span class="number">1</span>; k--)  //从右到左扫，因为最终堆有序是右边总比左边小；
 
-            sink(a, k, N);             <span class="comment">//只扫描一半，因为一半之后的元素都是叶节点，就是为1的堆</span>
+            sink(a, k, N);             <span class="regexp">//</span>只扫描一半，因为一半之后的元素都是叶节点，就是为<span class="number">1</span>的堆
 
-    <span class="comment">//再进行下沉排序，销毁堆有序</span>
+    //再进行下沉排序，销毁堆有序
 
-   <span class="keyword">while</span>(N &gt; <span class="number">1</span>) {      <span class="comment">//把最大元素删除，然后放入堆缩小后数组中空出的位置</span>
-        swap(a, <span class="number">1</span>, N--); <span class="comment">//a[1]就是最大元素，把其交换到最后一个，就是从堆有序堆中删除它</span>
+   <span class="keyword">while</span>(N &gt; <span class="number">1</span>) {      <span class="regexp">//</span>把最大元素删除，然后放入堆缩小后数组中空出的位置
+        swap(a, <span class="number">1</span>, N--); <span class="regexp">//a</span>[<span class="number">1</span>]就是最大元素，把其交换到最后一个，就是从堆有序堆中删除它
 
-        sink(a, <span class="number">1</span>, N);  <span class="comment">//被交换到a[1]的元素，通过在子堆中下沉，使得子堆再次有序</span>
+        sink(a, <span class="number">1</span>, N);  <span class="regexp">//</span>被交换到a[<span class="number">1</span>]的元素，通过在子堆中下沉，使得子堆再次有序
 
-}                           <span class="comment">//重复这个过程，最大元素总是往后一个一个走，最后整个数组就有序了</span>
+}                           //重复这个过程，最大元素总是往后一个一个走，最后整个数组就有序了
 </pre></td></tr></table></figure>
-
 
 
 <p>堆排序的复杂度：N*lgN，而且是原地排序，无额外空间消耗；</p>
@@ -660,7 +661,6 @@ void <span class="keyword">sort</span>(Comparable[] a, <span class="keyword">int
 
 <span class="built_in">array</span>[i] &gt; <span class="number">0</span>;
 </pre></td></tr></table></figure>
-
 
 <hr>
 <p><b>【Java.util.Arrays.sort】</b></p>
@@ -740,10 +740,10 @@ void <span class="keyword">sort</span>(Comparable[] a, <span class="keyword">int
   <div class="widget tag">
   <h3 class="title">My Projects</h3>
   <ul class="entry">
+ 	<li><a href="http://mosthink.net/LockPattern" target="_blank">LockPattern</a></li>
     <li><a href="http://mosthink.net/ANotepad" target="_blank">ANotepad</a></li>
     <li><a href="http://mosthink.net/PushNewsmth2Mail" target="_blank">PushNewsmth2Mail</a></li>
     <li><a href="http://mosthink.net/DoubleFacedCamera" target="_blank">DoubleFacedCamera</a></li>
-    
     <li><a href="http://mosthink.net/TransformersPuzzle" target="_blank">TransformersPuzzle</a></li>
     <li><a href="http://mosthink.net/BluetoothChat" target="_blank">BluetoothChat</a></li>
     <li><a href="http://mosthink.net/LianLianKan" target="_blank">LianLianKan</a></li>
